@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, PancakeToggle, Toggle, Flex, Modal, InjectedModalProps } from '@pancakeswap/uikit'
+import { Text, CrosswiseToggle, Toggle, Flex, Modal, InjectedModalProps } from 'crosswise-uikit'
 import { useAudioModeManager, useExpertModeManager, useUserSingleHopOnly } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 import { useSwapActionHandlers } from 'state/swap/hooks'
@@ -10,7 +10,7 @@ import TransactionSettings from './TransactionSettings'
 import ExpertModal from './ExpertModal'
 
 // TODO: Temporary. Once uikit is merged with this style change, this can be removed.
-const PancakeToggleWrapper = styled.div`
+const CrosswiseToggleWrapper = styled.div`
   .pancakes {
     position: absolute;
   }
@@ -96,9 +96,9 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
               ml="4px"
             />
           </Flex>
-          <PancakeToggleWrapper>
-            <PancakeToggle checked={audioPlay} onChange={toggleSetAudioMode} scale="md" />
-          </PancakeToggleWrapper>
+          <CrosswiseToggleWrapper>
+            <CrosswiseToggle checked={audioPlay} onChange={toggleSetAudioMode} scale="md" />
+          </CrosswiseToggleWrapper>
         </Flex>
       </Flex>
     </Modal>

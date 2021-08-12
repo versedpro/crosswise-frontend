@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Skeleton, PocketWatchIcon, Text } from '@pancakeswap/uikit'
+import { Flex, Skeleton, PocketWatchIcon, Text } from 'crosswise-uikit'
 import { useTranslation } from 'contexts/Localization'
 import getTimePeriods from 'utils/getTimePeriods'
 import { CompetitionSteps, LIVE } from 'config/constants/trading-competition/easterPhases'
@@ -80,7 +80,7 @@ const Countdown: React.FC<{ currentPhase: CompetitionPhaseProps; hasCompetitionE
   const renderTimer = () => {
     if (hasCompetitionEnded) {
       return (
-        <StyledHeading background={theme.colors.gradients.gold} $fill>
+        <StyledHeading background={theme.colors.gradients.blue} $fill>
           {t('Finished')}!
         </StyledHeading>
       )
@@ -92,7 +92,7 @@ const Countdown: React.FC<{ currentPhase: CompetitionPhaseProps; hasCompetitionE
         hours={hours}
         days={days}
         HeadingTextComponent={({ children }) => (
-          <StyledHeading background={theme.colors.gradients.gold} $fill>
+          <StyledHeading background={theme.colors.gradients.blue} $fill>
             {children}
           </StyledHeading>
         )}

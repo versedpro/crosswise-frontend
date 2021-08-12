@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Heading, Image } from '@pancakeswap/uikit'
+import { Flex, Text, Heading, Image } from 'crosswise-uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
@@ -50,7 +50,7 @@ const BattleBanner = () => {
         {t('April')} 07—14, 2021
       </StyledText>
       <StyledHeading1Text>{t('Easter Battle')}</StyledHeading1Text>
-      <StyledHeading2Text background={theme.colors.gradients.gold} $fill>
+      <StyledHeading2Text background={theme.colors.gradients.blue} $fill>
         {t('$200,000 in Prizes!')}
       </StyledHeading2Text>
       <StyledHeading scale="md" color={theme.isDark ? 'textSubtle' : 'inputSecondary'} mt="16px">
