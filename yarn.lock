@@ -7334,6 +7334,19 @@ cross-spawn@^6.0.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
+crosswise-uikit@^0.32.2:
+  version "0.32.2"
+  resolved "https://registry.yarnpkg.com/crosswise-uikit/-/crosswise-uikit-0.32.2.tgz#3cb8c4f106e48415964f1e54aba6c1bc15da2810"
+  integrity sha512-4O+GFFOb0JfjJCFHWTEF93gpEJ4pUOkfjYJp9p+ztf22RVOOs5TCmz3nw4EEdakE8pXUiaayJwN+Se9LJYreJQ==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    "@types/lodash" "^4.14.168"
+    "@types/styled-system" "^5.1.10"
+    lodash "^4.17.20"
+    react-popper "^2.2.5"
+    react-transition-group "^4.4.1"
+    styled-system "^5.1.5"
+
 crypto-browserify@3.12.0, crypto-browserify@^3.11.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.12.0.tgz#396cf9f3137f03e4b8e532c58f698254e00f80ec"

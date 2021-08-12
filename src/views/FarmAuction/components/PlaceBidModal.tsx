@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
-import { Modal, Text, Flex, BalanceInput, Box, Button, PancakeRoundIcon } from '@pancakeswap/uikit'
+import { Modal, Text, Flex, BalanceInput, Box, Button, CrosswiseRoundIcon } from 'crosswise-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import { formatNumber, getBalanceAmount, getBalanceNumber } from 'utils/formatBalance'
@@ -150,7 +150,7 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({
         <Flex justifyContent="space-between" alignItems="center" pb="8px">
           <Text>{t('Bid a multiple of 10')}</Text>
           <Flex>
-            <PancakeRoundIcon width="24px" height="24px" mr="4px" />
+            <CrosswiseRoundIcon width="24px" height="24px" mr="4px" />
             <Text bold>CAKE</Text>
           </Flex>
         </Flex>
