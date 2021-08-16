@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Text, Flex, Heading, IconButton, ArrowBackIcon, NotificationDot } from 'crosswise-uikit'
 import { Link } from 'react-router-dom'
@@ -12,6 +12,7 @@ interface Props {
   subtitle: string
   helper?: string
   backTo?: string
+  children?: ReactNode
   noConfig?: boolean
 }
 
@@ -23,7 +24,7 @@ const AppHeaderContainer = styled(Flex)`
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
-const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig = false }) => {
+const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, children, noConfig = false }) => {
   const [expertMode] = useExpertModeManager()
 
   return (
@@ -46,6 +47,7 @@ const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, noConfig 
           </Flex>
         </Flex>
       </Flex>
+      {children && <Text mt="16px">{children}</Text>}
       {!noConfig && (
         <Flex alignItems="center">
           <NotificationDot show={expertMode}>

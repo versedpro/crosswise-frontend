@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap/sdk'
-import { Button, Text, ArrowDownIcon, Box, useModal } from 'crosswise-uikit'
+import { Button, Text, ArrowDownIcon, ArrowForwardIcon, Box, useModal, Flex, Toggle} from 'crosswise-uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import { RouteComponentProps } from 'react-router-dom'
@@ -302,12 +302,22 @@ export default function Swap({ history }: RouteComponentProps) {
     'confirmSwapModal',
   )
 
+  const [isAdvanced, setSwapMode] = useState<boolean>(true)
+
   return (
     <Page>
       <AppBody>
-        <AppHeader title={t('Exchange')} subtitle={t('Trade tokens in an instant')} />
+        <AppHeader title={t('Trade tokens in an instant')} subtitle={t('')}>
+          <Flex flexDirection="column" alignItems="flex-end">
+            <Flex justifyContent="center">
+              <Text className="swap-simple">{t('Simple')}</Text>
+              <Toggle checked={isAdvanced} onChange={(e) => setSwapMode(e.target.checked)} scale="sm" />
+              <Text className="swap-advanced">{t('Advanced')}</Text>
+            </Flex>
+          </Flex>
+        </AppHeader>
         <Wrapper id="swap-page">
-          <AutoColumn gap="md">
+          <AutoRow justify="space-between">
             <CurrencyInputPanel
               label={independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')}
               value={formattedAmounts[Field.INPUT]}
@@ -322,7 +332,7 @@ export default function Swap({ history }: RouteComponentProps) {
             <AutoColumn justify="space-between">
               <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
                 <ArrowWrapper clickable>
-                  <ArrowDownIcon
+                  <ArrowForwardIcon
                     width="16px"
                     onClick={() => {
                       setApprovalSubmitted(false) // reset 2 step UI for approvals
@@ -348,6 +358,8 @@ export default function Swap({ history }: RouteComponentProps) {
               otherCurrency={currencies[Field.INPUT]}
               id="swap-currency-output"
             />
+          </AutoRow>
+          <AutoRow>
 
             {isExpertMode && recipient !== null && !showWrap ? (
               <>
@@ -385,7 +397,7 @@ export default function Swap({ history }: RouteComponentProps) {
                 )}
               </AutoColumn>
             )}
-          </AutoColumn>
+          </AutoRow>
           <Box mt="1rem">
             {swapIsUnsupported ? (
               <Button width="100%" disabled mb="4px">
