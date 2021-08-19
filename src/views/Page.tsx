@@ -29,10 +29,34 @@ const StyledPage = styled.div`
   }
 `
 
+const ControlContainer = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+
+  justify-content: space-between;
+  flex-direction: column;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 16px 32px;
+    margin-bottom: 0;
+    justify-content: flex-start;
+
+    > div {
+      padding: 0;
+    }
+  }
+`
+
 const Page: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => {
   return (
     <StyledPage {...props}>
-      <SubNav />
+      <ControlContainer>
+        <SubNav />
+      </ControlContainer>
       {children}
       <Flex flexGrow={1} />
       <Footer />

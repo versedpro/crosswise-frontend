@@ -41,10 +41,12 @@ const getActiveIndex = (pathname: string): number => {
   ) {
     return 1
   }
+  if (pathname.includes('/bridge')) return 2
+  if (pathname.includes('/orderbook')) return 3
   return 0
 }
 
-const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => {
+const Nav = () => {
   const location = useLocation()
   const { t } = useTranslation()
   return (
@@ -59,10 +61,10 @@ const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => {
         </ButtonMenuItem>
       </ButtonMenu> */}
       <div>
-        <Button id="swap-nav-link" scale="sm" variant={ activeIndex === 0 ? "secondaryGradient" : "tertiary" } to="/swap" as={Link}>{t('Swap')}</Button>
-        <Button id="pool-nav-link" scale="sm" variant={ activeIndex === 1 ? "secondaryGradient" : "tertiary" } to="/pool" as={Link}>{t('Liquidity')}</Button>
-        {/* <Button id="bridge-nav-link" scale="sm" variant={ activeIndex === 2 ? "secondaryGradient" : "tertiary" } to="#" as={Link}>{t('Bridge')}</Button>
-        <Button id="orderbook-nav-link" scale="sm" variant={ activeIndex === 3 ? "secondaryGradient" : "tertiary" } to="#" as={Link}>{t('Orderbook')}</Button> */}
+        <Button id="swap-nav-link" scale="sm" variant={ getActiveIndex(location.pathname) === 0 ? "secondaryGradient" : "tertiary" } to="/swap" as={Link}>{t('Swap')}</Button>
+        <Button id="pool-nav-link" scale="sm" variant={ getActiveIndex(location.pathname) === 1 ? "secondaryGradient" : "tertiary" } to="/pool" as={Link}>{t('Liquidity')}</Button>
+        {/* <Button id="bridge-nav-link" scale="sm" variant={ getActiveIndex(location.pathname) === 0 ? "secondaryGradient" : "tertiary" } to="#" as={Link}>{t('Bridge')}</Button>
+        <Button id="orderbook-nav-link" scale="sm" variant={ getActiveIndex(location.pathname) === 0 ? "secondaryGradient" : "tertiary" } to="#" as={Link}>{t('Orderbook')}</Button> */}
       </div>
     </StyledNav>
   )

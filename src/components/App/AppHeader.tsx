@@ -14,21 +14,22 @@ interface Props {
   backTo?: string
   children?: ReactNode
   noConfig?: boolean
+  hideBorder?: boolean
 }
 
-const AppHeaderContainer = styled(Flex)`
+const AppHeaderContainer = styled(Flex)<{ hideBorder: boolean }>`
   align-items: center;
   justify-content: space-between;
   padding: 24px;
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  border-bottom: ${({ hideBorder }) => (hideBorder ? 'none' : '1px' )} solid ${({ theme }) => theme.colors.cardBorder};
 `
 
-const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, children, noConfig = false }) => {
+const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, children, noConfig = false, hideBorder = false }) => {
   const [expertMode] = useExpertModeManager()
 
   return (
-    <AppHeaderContainer>
+    <AppHeaderContainer hideBorder={hideBorder}>
       <Flex alignItems="center" mr={noConfig ? 0 : '16px'}>
         {backTo && (
           <IconButton as={Link} to={backTo}>
