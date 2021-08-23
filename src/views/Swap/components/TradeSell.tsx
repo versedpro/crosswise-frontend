@@ -50,7 +50,7 @@ const Label = styled(Text)`
   color: ${({ theme }) => theme.colors.secondary};
 `
 
-export default function OrderBuy() {
+export default function TradeSell() {
   const loadedUrlParams = useDefaultsFromURLSearch()
 
   const { t } = useTranslation()
@@ -307,37 +307,28 @@ export default function OrderBuy() {
 
   return (
     <Wrapper>
-      <AppHeader title={t('Buy Lp')} subtitle={t('')} noConfig hideBorder />
-      <Wrapper id="order-buy-page">
+      <AppHeader
+        title={t('%currency%/USD', { currency: currencies[Field.OUTPUT] ? currencies[Field.OUTPUT].symbol : '' })}
+        subtitle={t('')}
+        noConfig
+        hideBorder
+      />
+      <Wrapper id="trade-sell">
         <AutoColumn justify="space-between">
-          <CurrencyInput
-            label="Price"
-            value={formattedAmounts[Field.INPUT]}
-            currency={currencies[Field.INPUT]}
-            onUserInput={handleTypeInput}
-            id="swap-currency-input"
-          />
-          <CurrencyInput
-            label="Amount"
-            value={formattedAmounts[Field.OUTPUT]}
-            onUserInput={handleTypeOutput}
-            append="LP"
-            id="sell-lp-amount"
-          />
-          <CurrencyInput
-            label="Max Execution Time"
-            value={formattedAmounts[Field.OUTPUT]}
-            onUserInput={handleTypeOutput}
-            append="Min"
-            id="sell-max-duration"
-          />
-          <CurrencyInput
-            label="Total"
-            value={formattedAmounts[Field.OUTPUT]}
-            onUserInput={handleTypeOutput}
-            currency={currencies[Field.OUTPUT]}
-            id="swap-currency-output"
-          />
+          {Boolean(trade) && (
+            <RowBetween align="center">
+              <Label>{t('Price')}</Label>
+              <TradePrice price={trade?.executionPrice} showInverted={showInverted} setShowInverted={setShowInverted} />
+            </RowBetween>
+          )}
+          {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
+            <RowBetween align="center">
+              <Label>{t('Slippage Tolerance')}</Label>
+              <Text bold color="primary">
+                {allowedSlippage / 100}%
+              </Text>
+            </RowBetween>
+          )}
           <Box mt="1rem">
             {swapIsUnsupported ? (
               <Button width="100%" disabled mb="4px">
@@ -403,8 +394,8 @@ export default function OrderBuy() {
                   {priceImpactSeverity > 3 && !isExpertMode
                     ? t('Price Impact High')
                     : priceImpactSeverity > 2
-                    ? t('Buy Anyway')
-                    : t('Buy')}
+                    ? t('Trade Anyway')
+                    : t('Trade')}
                 </Button>
               </RowBetween>
             ) : (
@@ -431,8 +422,8 @@ export default function OrderBuy() {
                   (priceImpactSeverity > 3 && !isExpertMode
                     ? `Price Impact Too High`
                     : priceImpactSeverity > 2
-                    ? t('Buy Anyway')
-                    : t('Buy'))}
+                    ? t('Trade Anyway')
+                    : t('Trade'))}
               </Button>
             )}
             {showApproveFlow && (
@@ -442,11 +433,6 @@ export default function OrderBuy() {
             )}
             {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
           </Box>
-          {!swapIsUnsupported ? (
-            <AdvancedSwapDetailsDropdown trade={trade} />
-          ) : (
-            <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
-          )}
         </AutoColumn>
       </Wrapper>
     </Wrapper>

@@ -98,9 +98,17 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <Text fontSize="13px" fontWeight="500" color="textSecondary">{translatedLabel}</Text>
+              <Text fontSize="13px" fontWeight="500" color="textSecondary">
+                {translatedLabel}
+              </Text>
               {account && (
-                <Text onClick={onMax} fontSize="13px" fontWeight="500" color="textSecondary" style={{ display: 'inline', cursor: 'pointer' }}>
+                <Text
+                  onClick={onMax}
+                  fontSize="13px"
+                  fontWeight="500"
+                  color="textSecondary"
+                  style={{ display: 'inline', cursor: 'pointer' }}
+                >
                   {!hideBalance && !!currency && selectedCurrencyBalance
                     ? t('Balance: %amount%', { amount: selectedCurrencyBalance?.toSignificant(6) ?? '' })
                     : ' -'}
@@ -137,11 +145,11 @@ export default function CurrencyInputPanel({
           >
             <Flex alignItems="center" justifyContent="space-between">
               {pair ? (
-                <Text id="pair" color="textSecondary" style={{ marginRight: "8px" }}>
+                <Text id="pair" color="textSecondary" style={{ marginRight: '8px' }}>
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
               ) : (
-                <Text id="pair" color="textSecondary" style={{ marginRight: "8px" }}>
+                <Text id="pair" color="textSecondary" style={{ marginRight: '8px' }}>
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                         currency.symbol.length - 5,

@@ -37,13 +37,15 @@ const ControlContainer = styled.div`
 
   justify-content: space-between;
   flex-direction: column;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
     flex-wrap: wrap;
     padding: 16px 32px;
     margin-bottom: 0;
-    justify-content: flex-start;
 
     > div {
       padding: 0;

@@ -31,7 +31,6 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   position: relative;
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '4px')};
   z-index: 1;
-
 `
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: 4px;
@@ -58,7 +57,7 @@ export default function CurrencyInput({
   pair = null, // used for double token logo
   hideInput = false,
   id,
-  append = null
+  append = null,
 }: CurrencyInputProps) {
   const { account } = useActiveWeb3React()
   const { t } = useTranslation()
@@ -67,7 +66,9 @@ export default function CurrencyInput({
     <InputPanel id={id}>
       {label ? (
         <LabelRow>
-          <Text fontSize="13px" fontWeight="500" color="textSecondary">{label}</Text>
+          <Text fontSize="13px" fontWeight="500" color="textSecondary">
+            {label}
+          </Text>
         </LabelRow>
       ) : (
         <></>
@@ -81,16 +82,11 @@ export default function CurrencyInput({
               onUserInput(val)
             }}
           />
-          <CurrencySelectButton
-            selected={!!currency}
-            className="open-currency-select-button"
-          >
+          <CurrencySelectButton selected={!!currency} className="open-currency-select-button">
             <Flex alignItems="center" justifyContent="space-between">
               {append ? (
-                <Text id="append">
-                  {append}
-                </Text>
-              ) : (pair ? (
+                <Text id="append">{append}</Text>
+              ) : pair ? (
                 <Text id="pair">
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
@@ -103,7 +99,7 @@ export default function CurrencyInput({
                       )}`
                     : currency?.symbol) || t('Select a currency')}
                 </Text>
-              ))}
+              )}
             </Flex>
           </CurrencySelectButton>
         </InputRow>

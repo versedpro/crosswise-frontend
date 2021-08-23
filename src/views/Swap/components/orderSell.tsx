@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap/sdk'
-import { Button, Text, ArrowDownIcon, ArrowForwardIcon, Box, useModal, Flex, Toggle} from 'crosswise-uikit'
+import { Button, Text, ArrowDownIcon, ArrowForwardIcon, Box, useModal, Flex, Toggle } from 'crosswise-uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import { RouteComponentProps } from 'react-router-dom'
@@ -307,7 +307,7 @@ export default function OrderSell() {
 
   return (
     <Wrapper>
-      <AppHeader title={t('Sell Lp')} subtitle={t('')} noConfig hideBorder/>
+      <AppHeader title={t('Sell Lp')} subtitle={t('')} noConfig hideBorder />
       <Wrapper id="order-buy-page">
         <AutoColumn justify="space-between">
           <CurrencyInput
