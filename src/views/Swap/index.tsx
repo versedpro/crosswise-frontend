@@ -408,7 +408,7 @@ export default function Swap({ history }: RouteComponentProps) {
               ) : null}
 
               {showWrap ? null : (
-                <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
+                <AutoColumn gap="8px" style={{ padding: '16px 16px 0' }}>
                   {Boolean(trade) && (
                     <RowBetween align="center">
                       <Label>{t('Price')}</Label>

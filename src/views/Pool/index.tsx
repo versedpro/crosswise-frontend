@@ -5,6 +5,7 @@ import { Text, Flex, CardBody, CardFooter, Button, AddIcon } from 'crosswise-uik
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { StyledCard } from 'views/Swap/components/styleds'
 import FullPositionCard from '../../components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { usePairs } from '../../hooks/usePairs'
@@ -15,6 +16,31 @@ import Page from '../Page'
 
 const Body = styled(CardBody)`
   background-color: ${({ theme }) => theme.colors.dropdown};
+`
+
+const ControlContainer = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+
+  justify-content: space-between;
+  flex-direction: column;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 16px 32px;
+    margin-bottom: 0;
+    justify-content: flex-start;
+
+    > div {
+      padding: 0;
+    }
+  }
 `
 
 export default function Pool() {
@@ -84,27 +110,29 @@ export default function Pool() {
 
   return (
     <Page>
-      <AppBody>
-        <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
-        <Body>
-          {renderBody()}
-          {account && !v2IsLoading && (
-            <Flex flexDirection="column" alignItems="center" mt="24px">
-              <Text color="textSubtle" mb="8px">
-                {t("Don't see a pool you joined?")}
-              </Text>
-              <Button id="import-pool-link" variant="secondary" scale="sm" as={Link} to="/find">
-                {t('Find other LP tokens')}
-              </Button>
-            </Flex>
-          )}
-        </Body>
-        <CardFooter style={{ textAlign: 'center' }}>
-          <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
-            {t('Add Liquidity')}
-          </Button>
-        </CardFooter>
-      </AppBody>
+      <ControlContainer>
+        <StyledCard>
+          <AppHeader title={t('Your Liquidity')} subtitle={t('Remove liquidity to receive tokens back')} />
+          <Body>
+            {renderBody()}
+            {account && !v2IsLoading && (
+              <Flex flexDirection="column" alignItems="center" mt="24px">
+                <Text color="textSubtle" mb="8px">
+                  {t("Don't see a pool you joined?")}
+                </Text>
+                <Button id="import-pool-link" variant="secondary" scale="sm" as={Link} to="/find">
+                  {t('Find other LP tokens')}
+                </Button>
+              </Flex>
+            )}
+          </Body>
+          <CardFooter style={{ textAlign: 'center' }}>
+            <Button id="join-pool-button" as={Link} to="/add" width="100%" startIcon={<AddIcon color="white" />}>
+              {t('Add Liquidity')}
+            </Button>
+          </CardFooter>
+        </StyledCard>
+      </ControlContainer>
     </Page>
   )
 }
