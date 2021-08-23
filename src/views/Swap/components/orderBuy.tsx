@@ -344,7 +344,7 @@ export default function OrderBuy() {
                 {t('Unsupported Asset')}
               </Button>
             ) : !account ? (
-              <ConnectWalletButton width="100%" />
+              <ConnectWalletButton width="100%" variant="primaryGradient" />
             ) : showWrap ? (
               <Button width="100%" disabled={Boolean(wrapInputError)} onClick={onWrap}>
                 {wrapInputError ??
