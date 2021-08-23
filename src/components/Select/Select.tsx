@@ -10,8 +10,8 @@ const DropDownHeader = styled.div`
   justify-content: space-between;
   padding: 0px 16px;
   box-shadow: ${({ theme }) => theme.shadows.inset};
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-  border-radius: 16px;
+  border: 0px solid ${({ theme }) => theme.colors.inputSecondary};
+  border-radius: 5px;
   background: ${({ theme }) => theme.colors.input};
   transition: border-radius 0.15s;
 `
@@ -61,9 +61,9 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
         height: auto;
         transform: scaleY(1);
         opacity: 1;
-        border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+        // border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
         border-top-width: 0;
-        border-radius: 0 0 16px 16px;
+        border-radius: 0 0 2px 2px;
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
       }
     `}
