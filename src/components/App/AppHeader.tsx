@@ -22,10 +22,18 @@ const AppHeaderContainer = styled(Flex)<{ hideBorder: boolean }>`
   justify-content: space-between;
   padding: 24px;
   width: 100%;
-  border-bottom: ${({ hideBorder }) => (hideBorder ? 'none' : '1px' )} solid ${({ theme }) => theme.colors.cardBorder};
+  border-bottom: ${({ hideBorder }) => (hideBorder ? 'none' : '1px')} solid ${({ theme }) => theme.colors.cardBorder};
 `
 
-const AppHeader: React.FC<Props> = ({ title, subtitle, helper, backTo, children, noConfig = false, hideBorder = false }) => {
+const AppHeader: React.FC<Props> = ({
+  title,
+  subtitle,
+  helper,
+  backTo,
+  children,
+  noConfig = false,
+  hideBorder = false,
+}) => {
   const [expertMode] = useExpertModeManager()
 
   return (

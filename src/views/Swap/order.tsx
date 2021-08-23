@@ -1,5 +1,15 @@
 import React from 'react'
-import { Button, Text, ArrowDownIcon, ArrowForwardIcon, Box, useModal, Flex, Toggle, CardsLayout } from 'crosswise-uikit'
+import {
+  Button,
+  Text,
+  ArrowDownIcon,
+  ArrowForwardIcon,
+  Box,
+  useModal,
+  Flex,
+  Toggle,
+  CardsLayout,
+} from 'crosswise-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { ArrowWrapper, SwapCallbackError, Wrapper, StyledCard } from './components/styleds'
 import { AppHeader, AppBody } from '../../components/App'

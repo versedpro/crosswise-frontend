@@ -1,5 +1,15 @@
 import React from 'react'
-import { Button, Text, ArrowDownIcon, ArrowForwardIcon, Box, useModal, Flex, Toggle, CardsLayout } from 'crosswise-uikit'
+import {
+  Button,
+  Text,
+  ArrowDownIcon,
+  ArrowForwardIcon,
+  Box,
+  useModal,
+  Flex,
+  Toggle,
+  CardsLayout,
+} from 'crosswise-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { ArrowWrapper, SwapCallbackError, Wrapper, StyledCard } from './components/styleds'
 import OrderBuy from './components/orderBuy'
@@ -14,10 +24,10 @@ export default function TradeToken() {
     <Wrapper id="order-page" style={{ width: '100%' }}>
       <CardsLayout className="column-2" style={{ width: '100%' }}>
         <StyledCard>
-            <TradeBuy />
+          <TradeBuy />
         </StyledCard>
         <StyledCard>
-            <TradeSell />
+          <TradeSell />
         </StyledCard>
       </CardsLayout>
     </Wrapper>

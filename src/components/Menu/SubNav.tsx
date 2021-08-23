@@ -51,7 +51,9 @@ const Nav = () => {
   const { t } = useTranslation()
   return (
     <StyledNav>
-      <Heading><HeadLine>{ getActiveIndex(location.pathname) === 0 ? t('Exchange') : t('Liquidity') }</HeadLine></Heading>
+      <Heading>
+        <HeadLine>{getActiveIndex(location.pathname) === 0 ? t('Exchange') : t('Liquidity')}</HeadLine>
+      </Heading>
       {/* <ButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
           {t('Swap')}
@@ -61,8 +63,24 @@ const Nav = () => {
         </ButtonMenuItem>
       </ButtonMenu> */}
       <div>
-        <Button id="swap-nav-link" scale="sm" variant={ getActiveIndex(location.pathname) === 0 ? "secondaryGradient" : "tertiary" } to="/swap" as={Link}>{t('Swap')}</Button>
-        <Button id="pool-nav-link" scale="sm" variant={ getActiveIndex(location.pathname) === 1 ? "secondaryGradient" : "tertiary" } to="/pool" as={Link}>{t('Liquidity')}</Button>
+        <Button
+          id="swap-nav-link"
+          scale="sm"
+          variant={getActiveIndex(location.pathname) === 0 ? 'secondaryGradient' : 'tertiary'}
+          to="/swap"
+          as={Link}
+        >
+          {t('Swap')}
+        </Button>
+        <Button
+          id="pool-nav-link"
+          scale="sm"
+          variant={getActiveIndex(location.pathname) === 1 ? 'secondaryGradient' : 'tertiary'}
+          to="/pool"
+          as={Link}
+        >
+          {t('Liquidity')}
+        </Button>
         {/* <Button id="bridge-nav-link" scale="sm" variant={ getActiveIndex(location.pathname) === 0 ? "secondaryGradient" : "tertiary" } to="#" as={Link}>{t('Bridge')}</Button>
         <Button id="orderbook-nav-link" scale="sm" variant={ getActiveIndex(location.pathname) === 0 ? "secondaryGradient" : "tertiary" } to="#" as={Link}>{t('Orderbook')}</Button> */}
       </div>

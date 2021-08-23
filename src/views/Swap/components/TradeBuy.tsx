@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap/sdk'
-import { Button, Text, ArrowDownIcon, ArrowForwardIcon, Box, useModal, Flex, Toggle} from 'crosswise-uikit'
+import { Button, Text, ArrowDownIcon, ArrowForwardIcon, Box, useModal, Flex, Toggle } from 'crosswise-uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import { RouteComponentProps } from 'react-router-dom'
@@ -307,17 +307,18 @@ export default function TradeBuy() {
 
   return (
     <Wrapper>
-      <AppHeader title={t('%currency%/USD', { currency: currencies[Field.INPUT] ? currencies[Field.INPUT].symbol : '' })} subtitle={t('')} noConfig hideBorder />
+      <AppHeader
+        title={t('%currency%/USD', { currency: currencies[Field.INPUT] ? currencies[Field.INPUT].symbol : '' })}
+        subtitle={t('')}
+        noConfig
+        hideBorder
+      />
       <Wrapper id="trade-buy">
         <AutoColumn justify="space-between">
           {Boolean(trade) && (
             <RowBetween align="center">
               <Label>{t('Price')}</Label>
-              <TradePrice
-                price={trade?.executionPrice}
-                showInverted={showInverted}
-                setShowInverted={setShowInverted}
-              />
+              <TradePrice price={trade?.executionPrice} showInverted={showInverted} setShowInverted={setShowInverted} />
             </RowBetween>
           )}
           {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (

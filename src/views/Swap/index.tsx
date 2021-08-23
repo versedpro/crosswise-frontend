@@ -339,9 +339,13 @@ export default function Swap({ history }: RouteComponentProps) {
           <AppHeader title={t('Trade tokens in an instant')} subtitle={t('')}>
             <Flex flexDirection="column" alignItems="flex-end">
               <Flex justifyContent="center">
-                <Text className="swap-simple" style={{ margin: "0 16px" }}>{t('Simple')}</Text>
+                <Text className="swap-simple" style={{ margin: '0 16px' }}>
+                  {t('Simple')}
+                </Text>
                 <Toggle checked={isAdvanced} onChange={(e) => setSwapMode(e.target.checked)} scale="sm" />
-                <Text className="swap-advanced" style={{ margin: "0 16px" }}>{t('Advanced')}</Text>
+                <Text className="swap-advanced" style={{ margin: '0 16px' }}>
+                  {t('Advanced')}
+                </Text>
               </Flex>
             </Flex>
           </AppHeader>
@@ -389,7 +393,6 @@ export default function Swap({ history }: RouteComponentProps) {
               />
             </AutoRow>
             <AutoRow>
-
               {isExpertMode && recipient !== null && !showWrap ? (
                 <>
                   <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
@@ -430,11 +433,11 @@ export default function Swap({ history }: RouteComponentProps) {
             {isAdvanced ? null : (
               <AutoRow justify="space-between">
                 <div>
-                {!swapIsUnsupported ? (
-                  <AdvancedSwapDetailsDropdown trade={trade} />
-                ) : (
-                  <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
-                )}
+                  {!swapIsUnsupported ? (
+                    <AdvancedSwapDetailsDropdown trade={trade} />
+                  ) : (
+                    <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
+                  )}
                 </div>
                 <Box mt="1rem">
                   {swapIsUnsupported ? (
