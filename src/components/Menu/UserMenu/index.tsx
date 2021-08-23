@@ -23,7 +23,7 @@ const UserMenu = () => {
   const hasLowBnbBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_BNB_BALANCE)
 
   if (!account) {
-    return <ConnectWalletButton scale="sm" />
+    return <ConnectWalletButton scale="sm" variant="primaryGradient" />
   }
 
   return (
