@@ -16,7 +16,8 @@ const StyledTable = styled.div`
 
   background-color: ${({ theme }) => theme.card.background};
   > div:not(:last-child) {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.disabled};
+    border-bottom: 1px solid #ffffff0f;
+    // border-bottom: 2px solid ${({ theme }) => theme.colors.disabled};
   }
 `
 

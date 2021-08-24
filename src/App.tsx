@@ -31,6 +31,7 @@ const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
 const FarmAuction = lazy(() => import('./views/FarmAuction'))
 const Lottery = lazy(() => import('./views/Lottery'))
+const Referral = lazy(() => import('./views/Referral'))
 const Ifos = lazy(() => import('./views/Ifos'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const Collectibles = lazy(() => import('./views/Collectibles'))
@@ -110,6 +111,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/voting/proposal/:id">
               <Proposal />
+            </Route>
+            <Route exact path="/referral">
+              <Referral />
             </Route>
 
             {/* Using this format because these components use routes injected props. We need to rework them with hooks */}
