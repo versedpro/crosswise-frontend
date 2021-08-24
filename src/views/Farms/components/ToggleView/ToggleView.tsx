@@ -20,26 +20,34 @@ const ToggleView: React.FunctionComponent<ToggleViewProps> = ({ viewMode, onTogg
   const handleToggle = (mode: ViewMode) => {
     if (viewMode !== mode) {
       console.log(viewMode)
-      console.log("mode", mode)
+      console.log('mode', mode)
       onToggle(mode)
     }
   }
 
   return (
     <Container>
-      {
-        viewMode === ViewMode.CARD?(
-          <IconButton variant="secondaryGradient" scale="md" id="clickFarmCardView" onClick={() => handleToggle(ViewMode.TABLE)} style={{height: '42px', marginLeft: '5px'}} >
-            <ListViewIcon color='text' />
-          </IconButton>
-        ):(
-          <IconButton variant="secondaryGradient" scale="md" id="clickFarmTableView" onClick={() => handleToggle(ViewMode.CARD)} style={{height: '42px', marginLeft: '5px'}}>
-            <CardViewIcon color='text' />
+      {viewMode === ViewMode.CARD ? (
+        <IconButton
+          variant="secondaryGradient"
+          scale="md"
+          id="clickFarmCardView"
+          onClick={() => handleToggle(ViewMode.TABLE)}
+          style={{ height: '42px', marginLeft: '5px' }}
+        >
+          <ListViewIcon color="text" />
         </IconButton>
-        )
-      }
-      
-     
+      ) : (
+        <IconButton
+          variant="secondaryGradient"
+          scale="md"
+          id="clickFarmTableView"
+          onClick={() => handleToggle(ViewMode.CARD)}
+          style={{ height: '42px', marginLeft: '5px' }}
+        >
+          <CardViewIcon color="text" />
+        </IconButton>
+      )}
     </Container>
   )
 }

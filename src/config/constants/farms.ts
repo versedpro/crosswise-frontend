@@ -88,7 +88,6 @@ const farms: FarmConfig[] = [
     token: tokens.win,
     quoteToken: tokens.busd,
   },
- 
 ]
 
 export default farms
