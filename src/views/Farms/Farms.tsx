@@ -93,6 +93,8 @@ const FarmHeadCard = styled.div<{isDarkTheme:boolean}>`
 `
 const HeaderTopBar = styled.div`
   display:flex;
+  align-items: baseline;
+  justify-content:space-between;
 `
 
 
@@ -464,7 +466,7 @@ const Farms: React.FC = () => {
     <>
       <FarmHeader>
         <HeaderTopBar>
-          <Heading as="h1" scale="xxl" color="text" mb="24px">
+          <Heading as="h1" scale="xl" color="text" mb="32px">
             {t('Farms')}
           </Heading>
 
@@ -548,13 +550,13 @@ const Farms: React.FC = () => {
           <div style={{display: 'flex', alignItems: 'baseline'}}>
             <ToggleWrapper>
               <Text fontSize="14px" pr="15px" color="textSecondary">Vesting</Text>
-              <Toggle checked={vesting}  scale="sm" />
+              <Toggle checked={vesting} onChange={() => setVesting(!vesting)} scale="sm" />
               
             </ToggleWrapper>
 
             <ToggleWrapper>
               <Text fontSize="14px" pr="15px" color="textSecondary">Auto-compound</Text>
-              <Toggle checked={autoCompound}  scale="sm" />
+              <Toggle checked={autoCompound} onChange={() => setAutoCompound(!autoCompound)} scale="sm" />
               
             </ToggleWrapper>
 

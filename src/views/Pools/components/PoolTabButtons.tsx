@@ -55,7 +55,7 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
   const { url, isExact } = useRouteMatch()
   const { t } = useTranslation()
 
-  const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+  // const viewModeToggle = <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
 
   const liveOrFinishedSwitch = (
     <Wrapper>
@@ -72,17 +72,17 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, vi
     </Wrapper>
   )
 
-  const stakedOnlySwitch = (
-    <ToggleWrapper>
-      <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-      <Text> {t('Staked only')}</Text>
-    </ToggleWrapper>
-  )
+  // const stakedOnlySwitch = (
+  //   <ToggleWrapper>
+  //     <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
+  //     <Text> {t('Staked only')}</Text>
+  //   </ToggleWrapper>
+  // )
 
   return (
     <ViewControls>
-      {viewModeToggle}
-      {stakedOnlySwitch}
+      {/* {viewModeToggle}
+      {stakedOnlySwitch} */}
       {liveOrFinishedSwitch}
     </ViewControls>
   )
