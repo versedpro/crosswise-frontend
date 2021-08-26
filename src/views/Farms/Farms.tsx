@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Image, Heading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex, ListViewIcon } from 'crosswise-uikit'
 import { ChainId } from '@pancakeswap/sdk'
-import styled, {css} from 'styled-components'
+import styled, { css } from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/farms/hooks'
@@ -29,8 +29,6 @@ import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 
-
-
 const ControlContainer = styled.div`
   display: flex;
   width: 100%;
@@ -49,12 +47,12 @@ const ControlContainer = styled.div`
   }
 `
 const FarmHeader = styled.div`
-  padding-top:72px;
+  padding-top: 72px;
   padding-bottom: 32px;
 
   max-width: 1200px;
   margin: auto;
-  @media only screen and (min-width: 370px){
+  @media only screen and (min-width: 370px) {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -66,37 +64,35 @@ const FramHeaderLayout = styled.div`
   position: relative;
 `
 
-const FarmHeadCard = styled.div<{isDarkTheme:boolean}>`
-  margin-top:40px;
+const FarmHeadCard = styled.div<{ isDarkTheme: boolean }>`
+  margin-top: 40px;
   margin-bottom: 30px;
   padding: 40px;
   border-radius: 12px;
   position: relative;
-  ${(props) => 
-    props.isDarkTheme && 
+  ${(props) =>
+    props.isDarkTheme &&
     css`
     -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
     box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.4), -4px -4px 8px 0 rgba(224, 224, 255, 0.04), 0 1px 1px 0 rgba(9, 13, 20, 0.4);
     border: solid 1px var(--pale-grey-6);
     background-image: linear-gradient(102deg, rgba(245, 247, 250, 0.12), var(--pale-grey-6) 52%, rgba(245, 247, 250, 0) 100%);c
-    `
-  }
-  
-  ${(props) => 
-    !props.isDarkTheme && 
+    `}
+
+  ${(props) =>
+    !props.isDarkTheme &&
     css`
-    box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.06), -4px -4px 8px 0 rgba(255, 255, 255, 0.4), 0 1px 1px 0 rgba(9, 13, 20, 0.06);
-    background-image: linear-gradient(102deg, #fff, #fafbfc 52%, #f5f7fa 100%);
-    `
-  } 
+      box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.06), -4px -4px 8px 0 rgba(255, 255, 255, 0.4),
+        0 1px 1px 0 rgba(9, 13, 20, 0.06);
+      background-image: linear-gradient(102deg, #fff, #fafbfc 52%, #f5f7fa 100%);
+    `}
 `
 const HeaderTopBar = styled.div`
-  display:flex;
+  display: flex;
   align-items: baseline;
-  justify-content:space-between;
+  justify-content: space-between;
 `
-
 
 const ToggleWrapper = styled.div`
   display: flex;
@@ -111,11 +107,11 @@ const ToggleWrapper = styled.div`
 const LabelWrapper = styled.div`
   display: flex;
   align-items: baseline;
-  
+
   > ${Text} {
     font-size: 16px;
     padding-right: 8px;
-    color: ${({ theme }) => theme.colors.textDisabled}
+    color: ${({ theme }) => theme.colors.textDisabled};
   }
 `
 
@@ -159,24 +155,22 @@ const StyledImage = styled(Image)`
 `
 
 const Planet1 = styled.div`
-  position:absolute;
+  position: absolute;
   z-index: -1;
   top: 35px;
   left: -50px;
 `
 
-
 const Planet2 = styled.div`
-  position:absolute;
+  position: absolute;
   z-index: -1;
   bottom: -150px;
   right: -80px;
 `
 
 const Planet3 = styled.div`
-  position:absolute;
+  position: absolute;
   z-index: -1;
-
 `
 
 const NUMBER_OF_FARMS_VISIBLE = 12
@@ -204,7 +198,7 @@ const Farms: React.FC = () => {
   const chosenFarmsLength = useRef(0)
 
   const [isDark] = useThemeManager()
-  console.log("isDark", isDark)
+  console.log('isDark', isDark)
 
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
@@ -217,8 +211,8 @@ const Farms: React.FC = () => {
   const userDataReady = !account || (!!account && userDataLoaded)
 
   const [stakedOnly, setStakedOnly] = useUserFarmStakedOnly(isActive)
-  const [vesting, setVesting] = useState(true);
-  const[autoCompound, setAutoCompound] = useState(true);
+  const [vesting, setVesting] = useState(true)
+  const [autoCompound, setAutoCompound] = useState(true)
 
   const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
@@ -499,14 +493,12 @@ const Farms: React.FC = () => {
                 onChange={handleSortOptionChange}
               />
             </LabelWrapper>
-            {
-              /**
-               * Add buttons for active and inactive
-               */
-            }
+            {/**
+             * Add buttons for active and inactive
+             */}
             <Button variant="secondaryGradient">Inactive</Button>
             <Button disabled>Inactive</Button>
-            
+
             <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
 
             <LabelWrapper style={{ marginLeft: 16 }}>
@@ -515,7 +507,6 @@ const Farms: React.FC = () => {
             {/* <Button variant="secondaryGradient" style={{height:'42px', marginLeft: '5px', paddingLeft: '12px', paddingRight:'5px'  }} startIcon={<ListViewIcon/>} /> */}
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
           </FilterContainer>
-
         </HeaderTopBar>
         <Text fontSize="20px" color="textSecondary">
           {/* {t('Stake LP tokens to earn.')} */}
@@ -529,84 +520,101 @@ const Farms: React.FC = () => {
             <ArrowForwardIcon color="primary" />
           </Button>
         </NavLink> */}
-        
       </FarmHeader>
       <FramHeaderLayout>
-      <FarmHeadCard isDarkTheme={isDark}>
-        {/** start first block */}
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <div style={{display: 'flex', alignItems: 'center'}}>
-            <div style={{padding: '16px 12px',  background: '#fafbfc',  borderRadius: '50%'}}>
-              <img src="/images/card.png" alt="Pancake illustration" /> 
-            </div>
-            <div style={{paddingLeft:'15px'}}>
-              <Text fontSize="13px" color="textSecondary">TOTAL BALANCE</Text>
-              <div style={{display: 'flex', alignItems: 'baseline'}}>
-                <Text fontSize="22px" color="primary">$ </Text>
-                <Text fontSize="32px" color="primary"> 491,700</Text>
+        <FarmHeadCard isDarkTheme={isDark}>
+          {/** start first block */}
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ padding: '16px 12px', background: '#fafbfc', borderRadius: '50%' }}>
+                <img src="/images/card.png" alt="Pancake illustration" />
+              </div>
+              <div style={{ paddingLeft: '15px' }}>
+                <Text fontSize="13px" color="textSecondary">
+                  TOTAL BALANCE
+                </Text>
+                <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                  <Text fontSize="22px" color="primary">
+                    ${' '}
+                  </Text>
+                  <Text fontSize="32px" color="primary">
+                    {' '}
+                    491,700
+                  </Text>
+                </div>
               </div>
             </div>
-          </div>
-          <div style={{display: 'flex', alignItems: 'baseline'}}>
-            <ToggleWrapper>
-              <Text fontSize="14px" pr="15px" color="textSecondary">Vesting</Text>
-              <Toggle checked={vesting} onChange={() => setVesting(!vesting)} scale="sm" />
-              
-            </ToggleWrapper>
+            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+              <ToggleWrapper>
+                <Text fontSize="14px" pr="15px" color="textSecondary">
+                  Vesting
+                </Text>
+                <Toggle checked={vesting} onChange={() => setVesting(!vesting)} scale="sm" />
+              </ToggleWrapper>
 
-            <ToggleWrapper>
-              <Text fontSize="14px" pr="15px" color="textSecondary">Auto-compound</Text>
-              <Toggle checked={autoCompound} onChange={() => setAutoCompound(!autoCompound)} scale="sm" />
-              
-            </ToggleWrapper>
+              <ToggleWrapper>
+                <Text fontSize="14px" pr="15px" color="textSecondary">
+                  Auto-compound
+                </Text>
+                <Toggle checked={autoCompound} onChange={() => setAutoCompound(!autoCompound)} scale="sm" />
+              </ToggleWrapper>
 
-            <ToggleWrapper>
-              <Text fontSize="14px" pr="15px" color="textSecondary"> {t('Staked only')}</Text>
-              <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-            </ToggleWrapper>
-          </div>
-        </div>
-
-        { /** end first block */ }
-        
-        { /** start second block  */ }
-        <div style={{display:'flex', alignItems: 'flex-end', justifyContent: 'space-between'}}>
-          <div style={{display:'flex'}}>
-            <div style={{display:'flex', alignItems:'baseline'}}>
-              <Text color="textSecondary" fontSize="13px" pr="8px">
-                CRSS
-              </Text>
-              <Text color="text" fontSize="13px" mr="24px">$12.435</Text>
-            </div>
-
-            <div style={{display:'flex', alignItems:'baseline'}}>
-              <Text color="textSecondary" fontSize="13px" pr="8px">
-                XCRSS
-              </Text>
-              <Text color="text" fontSize="13px" mr="24px">$42.453</Text>
-            </div>
-
-            <div style={{display:'flex', alignItems:'baseline'}}>
-              <Text color="textSecondary" fontSize="13px" pr="8px">
-                STAKED
-              </Text>
-              <Text color="text" fontSize="13px" mr="24px">$1.812</Text>
+              <ToggleWrapper>
+                <Text fontSize="14px" pr="15px" color="textSecondary">
+                  {' '}
+                  {t('Staked only')}
+                </Text>
+                <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
+              </ToggleWrapper>
             </div>
           </div>
-          <div style={{display: 'flex'}}>
-           <Button variant="secondaryGradient" mr="24px">Mass Harvest</Button>
-           <Button variant="primaryGradient">Mass Stake Reward</Button>
-          </div>
-        </div>
-        {/** end second block */}
 
-        
-      </FarmHeadCard>
+          {/** end first block */}
+
+          {/** start second block  */}
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <Text color="textSecondary" fontSize="13px" pr="8px">
+                  CRSS
+                </Text>
+                <Text color="text" fontSize="13px" mr="24px">
+                  $12.435
+                </Text>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <Text color="textSecondary" fontSize="13px" pr="8px">
+                  XCRSS
+                </Text>
+                <Text color="text" fontSize="13px" mr="24px">
+                  $42.453
+                </Text>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <Text color="textSecondary" fontSize="13px" pr="8px">
+                  STAKED
+                </Text>
+                <Text color="text" fontSize="13px" mr="24px">
+                  $1.812
+                </Text>
+              </div>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <Button variant="secondaryGradient" mr="24px">
+                Mass Harvest
+              </Button>
+              <Button variant="primaryGradient">Mass Stake Reward</Button>
+            </div>
+          </div>
+          {/** end second block */}
+        </FarmHeadCard>
         <Planet1>
-          <img src="/images/planet/p1.png" alt="planet1" /> 
+          <img src="/images/planet/p1.png" alt="planet1" />
         </Planet1>
         <Planet2>
-          <img src="/images/planet/p2.png" alt="planet2" /> 
+          <img src="/images/planet/p2.png" alt="planet2" />
         </Planet2>
       </FramHeaderLayout>
       <Page>
@@ -661,7 +669,6 @@ const Farms: React.FC = () => {
         )}
         <div ref={loadMoreRef} />
         {/* <StyledImage src="/images/decorations/3dpan.png" alt="Pancake illustration" width={120} height={103} /> */}
-        
       </Page>
     </>
   )

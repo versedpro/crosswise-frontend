@@ -72,10 +72,14 @@ const SlippageTabs = () => {
 
   return (
     <Flex flexDirection="column">
-      <Text fontSize="18px" fontWeight="600" mb="3">{t('Transaction Settings')}</Text>
+      <Text fontSize="18px" fontWeight="600" mb="3">
+        {t('Transaction Settings')}
+      </Text>
       <Flex flexDirection="column" mb="24px">
         <Flex mb="12px">
-          <Text fontSize="13px" fontWeight="500" color="textSecondary">{t('Slippage Tolerance')}</Text>
+          <Text fontSize="13px" fontWeight="500" color="textSecondary">
+            {t('Slippage Tolerance')}
+          </Text>
           <QuestionHelper
             text={t(
               'Setting a high slippage tolerance can help transactions succeed, but you may not get such a good price. Use with caution.',
@@ -151,7 +155,9 @@ const SlippageTabs = () => {
       </Flex>
       <Flex justifyContent="space-between" alignItems="center" mb="24px">
         <Flex alignItems="center">
-          <Text fontSize="13px" color="textSecondary">{t('Trasaction deadline')}</Text>
+          <Text fontSize="13px" color="textSecondary">
+            {t('Trasaction deadline')}
+          </Text>
           <QuestionHelper
             text={t('Your transaction will revert if it is left confirming for longer than this time.')}
             ml="4px"

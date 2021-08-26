@@ -51,11 +51,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   }
 
   return (
-    <Modal
-      title={t('Settings')}
-      onDismiss={onDismiss}
-      style={{ maxWidth: '380px' }}
-    >
+    <Modal title={t('Settings')} onDismiss={onDismiss} style={{ maxWidth: '380px' }}>
       <Flex flexDirection="column">
         {/* <Flex flexDirection="column">
           <Text bold textTransform="uppercase" fontSize="12px" color="secondary" mb="24px">
@@ -63,10 +59,14 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
           </Text>
         </Flex> */}
         <TransactionSettings />
-        <Text fontSize="18px" fontWeight="600" mb="3">{t('Interface Settings')}</Text>
+        <Text fontSize="18px" fontWeight="600" mb="3">
+          {t('Interface Settings')}
+        </Text>
         <Flex justifyContent="space-between" alignItems="center" mb="16px">
           <Flex alignItems="center">
-            <Text fontSize="13px" color="textSecondary" fontWeight="500">{t('Expert Mode')}</Text>
+            <Text fontSize="13px" color="textSecondary" fontWeight="500">
+              {t('Expert Mode')}
+            </Text>
             <QuestionHelper
               text={t('Bypasses confirmation modals and allows high slippage trades. Use at your own risk.')}
               ml="4px"
@@ -76,7 +76,9 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
         </Flex>
         <Flex justifyContent="space-between" alignItems="center" mb="16px">
           <Flex alignItems="center">
-            <Text fontSize="13px" color="textSecondary" fontWeight="500">{t('Disable Multihops')}</Text>
+            <Text fontSize="13px" color="textSecondary" fontWeight="500">
+              {t('Disable Multihops')}
+            </Text>
             <QuestionHelper text={t('Restricts swaps to direct pairs only.')} ml="4px" />
           </Flex>
           <Toggle
@@ -90,7 +92,9 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <Flex alignItems="center">
-            <Text fontSize="13px" color="textSecondary" fontWeight="500">{t('Flippy sounds')}</Text>
+            <Text fontSize="13px" color="textSecondary" fontWeight="500">
+              {t('Flippy sounds')}
+            </Text>
             <QuestionHelper
               text={t('Fun sounds to make a truly immersive pancake-flipping trading experience')}
               ml="4px"
