@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 // import { useWeb3React } from '@web3-react/core'
-// import useTheme from 'hooks/useTheme'
+import useTheme from 'hooks/useTheme'
 import Row from 'components/Layout/Row'
 import { AutoColumn } from 'components/Layout/Column'
 import Page from 'components/Layout/Page'
@@ -14,6 +14,7 @@ import BreakDownCard from './components/BreakDownCard'
 import StatisticCard from './components/StatisticCard'
 import ReferUserCard from './components/ReferUserCard'
 import AccountAreaCard from './components/AccountAreaCard'
+import Header from './components/Header'
 
 const StyledPage = styled(Page)`
   background-image: url('/images/home/planets/planet-pluto.png'), url('/images/home/planets/planet-7.png');
@@ -58,7 +59,7 @@ const SubCardsRow = styled(CardsRow)`
 `
 
 const Home: React.FC = () => {
-  // const { theme } = useTheme()
+  const { theme } = useTheme()
   // const { account } = useWeb3React()
   const { t } = useTranslation()
 
@@ -68,7 +69,7 @@ const Home: React.FC = () => {
         <Row justify="center">
           <AutoColumn justify="center">
             <Heading as="h1" scale="xxl" mb="24px" color="text">
-              {t('CrossWise')}
+              <Header />
             </Heading>
             <Label color="textSubtle" fontSize="20px">
               {t('The first cross-blockchain AMM (Automatic Money Creation)')}
