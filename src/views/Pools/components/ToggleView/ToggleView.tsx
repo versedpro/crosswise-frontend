@@ -31,12 +31,23 @@ const ToggleView: React.FunctionComponent<ToggleViewProps> = ({ viewMode, onTogg
 
   return (
     <Container>
-      <IconButton variant="text" scale="sm" id="clickPoolCardView" onClick={() => handleToggle(ViewMode.CARD)}>
+      {/* <IconButton variant="text" scale="sm" id="clickPoolCardView" onClick={() => handleToggle(ViewMode.CARD)}>
         <CardViewIcon color={viewMode === ViewMode.CARD ? 'primary' : 'textDisabled'} />
       </IconButton>
       <IconButton variant="text" scale="sm" id="clickPoolTableView" onClick={() => handleToggle(ViewMode.TABLE)}>
         <ListViewIcon color={viewMode === ViewMode.TABLE ? 'primary' : 'textDisabled'} />
-      </IconButton>
+      </IconButton> */}
+       {
+        viewMode === ViewMode.CARD?(
+          <IconButton variant="secondaryGradient" scale="md" id="clickFarmCardView" onClick={() => handleToggle(ViewMode.TABLE)} style={{height: '42px', marginLeft: '5px'}} >
+            <ListViewIcon color='text' />
+          </IconButton>
+        ):(
+          <IconButton variant="secondaryGradient" scale="md" id="clickFarmTableView" onClick={() => handleToggle(ViewMode.CARD)} style={{height: '42px', marginLeft: '5px'}}>
+            <CardViewIcon color='text' />
+        </IconButton>
+        )
+      }
     </Container>
   )
 }

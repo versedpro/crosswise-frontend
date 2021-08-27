@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text } from 'crosswise-uikit'
+import { Heading, Flex, Image, Text, Button, Toggle } from 'crosswise-uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -17,14 +17,16 @@ import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
+import { useThemeManager } from 'state/user/hooks'
 import Loading from 'components/Loading'
 import PoolCard from './components/PoolCard'
 import CakeVaultCard from './components/CakeVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
+
 import BountyCard from './components/BountyCard'
 import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
-import { ViewMode } from './components/ToggleView/ToggleView'
+import ToggleView, { ViewMode } from './components/ToggleView/ToggleView'
 import { getAprData, getCakeVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
@@ -48,7 +50,53 @@ const PoolControls = styled.div`
     margin-bottom: 0;
   }
 `
+const PoolHeader = styled.div`
+  padding-top:72px;
+  padding-bottom: 32px;
 
+  max-width: 1200px;
+  margin: auto;
+  @media only screen and (min-width: 370px){
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+`
+const HeaderTopBar = styled.div`
+  display:flex;
+  align-items: baseline;
+  justify-content:space-between;
+`
+
+const PoolHeaderLayout = styled.div`
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+`
+const PoolHeadCard= styled.div<{isDarkTheme:boolean}>`
+margin-top:40px;
+margin-bottom: 30px;
+padding: 40px;
+border-radius: 12px;
+position: relative;
+${(props) => 
+  props.isDarkTheme && 
+  css`
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+  box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.4), -4px -4px 8px 0 rgba(224, 224, 255, 0.04), 0 1px 1px 0 rgba(9, 13, 20, 0.4);
+  border: solid 1px var(--pale-grey-6);
+  background-image: linear-gradient(102deg, rgba(245, 247, 250, 0.12), var(--pale-grey-6) 52%, rgba(245, 247, 250, 0) 100%);c
+  `
+}
+
+${(props) => 
+  !props.isDarkTheme && 
+  css`
+  box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.06), -4px -4px 8px 0 rgba(255, 255, 255, 0.4), 0 1px 1px 0 rgba(9, 13, 20, 0.06);
+  background-image: linear-gradient(102deg, #fff, #fafbfc 52%, #f5f7fa 100%);
+  `
+} 
+`
 const FilterContainer = styled.div`
   display: flex;
   align-items: center;
@@ -62,8 +110,12 @@ const FilterContainer = styled.div`
 `
 
 const LabelWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
   > ${Text} {
     font-size: 12px;
+    padding-right: 8px;
+    color: ${({ theme }) => theme.colors.textDisabled}
   }
 `
 
@@ -71,6 +123,31 @@ const ControlStretch = styled(Flex)`
   > div {
     flex: 1;
   }
+`
+
+const ToggleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+
+  ${Text} {
+    margin-left: 8px;
+  }
+`
+
+const Planet1 = styled.div`
+  position:absolute;
+  z-index: -1;
+  top: 35px;
+  left: -50px;
+`
+
+
+const Planet2 = styled.div`
+  position:absolute;
+  z-index: -1;
+  bottom: -150px;
+  right: -80px;
 `
 
 const NUMBER_OF_POOLS_VISIBLE = 12
@@ -81,6 +158,8 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
+  const [poolOption, setPoolOption] = useState(true);
+
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
@@ -88,6 +167,8 @@ const Pools: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
+  const [isDark] = useThemeManager()
+  
   const {
     userData: { cakeAtLastUserAction, userShares },
     fees: { performanceFee },
@@ -236,27 +317,131 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
-        <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
-          <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('Syrup Pools')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('Just stake some tokens to earn.')}
-            </Heading>
-            <Heading scale="md" color="text">
-              {t('High APR, low risk.')}
-            </Heading>
-          </Flex>
-          <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
-            <HelpButton />
-            <BountyCard />
-          </Flex>
-        </Flex>
-      </PageHeader>
+      <PoolHeader>
+        <HeaderTopBar>
+         <Heading as="h1" scale="xl" color="text" mb="32px">
+            {t('Syrup Pools')}
+          </Heading>
+
+          <FilterContainer>
+            <LabelWrapper>
+              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+                {t('Sort by')}
+              </Text>
+              <ControlStretch>
+                <Select
+                  options={[
+                    {
+                      label: t('Hot'),
+                      value: 'hot',
+                    },
+                    {
+                      label: t('APR'),
+                      value: 'apr',
+                    },
+                    {
+                      label: t('Earned'),
+                      value: 'earned',
+                    },
+                    {
+                      label: t('Total staked'),
+                      value: 'totalStaked',
+                    },
+                  ]}
+                  onChange={handleSortOptionChange}
+                />
+              </ControlStretch>
+            </LabelWrapper>
+            {
+              /**
+               * Add buttons for active and inactive
+               */
+            }
+
+            <Button variant="secondaryGradient">Active</Button>
+            <Button disabled>Inactive</Button>
+            
+            {/* <PoolTabButtons
+            stakedOnly={stakedOnly}
+            setStakedOnly={setStakedOnly}
+            hasStakeInFinishedPools={hasStakeInFinishedPools}
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+          /> */}
+
+          <LabelWrapper style={{ marginLeft: 16 }}>
+            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+              {t('Search')}
+            </Text>
+            <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
+          </LabelWrapper>
+
+          <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+          </FilterContainer>
+        </HeaderTopBar>
+        <Text fontSize="20px" color="textSecondary">
+          {/* {t('Stake LP tokens to earn.')} */}
+          Simply stake tokens to earn. High APR, low risk.
+        </Text>
+      </PoolHeader>
+      <PoolHeaderLayout>
+          <PoolHeadCard isDarkTheme={isDark}>
+            {/** start first block */}
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+              <div style={{display: 'flex', alignItems: 'center'}}>
+                <div style={{padding: '16px 18px',  background: '#fafbfc',  borderRadius: '50%'}}>
+                  <img src="/images/pool-dollor-icon.png" alt="Pancake illustration" /> 
+                </div>
+                <div style={{paddingLeft:'15px'}}>
+                  <Text fontSize="20px" color="text">Claim 1 CRSS token</Text>
+                </div>
+              </div>
+              <div style={{display: 'flex', alignItems: 'baseline'}}>
+                <ToggleWrapper>
+                  <Text fontSize="14px" pr="15px" color="textSecondary">Option</Text>
+                  <Toggle checked={poolOption} onChange={() => setPoolOption(!poolOption)} scale="sm" />
+                  
+                </ToggleWrapper>
+
+                <ToggleWrapper>
+                  <Text fontSize="14px" pr="15px" color="textSecondary"> {t('Staked only')}</Text>
+                  <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
+                </ToggleWrapper>
+              </div>
+            </div>
+
+            { /** end first block */ }
+
+            { /** start second block  */ }
+            <div style={{display:'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginTop: '40px'}}>
+              <div style={{display:'flex', flexDirection: 'column'}}>
+               
+                <div style={{marginBottom: '5px'}}>
+                  <Text color="textSecondary" fontSize="13px">TOTAL BALANCE</Text>
+                </div>
+                
+                <div style={{display:'flex', alignItems:'baseline'}}>
+                  <Text color="primary" fontSize="32px" pr="8px">
+                    0.000
+                  </Text>
+                  <Text color="text" fontSize="13px" mr="24px">~$0.00</Text>
+                </div>
+              </div>
+              <div style={{display: 'flex'}}>
+              <Button variant="primaryGradient" mr="24px">Claim</Button>
+              </div>
+            </div>
+            {/** end second block */}
+          </PoolHeadCard>
+          <Planet1>
+          <img src="/images/planet/p1.png" alt="planet1" /> 
+          </Planet1>
+          <Planet2>
+            <img src="/images/planet/p2.png" alt="planet2" /> 
+          </Planet2>
+      </PoolHeaderLayout>
       <Page>
-        <PoolControls>
+        {/* <PoolControls>
           <PoolTabButtons
             stakedOnly={stakedOnly}
             setStakedOnly={setStakedOnly}
@@ -300,7 +485,7 @@ const Pools: React.FC = () => {
               <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
             </LabelWrapper>
           </FilterContainer>
-        </PoolControls>
+        </PoolControls> */}
         {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
             {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
@@ -313,14 +498,14 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
-        <Image
+        {/* <Image
           mx="auto"
           mt="12px"
           src="/images/decorations/3d-syrup-bunnies.png"
           alt="Pancake illustration"
           width={192}
           height={184.5}
-        />
+        /> */}
       </Page>
     </>
   )
