@@ -339,11 +339,23 @@ export default function Swap({ history }: RouteComponentProps) {
           <AppHeader title={t('Trade tokens in an instant')} subtitle={t('')}>
             <Flex flexDirection="column" alignItems="flex-end">
               <Flex justifyContent="center" mt="-16px">
-                <Text className="swap-simple" style={{ margin: '0 16px' }} fontSize="16px" fontWeight="500" color={isAdvanced ? 'textSecondary' : ''}>
+                <Text
+                  className="swap-simple"
+                  style={{ margin: '0 16px' }}
+                  fontSize="16px"
+                  fontWeight="500"
+                  color={isAdvanced ? 'textSecondary' : ''}
+                >
                   {t('Simple')}
                 </Text>
                 <Toggle checked={isAdvanced} onChange={(e) => setSwapMode(e.target.checked)} scale="sm" />
-                <Text className="swap-advanced" style={{ margin: '0 16px' }} fontSize="16px" fontWeight="500" color={isAdvanced ? '' : 'textSecondary'}>
+                <Text
+                  className="swap-advanced"
+                  style={{ margin: '0 16px' }}
+                  fontSize="16px"
+                  fontWeight="500"
+                  color={isAdvanced ? '' : 'textSecondary'}
+                >
                   {t('Advanced')}
                 </Text>
               </Flex>

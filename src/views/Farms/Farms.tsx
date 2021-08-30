@@ -549,14 +549,14 @@ const Farms: React.FC = () => {
                 <Text fontSize="14px" pr="15px" color="textSecondary">
                   Vesting
                 </Text>
-                <Toggle checked={vesting} onChange={() => setVesting(!vesting)} scale="sm" />
+                <Toggle checked={vesting} scale="sm" />
               </ToggleWrapper>
 
               <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
                   Auto-compound
                 </Text>
-                <Toggle checked={autoCompound} onChange={() => setAutoCompound(!autoCompound)} scale="sm" />
+                <Toggle checked={autoCompound} scale="sm" />
               </ToggleWrapper>
 
               <ToggleWrapper>

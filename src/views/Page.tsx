@@ -12,11 +12,6 @@ const StyledPage = styled.div`
   padding: 16px;
   padding-bottom: 0;
   min-height: calc(100vh - 64px);
-  background: ${({ theme }) => theme.colors.background};
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    background-size: auto;
-  }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 24px;
