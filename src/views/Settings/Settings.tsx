@@ -22,14 +22,6 @@ import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import Loading from 'components/Loading'
 
-import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
-import Table from './components/FarmTable/FarmTable'
-import FarmTabButtons from './components/FarmTabButtons'
-import { RowProps } from './components/FarmTable/Row'
-import ToggleView from './components/ToggleView/ToggleView'
-import { DesktopColumnSchema, ViewMode } from './components/types'
-
-
 const SettingsHeader = styled.div`
   padding-top:72px;
   padding-bottom: 32px;
