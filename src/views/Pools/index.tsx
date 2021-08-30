@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import styled, {css} from 'styled-components'
+import styled, { css } from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Flex, Image, Text, Button, Toggle } from 'crosswise-uikit'
@@ -51,20 +51,20 @@ const PoolControls = styled.div`
   }
 `
 const PoolHeader = styled.div`
-  padding-top:72px;
+  padding-top: 72px;
   padding-bottom: 32px;
 
   max-width: 1200px;
   margin: auto;
-  @media only screen and (min-width: 370px){
+  @media only screen and (min-width: 370px) {
     padding-left: 24px;
     padding-right: 24px;
   }
 `
 const HeaderTopBar = styled.div`
-  display:flex;
+  display: flex;
   align-items: baseline;
-  justify-content:space-between;
+  justify-content: space-between;
 `
 
 const PoolHeaderLayout = styled.div`
@@ -72,30 +72,29 @@ const PoolHeaderLayout = styled.div`
   margin: auto;
   position: relative;
 `
-const PoolHeadCard= styled.div<{isDarkTheme:boolean}>`
-margin-top:40px;
-margin-bottom: 30px;
-padding: 40px;
-border-radius: 12px;
-position: relative;
-${(props) => 
-  props.isDarkTheme && 
-  css`
+const PoolHeadCard = styled.div<{ isDarkTheme: boolean }>`
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding: 40px;
+  border-radius: 12px;
+  position: relative;
+  ${(props) =>
+    props.isDarkTheme &&
+    css`
   -webkit-backdrop-filter: blur(40px);
   backdrop-filter: blur(40px);
   box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.4), -4px -4px 8px 0 rgba(224, 224, 255, 0.04), 0 1px 1px 0 rgba(9, 13, 20, 0.4);
   border: solid 1px var(--pale-grey-6);
   background-image: linear-gradient(102deg, rgba(245, 247, 250, 0.12), var(--pale-grey-6) 52%, rgba(245, 247, 250, 0) 100%);c
-  `
-}
+  `}
 
-${(props) => 
-  !props.isDarkTheme && 
-  css`
-  box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.06), -4px -4px 8px 0 rgba(255, 255, 255, 0.4), 0 1px 1px 0 rgba(9, 13, 20, 0.06);
-  background-image: linear-gradient(102deg, #fff, #fafbfc 52%, #f5f7fa 100%);
-  `
-} 
+  ${(props) =>
+    !props.isDarkTheme &&
+    css`
+      box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.06), -4px -4px 8px 0 rgba(255, 255, 255, 0.4),
+        0 1px 1px 0 rgba(9, 13, 20, 0.06);
+      background-image: linear-gradient(102deg, #fff, #fafbfc 52%, #f5f7fa 100%);
+    `}
 `
 const FilterContainer = styled.div`
   display: flex;
@@ -115,7 +114,7 @@ const LabelWrapper = styled.div`
   > ${Text} {
     font-size: 12px;
     padding-right: 8px;
-    color: ${({ theme }) => theme.colors.textDisabled}
+    color: ${({ theme }) => theme.colors.textDisabled};
   }
 `
 
@@ -136,15 +135,14 @@ const ToggleWrapper = styled.div`
 `
 
 const Planet1 = styled.div`
-  position:absolute;
+  position: absolute;
   z-index: -1;
   top: 35px;
   left: -50px;
 `
 
-
 const Planet2 = styled.div`
-  position:absolute;
+  position: absolute;
   z-index: -1;
   bottom: -150px;
   right: -80px;
@@ -158,7 +156,7 @@ const Pools: React.FC = () => {
   const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
-  const [poolOption, setPoolOption] = useState(true);
+  const [poolOption, setPoolOption] = useState(true)
 
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -168,7 +166,7 @@ const Pools: React.FC = () => {
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
   const [isDark] = useThemeManager()
-  
+
   const {
     userData: { cakeAtLastUserAction, userShares },
     fees: { performanceFee },
@@ -319,7 +317,7 @@ const Pools: React.FC = () => {
     <>
       <PoolHeader>
         <HeaderTopBar>
-         <Heading as="h1" scale="xl" color="text" mb="32px">
+          <Heading as="h1" scale="xl" color="text" mb="32px">
             {t('Syrup Pools')}
           </Heading>
 
@@ -352,15 +350,13 @@ const Pools: React.FC = () => {
                 />
               </ControlStretch>
             </LabelWrapper>
-            {
-              /**
-               * Add buttons for active and inactive
-               */
-            }
+            {/**
+             * Add buttons for active and inactive
+             */}
 
             <Button variant="secondaryGradient">Active</Button>
             <Button disabled>Inactive</Button>
-            
+
             {/* <PoolTabButtons
             stakedOnly={stakedOnly}
             setStakedOnly={setStakedOnly}
@@ -369,14 +365,14 @@ const Pools: React.FC = () => {
             setViewMode={setViewMode}
           /> */}
 
-          <LabelWrapper style={{ marginLeft: 16 }}>
-            <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-              {t('Search')}
-            </Text>
-            <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-          </LabelWrapper>
+            <LabelWrapper style={{ marginLeft: 16 }}>
+              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
+                {t('Search')}
+              </Text>
+              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
+            </LabelWrapper>
 
-          <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+            <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
           </FilterContainer>
         </HeaderTopBar>
         <Text fontSize="20px" color="textSecondary">
@@ -385,60 +381,71 @@ const Pools: React.FC = () => {
         </Text>
       </PoolHeader>
       <PoolHeaderLayout>
-          <PoolHeadCard isDarkTheme={isDark}>
-            {/** start first block */}
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-              <div style={{display: 'flex', alignItems: 'center'}}>
-                <div style={{padding: '16px 18px',  background: '#fafbfc',  borderRadius: '50%'}}>
-                  <img src="/images/pool-dollor-icon.png" alt="Pancake illustration" /> 
-                </div>
-                <div style={{paddingLeft:'15px'}}>
-                  <Text fontSize="20px" color="text">Claim 1 CRSS token</Text>
-                </div>
+        <PoolHeadCard isDarkTheme={isDark}>
+          {/** start first block */}
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ padding: '16px 18px', background: '#fafbfc', borderRadius: '50%' }}>
+                <img src="/images/pool-dollor-icon.png" alt="Pancake illustration" />
               </div>
-              <div style={{display: 'flex', alignItems: 'baseline'}}>
-                <ToggleWrapper>
-                  <Text fontSize="14px" pr="15px" color="textSecondary">Option</Text>
-                  <Toggle checked={poolOption} onChange={() => setPoolOption(!poolOption)} scale="sm" />
-                  
-                </ToggleWrapper>
-
-                <ToggleWrapper>
-                  <Text fontSize="14px" pr="15px" color="textSecondary"> {t('Staked only')}</Text>
-                  <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-                </ToggleWrapper>
+              <div style={{ paddingLeft: '15px' }}>
+                <Text fontSize="20px" color="text">
+                  Claim 1 CRSS token
+                </Text>
               </div>
             </div>
+            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+              <ToggleWrapper>
+                <Text fontSize="14px" pr="15px" color="textSecondary">
+                  Option
+                </Text>
+                <Toggle checked={poolOption} onChange={() => setPoolOption(!poolOption)} scale="sm" />
+              </ToggleWrapper>
 
-            { /** end first block */ }
+              <ToggleWrapper>
+                <Text fontSize="14px" pr="15px" color="textSecondary">
+                  {' '}
+                  {t('Staked only')}
+                </Text>
+                <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
+              </ToggleWrapper>
+            </div>
+          </div>
 
-            { /** start second block  */ }
-            <div style={{display:'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginTop: '40px'}}>
-              <div style={{display:'flex', flexDirection: 'column'}}>
-               
-                <div style={{marginBottom: '5px'}}>
-                  <Text color="textSecondary" fontSize="13px">TOTAL BALANCE</Text>
-                </div>
-                
-                <div style={{display:'flex', alignItems:'baseline'}}>
-                  <Text color="primary" fontSize="32px" pr="8px">
-                    0.000
-                  </Text>
-                  <Text color="text" fontSize="13px" mr="24px">~$0.00</Text>
-                </div>
+          {/** end first block */}
+
+          {/** start second block  */}
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginTop: '40px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <div style={{ marginBottom: '5px' }}>
+                <Text color="textSecondary" fontSize="13px">
+                  TOTAL BALANCE
+                </Text>
               </div>
-              <div style={{display: 'flex'}}>
-              <Button variant="primaryGradient" mr="24px">Claim</Button>
+
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <Text color="primary" fontSize="32px" pr="8px">
+                  0.000
+                </Text>
+                <Text color="text" fontSize="13px" mr="24px">
+                  ~$0.00
+                </Text>
               </div>
             </div>
-            {/** end second block */}
-          </PoolHeadCard>
-          <Planet1>
-          <img src="/images/planet/p1.png" alt="planet1" /> 
-          </Planet1>
-          <Planet2>
-            <img src="/images/planet/p2.png" alt="planet2" /> 
-          </Planet2>
+            <div style={{ display: 'flex' }}>
+              <Button variant="primaryGradient" mr="24px">
+                Claim
+              </Button>
+            </div>
+          </div>
+          {/** end second block */}
+        </PoolHeadCard>
+        <Planet1>
+          <img src="/images/planet/p1.png" alt="planet1" />
+        </Planet1>
+        <Planet2>
+          <img src="/images/planet/p2.png" alt="planet2" />
+        </Planet2>
       </PoolHeaderLayout>
       <Page>
         {/* <PoolControls>

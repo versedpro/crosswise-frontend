@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, IconButton, CogIcon, useModal } from 'crosswise-uikit'
+import { Flex, IconButton, useModal, ChartLIcon } from 'crosswise-uikit'
 import SettingsModal from './SettingsModal'
 
 const GlobalSettings = () => {
@@ -8,7 +8,7 @@ const GlobalSettings = () => {
   return (
     <Flex>
       <IconButton onClick={onPresentSettingsModal} variant="text" scale="sm" mr="8px">
-        <CogIcon height={22} width={22} color="textSubtle" />
+        <ChartLIcon height={22} width={22} color="textSubtle" />
       </IconButton>
     </Flex>
   )

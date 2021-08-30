@@ -89,9 +89,9 @@ const FarmHeadCard = styled.div<{ isDarkTheme: boolean }>`
     `}
 `
 const HeaderTopBar = styled.div`
-  display:flex;
+  display: flex;
   align-items: baseline;
-  justify-content:space-between;
+  justify-content: space-between;
 `
 
 const ToggleWrapper = styled.div`
@@ -568,18 +568,20 @@ const Farms: React.FC = () => {
               </ToggleWrapper>
             </div>
           </div>
-          <div style={{display: 'flex', alignItems: 'baseline'}}>
-            <ToggleWrapper>
-              <Text fontSize="14px" pr="15px" color="textSecondary">Vesting</Text>
-              <Toggle checked={vesting} onChange={() => setVesting(!vesting)} scale="sm" />
-              
-            </ToggleWrapper>
 
-            <ToggleWrapper>
-              <Text fontSize="14px" pr="15px" color="textSecondary">Auto-compound</Text>
-              <Toggle checked={autoCompound} onChange={() => setAutoCompound(!autoCompound)} scale="sm" />
-              
-            </ToggleWrapper>
+          {/** end first block */}
+
+          {/** start second block  */}
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <Text color="textSecondary" fontSize="13px" pr="8px">
+                  CRSS
+                </Text>
+                <Text color="text" fontSize="13px" mr="24px">
+                  $12.435
+                </Text>
+              </div>
 
               <div style={{ display: 'flex', alignItems: 'baseline' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
