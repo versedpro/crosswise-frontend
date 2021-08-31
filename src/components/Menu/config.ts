@@ -88,6 +88,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'MoreIcon',
     items: [
       {
+        label: t('Settings'),
+        icon: 'SettingsIcon',
+        href: '/settings',
+      },
+      {
         label: t('Contact'),
         href: 'https://docs.crosswise.finance/contact-us',
       },
