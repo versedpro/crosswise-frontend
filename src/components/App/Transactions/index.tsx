@@ -1,5 +1,5 @@
 import React from 'react'
-import { HistoryIcon, Button, useModal } from 'crosswise-uikit'
+import { Button, useModal, RefreshIcon } from 'crosswise-uikit'
 import TransactionsModal from './TransactionsModal'
 
 const Transactions = () => {
@@ -7,7 +7,7 @@ const Transactions = () => {
   return (
     <>
       <Button variant="text" p={0} onClick={onPresentTransactionsModal} ml="16px">
-        <HistoryIcon color="textSubtle" width="24px" />
+        <RefreshIcon color="textSubtle" width="24px" />
       </Button>
     </>
   )
