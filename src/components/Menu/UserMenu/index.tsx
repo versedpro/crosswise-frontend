@@ -1,13 +1,6 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
-import {
-  Flex,
-  LogoutIcon,
-  useModal,
-  UserMenu as UIKitUserMenu,
-  UserMenuDivider,
-  UserMenuItem,
-} from 'crosswise-uikit'
+import { Flex, LogoutIcon, useModal, UserMenu as UIKitUserMenu, UserMenuDivider, UserMenuItem } from 'crosswise-uikit'
 import useAuth from 'hooks/useAuth'
 import { useProfile } from 'state/profile/hooks'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -30,7 +23,7 @@ const UserMenu = () => {
   const hasLowBnbBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_BNB_BALANCE)
 
   if (!account) {
-    return <ConnectWalletButton scale="sm" />
+    return <ConnectWalletButton scale="sm" variant="primaryGradient" />
   }
 
   return (

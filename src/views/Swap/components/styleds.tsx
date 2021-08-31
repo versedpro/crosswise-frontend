@@ -1,11 +1,22 @@
 import React from 'react'
-import { Text, ErrorIcon } from 'crosswise-uikit'
+import { Text, ErrorIcon, Card } from 'crosswise-uikit'
 import styled, { css } from 'styled-components'
 import { AutoColumn } from 'components/Layout/Column'
 
 export const Wrapper = styled.div`
   position: relative;
   padding: 1rem;
+
+  .column-2 div {
+    grid-column: span 6;
+  }
+`
+
+export const StyledCard = styled(Card)`
+  background: none;
+  width: 100%;
+  z-index: 1;
+  margin: 1rem 0;
 `
 
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`

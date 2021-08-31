@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, CrosswiseToggle, Toggle, Flex, Modal, InjectedModalProps } from 'crosswise-uikit'
+import { Text, Toggle, Flex, Modal, InjectedModalProps } from 'crosswise-uikit'
 import { useAudioModeManager, useExpertModeManager, useUserSingleHopOnly } from 'state/user/hooks'
 import { useTranslation } from 'contexts/Localization'
 import { useSwapActionHandlers } from 'state/swap/hooks'
@@ -51,38 +51,40 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   }
 
   return (
-    <Modal
-      title={t('Settings')}
-      headerBackground="gradients.cardHeader"
-      onDismiss={onDismiss}
-      style={{ maxWidth: '380px' }}
-    >
+    <Modal title={t('Settings')} onDismiss={onDismiss} style={{ maxWidth: '380px' }}>
       <Flex flexDirection="column">
-        <Flex flexDirection="column">
+        {/* <Flex flexDirection="column">
           <Text bold textTransform="uppercase" fontSize="12px" color="secondary" mb="24px">
             {t('Swaps & Liquidity')}
           </Text>
-        </Flex>
+        </Flex> */}
         <TransactionSettings />
-        <Flex justifyContent="space-between" alignItems="center" mb="24px">
+        <Text fontSize="18px" fontWeight="600" mb="3">
+          {t('Interface Settings')}
+        </Text>
+        <Flex justifyContent="space-between" alignItems="center" mb="16px">
           <Flex alignItems="center">
-            <Text>{t('Expert Mode')}</Text>
+            <Text fontSize="13px" color="textSecondary" fontWeight="500">
+              {t('Expert Mode')}
+            </Text>
             <QuestionHelper
               text={t('Bypasses confirmation modals and allows high slippage trades. Use at your own risk.')}
               ml="4px"
             />
           </Flex>
-          <Toggle id="toggle-expert-mode-button" scale="md" checked={expertMode} onChange={handleExpertModeToggle} />
+          <Toggle id="toggle-expert-mode-button" scale="sm" checked={expertMode} onChange={handleExpertModeToggle} />
         </Flex>
-        <Flex justifyContent="space-between" alignItems="center" mb="24px">
+        <Flex justifyContent="space-between" alignItems="center" mb="16px">
           <Flex alignItems="center">
-            <Text>{t('Disable Multihops')}</Text>
+            <Text fontSize="13px" color="textSecondary" fontWeight="500">
+              {t('Disable Multihops')}
+            </Text>
             <QuestionHelper text={t('Restricts swaps to direct pairs only.')} ml="4px" />
           </Flex>
           <Toggle
             id="toggle-disable-multihop-button"
             checked={singleHopOnly}
-            scale="md"
+            scale="sm"
             onChange={() => {
               setSingleHopOnly(!singleHopOnly)
             }}
@@ -90,14 +92,16 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
           <Flex alignItems="center">
-            <Text>{t('Flippy sounds')}</Text>
+            <Text fontSize="13px" color="textSecondary" fontWeight="500">
+              {t('Flippy sounds')}
+            </Text>
             <QuestionHelper
               text={t('Fun sounds to make a truly immersive pancake-flipping trading experience')}
               ml="4px"
             />
           </Flex>
           <CrosswiseToggleWrapper>
-            <CrosswiseToggle checked={audioPlay} onChange={toggleSetAudioMode} scale="md" />
+            <Toggle checked={audioPlay} onChange={toggleSetAudioMode} scale="sm" />
           </CrosswiseToggleWrapper>
         </Flex>
       </Flex>

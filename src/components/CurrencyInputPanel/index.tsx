@@ -33,12 +33,17 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   display: flex;
   flex-flow: column nowrap;
   position: relative;
-  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  background-color: ${({ theme }) => theme.colors.background};
+  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '4px')};
+  /* background-color: ${({ theme }) => theme.colors.background}; */
   z-index: 1;
+  width: 100%;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 47%;
+  }
 `
 const Container = styled.div<{ hideInput: boolean }>`
-  border-radius: 16px;
+  border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.input};
   box-shadow: ${({ theme }) => theme.shadows.inset};
 `
@@ -93,9 +98,17 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <Text fontSize="14px">{translatedLabel}</Text>
+              <Text fontSize="13px" fontWeight="500" color="textSecondary">
+                {translatedLabel}
+              </Text>
               {account && (
-                <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
+                <Text
+                  onClick={onMax}
+                  fontSize="13px"
+                  fontWeight="500"
+                  color="textSecondary"
+                  style={{ display: 'inline', cursor: 'pointer' }}
+                >
                   {!hideBalance && !!currency && selectedCurrencyBalance
                     ? t('Balance: %amount%', { amount: selectedCurrencyBalance?.toSignificant(6) ?? '' })
                     : ' -'}
@@ -115,7 +128,7 @@ export default function CurrencyInputPanel({
                 }}
               />
               {account && currency && showMaxButton && label !== 'To' && (
-                <Button onClick={onMax} scale="sm" variant="text">
+                <Button onClick={onMax} scale="sm" variant="tertiary">
                   MAX
                 </Button>
               )}
@@ -132,16 +145,11 @@ export default function CurrencyInputPanel({
           >
             <Flex alignItems="center" justifyContent="space-between">
               {pair ? (
-                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
-              ) : currency ? (
-                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
-              ) : null}
-              {pair ? (
-                <Text id="pair">
+                <Text id="pair" color="textSecondary" style={{ marginRight: '8px' }}>
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
               ) : (
-                <Text id="pair">
+                <Text id="pair" color="textSecondary" style={{ marginRight: '8px' }}>
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                         currency.symbol.length - 5,
@@ -150,6 +158,11 @@ export default function CurrencyInputPanel({
                     : currency?.symbol) || t('Select a currency')}
                 </Text>
               )}
+              {pair ? (
+                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
+              ) : currency ? (
+                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
+              ) : null}
               {!disableCurrencySelect && <ChevronDownIcon />}
             </Flex>
           </CurrencySelectButton>

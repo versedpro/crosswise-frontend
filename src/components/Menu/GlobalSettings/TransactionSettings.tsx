@@ -72,9 +72,14 @@ const SlippageTabs = () => {
 
   return (
     <Flex flexDirection="column">
+      <Text fontSize="18px" fontWeight="600" mb="3">
+        {t('Transaction Settings')}
+      </Text>
       <Flex flexDirection="column" mb="24px">
         <Flex mb="12px">
-          <Text>{t('Slippage Tolerance')}</Text>
+          <Text fontSize="13px" fontWeight="500" color="textSecondary">
+            {t('Slippage Tolerance')}
+          </Text>
           <QuestionHelper
             text={t(
               'Setting a high slippage tolerance can help transactions succeed, but you may not get such a good price. Use with caution.',
@@ -91,7 +96,7 @@ const SlippageTabs = () => {
               setSlippageInput('')
               setUserslippageTolerance(10)
             }}
-            variant={userSlippageTolerance === 10 ? 'primary' : 'tertiary'}
+            variant={userSlippageTolerance === 10 ? 'secondaryGradient' : 'tertiary'}
           >
             0.1%
           </Button>
@@ -103,7 +108,7 @@ const SlippageTabs = () => {
               setSlippageInput('')
               setUserslippageTolerance(50)
             }}
-            variant={userSlippageTolerance === 50 ? 'primary' : 'tertiary'}
+            variant={userSlippageTolerance === 50 ? 'secondaryGradient' : 'tertiary'}
           >
             0.5%
           </Button>
@@ -115,7 +120,7 @@ const SlippageTabs = () => {
               setSlippageInput('')
               setUserslippageTolerance(100)
             }}
-            variant={userSlippageTolerance === 100 ? 'primary' : 'tertiary'}
+            variant={userSlippageTolerance === 100 ? 'secondaryGradient' : 'tertiary'}
           >
             1.0%
           </Button>
@@ -139,7 +144,7 @@ const SlippageTabs = () => {
           </Flex>
         </Flex>
         {!!slippageError && (
-          <Text fontSize="14px" color={slippageError === SlippageError.InvalidInput ? 'red' : '#F3841E'} mt="8px">
+          <Text fontSize="13px" color={slippageError === SlippageError.InvalidInput ? 'red' : '#F3841E'} mt="8px">
             {slippageError === SlippageError.InvalidInput
               ? t('Enter a valid slippage percentage')
               : slippageError === SlippageError.RiskyLow
@@ -150,7 +155,9 @@ const SlippageTabs = () => {
       </Flex>
       <Flex justifyContent="space-between" alignItems="center" mb="24px">
         <Flex alignItems="center">
-          <Text>{t('Tx deadline (mins)')}</Text>
+          <Text fontSize="13px" color="textSecondary">
+            {t('Trasaction deadline')}
+          </Text>
           <QuestionHelper
             text={t('Your transaction will revert if it is left confirming for longer than this time.')}
             ml="4px"
