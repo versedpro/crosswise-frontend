@@ -2,24 +2,24 @@
   {
     "inputs": [
       {
-        "internalType": "contract CrssToken",
-        "name": "_crss",
+        "internalType": "contract CakeToken",
+        "name": "_cake",
         "type": "address"
       },
       {
-        "internalType": "contract xCrssToken",
-        "name": "_xCrss",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_devAddress",
+        "internalType": "contract SyrupBar",
+        "name": "_syrup",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_treasuryAddress",
+        "name": "_devaddr",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_cakePerBlock",
+        "type": "uint256"
       },
       {
         "internalType": "uint256",
@@ -29,19 +29,6 @@
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "crssPerBlock",
-        "type": "uint256"
-      }
-    ],
-    "name": "CrssPerBlockUpdated",
-    "type": "event"
   },
   {
     "anonymous": false,
@@ -99,31 +86,6 @@
       {
         "indexed": true,
         "internalType": "address",
-        "name": "caller",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "previousAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "newAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "EmissionRateUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
         "name": "previousOwner",
         "type": "address"
       },
@@ -135,56 +97,6 @@
       }
     ],
     "name": "OwnershipTransferred",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "referrer",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "commissionAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "ReferralCommissionPaid",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "pid",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amountLockedUp",
-        "type": "uint256"
-      }
-    ],
-    "name": "RewardLockedUp",
     "type": "event"
   },
   {
@@ -226,32 +138,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "MAXIMUM_HARVEST_INTERVAL",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "MAXIMUM_REFERRAL_COMMISSION_RATE",
-    "outputs": [
-      {
-        "internalType": "uint16",
-        "name": "",
-        "type": "uint16"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -262,11 +148,6 @@
         "internalType": "contract IBEP20",
         "name": "_lpToken",
         "type": "address"
-      },
-      {
-        "internalType": "uint16",
-        "name": "_depositFeeBP",
-        "type": "uint16"
       },
       {
         "internalType": "bool",
@@ -281,10 +162,10 @@
   },
   {
     "inputs": [],
-    "name": "burnAddress",
+    "name": "cake",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "contract CakeToken",
         "name": "",
         "type": "address"
       }
@@ -294,38 +175,12 @@
   },
   {
     "inputs": [],
-    "name": "crss",
-    "outputs": [
-      {
-        "internalType": "contract CrssToken",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "crssPerBlock",
+    "name": "cakePerBlock",
     "outputs": [
       {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "crssReferral",
-    "outputs": [
-      {
-        "internalType": "contract ICrssReferral",
-        "name": "",
-        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -342,16 +197,6 @@
         "internalType": "uint256",
         "name": "_amount",
         "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "_referrer",
-        "type": "address"
-      },
-      {
-        "internalType": "bool",
-        "name": "immediateClaim",
-        "type": "bool"
       }
     ],
     "name": "deposit",
@@ -360,8 +205,21 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_devaddr",
+        "type": "address"
+      }
+    ],
+    "name": "dev",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
-    "name": "devAddress",
+    "name": "devaddr",
     "outputs": [
       {
         "internalType": "address",
@@ -389,6 +247,19 @@
     "inputs": [
       {
         "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "enterStaking",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
         "name": "_from",
         "type": "uint256"
       },
@@ -406,36 +277,18 @@
         "type": "uint256"
       }
     ],
-    "stateMutability": "pure",
+    "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
       {
-        "internalType": "uint256[]",
-        "name": "pools",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "bool",
-        "name": "immediateClaim",
-        "type": "bool"
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
       }
     ],
-    "name": "massHarvest",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256[]",
-        "name": "pools",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "massStake",
+    "name": "leaveStaking",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -445,6 +298,32 @@
     "name": "massUpdatePools",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_pid",
+        "type": "uint256"
+      }
+    ],
+    "name": "migrate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "migrator",
+    "outputs": [
+      {
+        "internalType": "contract IMigratorChef",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -473,7 +352,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingCrss",
+    "name": "pendingCake",
     "outputs": [
       {
         "internalType": "uint256",
@@ -511,13 +390,8 @@
       },
       {
         "internalType": "uint256",
-        "name": "accCrssPerShare",
+        "name": "accCakePerShare",
         "type": "uint256"
-      },
-      {
-        "internalType": "uint16",
-        "name": "depositFeeBP",
-        "type": "uint16"
       }
     ],
     "stateMutability": "view",
@@ -531,19 +405,6 @@
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "referralCommissionRate",
-    "outputs": [
-      {
-        "internalType": "uint16",
-        "name": "",
-        "type": "uint16"
       }
     ],
     "stateMutability": "view",
@@ -569,11 +430,6 @@
         "type": "uint256"
       },
       {
-        "internalType": "uint16",
-        "name": "_depositFeeBP",
-        "type": "uint16"
-      },
-      {
         "internalType": "bool",
         "name": "_withUpdate",
         "type": "bool"
@@ -587,77 +443,12 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "_devAddress",
+        "internalType": "contract IMigratorChef",
+        "name": "_migrator",
         "type": "address"
       }
     ],
-    "name": "setDevAddress",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "_referralCommissionRate",
-        "type": "uint16"
-      }
-    ],
-    "name": "setReferralCommissionRate",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_treasuryAddress",
-        "type": "address"
-      }
-    ],
-    "name": "setTreasuryAddress",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "contract ICrssReferral",
-        "name": "_crssReferral",
-        "type": "address"
-      }
-    ],
-    "name": "setcrssReferral",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "stakePoolId",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_pid",
-        "type": "uint256"
-      }
-    ],
-    "name": "stakeReward",
+    "name": "setMigrator",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -677,12 +468,12 @@
   },
   {
     "inputs": [],
-    "name": "timeFirstStep",
+    "name": "syrup",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "contract SyrupBar",
         "name": "",
-        "type": "uint256"
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -691,19 +482,6 @@
   {
     "inputs": [],
     "name": "totalAllocPoint",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalLockedUpRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -728,40 +506,14 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "treasuryAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_crssPerBlock",
+        "name": "multiplierNumber",
         "type": "uint256"
       }
     ],
-    "name": "updateCrssPerBlock",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_crssPerBlock",
-        "type": "uint256"
-      }
-    ],
-    "name": "updateEmissionRate",
+    "name": "updateMultiplier",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -803,11 +555,6 @@
         "internalType": "uint256",
         "name": "rewardDebt",
         "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "rewardLockedUp",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -829,19 +576,6 @@
     "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "xCrss",
-    "outputs": [
-      {
-        "internalType": "contract xCrssToken",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   }
 ]

@@ -190,7 +190,9 @@ const Farms: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
+  console.log(userDataLoaded)
   const cakePrice = usePriceCakeBusd()
+  
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
   const { account } = useWeb3React()
@@ -198,7 +200,6 @@ const Farms: React.FC = () => {
   const chosenFarmsLength = useRef(0)
 
   const [isDark] = useThemeManager()
-  console.log('isDark', isDark)
 
   const isArchived = pathname.includes('archived')
   const isInactive = pathname.includes('history')
@@ -214,8 +215,8 @@ const Farms: React.FC = () => {
   const [vesting, setVesting] = useState(true)
   const [autoCompound, setAutoCompound] = useState(true)
 
-  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const activeFarms = farmsLP.filter((farm) =>  farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP.filter((farm) =>  farm.multiplier === '0X' && !isArchivedPid(farm.pid))
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -341,7 +342,7 @@ const Farms: React.FC = () => {
       setObserverIsSet(true)
     }
   }, [chosenFarmsMemoized, observerIsSet])
-
+  console.log("chosenFarmsMemoized", chosenFarmsMemoized)
   const rowData = chosenFarmsMemoized.map((farm) => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
