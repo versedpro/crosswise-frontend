@@ -2576,20 +2576,6 @@
     truffle-flattener "^1.4.4"
     truffle-hdwallet-provider "^1.0.17"
 
-"@pancakeswap/eslint-config-pancake@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/eslint-config-pancake/-/eslint-config-pancake-1.1.0.tgz#ddb916af3726359095207306cfc87098cec43f41"
-  integrity sha512-TGyHaDZjXPtubV39S4vPVVRZk9FgsSyBwP6qTP1/H0+nUoKEh+RIUs/nCVxZgN7f8MbbVioLg00gVqV0XI8a7Q==
-  dependencies:
-    "@typescript-eslint/eslint-plugin" "^4.7.0"
-    "@typescript-eslint/parser" "^4.7.0"
-    eslint-config-airbnb "^18.2.1"
-    eslint-config-prettier "^6.15.0"
-    eslint-plugin-import "^2.22.1"
-    eslint-plugin-jsx-a11y "^6.4.1"
-    eslint-plugin-react "^7.21.5"
-    eslint-plugin-react-hooks "^4.0.0"
-
 "@pancakeswap/sdk@^2.3.2":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@pancakeswap/sdk/-/sdk-2.3.2.tgz#35c986ac4965dff713bb06d523ffa34312a07228"
@@ -2602,19 +2588,6 @@
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
-
-"@pancakeswap/uikit@^0.46.0":
-  version "0.46.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/uikit/-/uikit-0.46.0.tgz#f5c804ebf3199704ee33b8be1f79a60179daf3f5"
-  integrity sha512-p67xEgdKUp0D8APD71IV1g8XaUc4ZygNpMjuaz9Li+flW4hYD7FsxBG30gT8jOxa6umJeHaNDMP25CoKE59rkA==
-  dependencies:
-    "@popperjs/core" "^2.9.2"
-    "@types/lodash" "^4.14.168"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-popper "^2.2.5"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
 
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
@@ -7334,10 +7307,10 @@ cross-spawn@^6.0.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-crosswise-uikit@^0.32.6:
-  version "0.32.6"
-  resolved "https://registry.yarnpkg.com/crosswise-uikit/-/crosswise-uikit-0.32.6.tgz#162ae557950870975453cbdaec37b0c4f3a968c7"
-  integrity sha512-7IiL2qIquUNfU03YdciycM5lIhSxCibs9uzEdyYPAtkJSjJu11G+5Y4yOiP2wRck2vD0k/kOqrEy9UjIOsKojA==
+crosswise-uikit@^0.32.11:
+  version "0.32.11"
+  resolved "https://registry.yarnpkg.com/crosswise-uikit/-/crosswise-uikit-0.32.11.tgz#4c3b690345a9ec04e216fe729faeb8913cd67770"
+  integrity sha512-NHenNi8CfzrDLMW43Wq0F0+bzhnR8dt3kj9uiX7E63X3pTTWgHmG5NVOl4nIen7GjinuvBYPNApBlEBxes0zug==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
@@ -8678,6 +8651,20 @@ eslint-config-airbnb@^18.2.1:
     eslint-config-airbnb-base "^14.2.1"
     object.assign "^4.1.2"
     object.entries "^1.1.2"
+
+eslint-config-crosswise@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/eslint-config-crosswise/-/eslint-config-crosswise-1.0.7.tgz#f5566e4abdd24911b6c2a0e9880ef929ce9b69d7"
+  integrity sha512-D6Y/76IQqGl0DP0gjsoWjJ6nqpDL+9SCS5kwwjRG420VEGjYRuOumyPa/M3gT/85vMo7BFF5lwV11C8PYSsDyw==
+  dependencies:
+    "@typescript-eslint/eslint-plugin" "^4.7.0"
+    "@typescript-eslint/parser" "^4.7.0"
+    eslint-config-airbnb "^18.2.1"
+    eslint-config-prettier "^6.15.0"
+    eslint-plugin-import "^2.22.1"
+    eslint-plugin-jsx-a11y "^6.4.1"
+    eslint-plugin-react "^7.21.5"
+    eslint-plugin-react-hooks "^4.0.0"
 
 eslint-config-prettier@^6.15.0:
   version "6.15.0"
