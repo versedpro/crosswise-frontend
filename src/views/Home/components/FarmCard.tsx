@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Heading, Card, CardBody, Button, Text } from 'crosswise-uikit'
@@ -87,9 +87,7 @@ const FarmCard = () => {
             // variant={balancesWithValue.length <= 0 || pendingTx ? 'primary' : 'primaryGradient'}
             // onClick={harvestAllFarms}
           >
-            {pendingTx
-              ? t('Collecting CRSS')
-              : t('Harvest all')}
+            {pendingTx ? t('Collecting CRSS') : t('Harvest all')}
           </Button>
         </Actions>
       </CardBody>

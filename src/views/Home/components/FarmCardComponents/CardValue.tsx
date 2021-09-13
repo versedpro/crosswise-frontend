@@ -4,9 +4,9 @@ import { useCountUp } from 'react-countup'
 import { Text } from 'crosswise-uikit'
 
 const StyledText = styled(Text)<{
-  opacity?: string;
+  opacity?: string
 }>`
-  opacity: ${({ opacity }) => opacity}
+  opacity: ${({ opacity }) => opacity};
 `
 
 export interface CardValueProps {
@@ -39,7 +39,7 @@ const CardValue: React.FC<CardValueProps> = ({
     separator: ',',
     decimals:
       // eslint-disable-next-line no-nested-ternary
-      decimals !== undefined ? decimals : (value < 0 ? 4 : (value > 1e5 ? 0 : 3)),
+      decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 3,
   })
 
   const updateValue = useRef(update)
@@ -51,7 +51,7 @@ const CardValue: React.FC<CardValueProps> = ({
   return (
     <StyledText bold={bold} small={small} fontSize={fontSize} style={{ lineHeight }} color={color} opacity={opacity}>
       {prefix}
-      {typeof(countUp) === 'number' ? countUp.toFixed(decimals) : countUp}
+      {typeof countUp === 'number' ? countUp.toFixed(decimals) : countUp}
     </StyledText>
   )
 }
