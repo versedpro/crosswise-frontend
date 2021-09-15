@@ -26,6 +26,9 @@ const Footer = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
   text-align: center;
 `
+const StyledModalHeader = styled(ModalHeader)`
+  padding: 24px;
+`
 
 const StyledModalContainer = styled(ModalContainer)`
   max-width: 420px;
@@ -85,13 +88,13 @@ export default function CurrencySearchModal({
 
   return (
     <StyledModalContainer minWidth="320px">
-      <ModalHeader>
+      <StyledModalHeader>
         <ModalTitle>
           {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
           <Heading>{config[modalView].title}</Heading>
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
-      </ModalHeader>
+      </StyledModalHeader>
       <StyledModalBody>
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch
