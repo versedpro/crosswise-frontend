@@ -47,7 +47,7 @@ import SwapWarningModal from './SwapWarningModal'
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textSecondary };
+  color: ${({ theme }) => theme.colors.textSecondary};
 `
 
 export default function TradeSell() {
