@@ -7334,10 +7334,10 @@ cross-spawn@^6.0.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-crosswise-uikit@^0.32.6:
-  version "0.32.6"
-  resolved "https://registry.yarnpkg.com/crosswise-uikit/-/crosswise-uikit-0.32.6.tgz#162ae557950870975453cbdaec37b0c4f3a968c7"
-  integrity sha512-7IiL2qIquUNfU03YdciycM5lIhSxCibs9uzEdyYPAtkJSjJu11G+5Y4yOiP2wRck2vD0k/kOqrEy9UjIOsKojA==
+crosswise-uikit@^0.32.11:
+  version "0.32.11"
+  resolved "https://registry.yarnpkg.com/crosswise-uikit/-/crosswise-uikit-0.32.11.tgz#4c3b690345a9ec04e216fe729faeb8913cd67770"
+  integrity sha512-NHenNi8CfzrDLMW43Wq0F0+bzhnR8dt3kj9uiX7E63X3pTTWgHmG5NVOl4nIen7GjinuvBYPNApBlEBxes0zug==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

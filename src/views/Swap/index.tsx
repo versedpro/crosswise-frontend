@@ -63,7 +63,6 @@ const ControlContainer = styled.div`
     padding: 16px 32px;
     margin-bottom: 0;
     justify-content: flex-start;
-    width: auto;
 
     > div {
       padding: 0;
@@ -74,7 +73,7 @@ const ControlContainer = styled.div`
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
 `
 
 export default function Swap({ history }: RouteComponentProps) {
@@ -337,7 +336,7 @@ export default function Swap({ history }: RouteComponentProps) {
       <ControlContainer>
         <StyledCard>
           <AppHeader title={t('Trade tokens in an instant')} subtitle={t('')}>
-            <Flex flexDirection="column" alignItems="flex-end">
+            {/* <Flex flexDirection="column" alignItems="flex-end">
               <Flex justifyContent="center" mt="-16px">
                 <Text
                   className="swap-simple"
@@ -359,7 +358,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   {t('Advanced')}
                 </Text>
               </Flex>
-            </Flex>
+            </Flex> */}
           </AppHeader>
           <Wrapper id="swap-page">
             <AutoRow justify="space-between">
@@ -560,7 +559,7 @@ export default function Swap({ history }: RouteComponentProps) {
           </Wrapper>
         </StyledCard>
         {isAdvanced ? <LimitOrder /> : null}
-        <TradeToken />
+        {/* <TradeToken /> */}
       </ControlContainer>
     </Page>
   )

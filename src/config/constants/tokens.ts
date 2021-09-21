@@ -1,38 +1,21 @@
 import { ChainId, Token } from '@pancakeswap/sdk'
 
-// export const CAKE: { [chainId: number]: Token } = {
-//   [ChainId.MAINNET]: new Token(
-//     ChainId.MAINNET,
-//     '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-//     18,
-//     'CAKE',
-//     'PancakeSwap Token',
-//   ),
-//   [ChainId.TESTNET]: new Token(
-//     ChainId.TESTNET,
-//     '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
-//     18,
-//     'CAKE',
-//     'PancakeSwap Token',
-//   ),
-// }
-
-export const CAKE: { [chainId: number]: Token } = {
-    [ChainId.MAINNET]: new Token(
-      ChainId.MAINNET,
-      '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      18,
-      'CAKE',
-      'PancakeSwap Token',
-    ),
-    [ChainId.TESTNET]: new Token(
-      ChainId.TESTNET,
-      '0xA98D21C3D61A7EB9Dd3BE9C9a1132Abb7c7Be2Dd',
-      18,
-      'CRSS',
-      'PancakeSwap Token',
-    ),
-  }
+export const CRSS: { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET,
+    '0xA98D21C3D61A7EB9Dd3BE9C9a1132Abb7c7Be2Dd',
+    18,
+    'CRSS',
+    'Crosswise Token',
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0xA98D21C3D61A7EB9Dd3BE9C9a1132Abb7c7Be2Dd',
+    18,
+    'CRSS',
+    'Crosswise Token',
+  ),
+}
 export const BUSD: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
@@ -80,15 +63,6 @@ const tokens = {
   bnb: {
     symbol: 'BNB',
     projectLink: 'https://www.binance.com/',
-  },
-  cake: {
-    symbol: 'CAKE',
-    address: {
-      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      97: '0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe',
-    },
-    decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
   },
   crss: {
     symbol: 'CRSS',

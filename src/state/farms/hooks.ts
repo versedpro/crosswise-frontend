@@ -18,7 +18,7 @@ export const usePollFarmsData = (includeArchive = false) => {
   useEffect(() => {
     const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
     const pids = farmsToFetch.map((farmToFetch) => farmToFetch.pid)
-    
+
     dispatch(fetchFarmsPublicDataAsync(pids))
 
     if (account) {
@@ -104,7 +104,7 @@ export const usePriceBnbBusd = (): BigNumber => {
 export const usePriceCakeBusd = (): BigNumber => {
   const cakeBnbFarm = useFarmFromPid(0)
   const cakePriceBusdAsString = cakeBnbFarm.token.busdPrice
-  
+
   const cakePriceBusd = useMemo(() => {
     return new BigNumber(cakePriceBusdAsString)
   }, [cakePriceBusdAsString])

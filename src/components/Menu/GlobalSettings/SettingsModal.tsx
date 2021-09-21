@@ -16,6 +16,12 @@ const CrosswiseToggleWrapper = styled.div`
   }
 `
 
+const StyledModal = styled(Modal)`
+  div {
+    overflow-y: unset;
+  }
+`
+
 const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   const [showConfirmExpertModal, setShowConfirmExpertModal] = useState(false)
   const [rememberExpertModeAcknowledgement, setRememberExpertModeAcknowledgement] = usePersistState(false, {
@@ -51,7 +57,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
   }
 
   return (
-    <Modal title={t('Settings')} onDismiss={onDismiss} style={{ maxWidth: '380px' }}>
+    <StyledModal title={t('Settings')} onDismiss={onDismiss} style={{ maxWidth: '380px' }}>
       <Flex flexDirection="column">
         {/* <Flex flexDirection="column">
           <Text bold textTransform="uppercase" fontSize="12px" color="secondary" mb="24px">
@@ -105,7 +111,7 @@ const SettingsModal: React.FC<InjectedModalProps> = ({ onDismiss }) => {
           </CrosswiseToggleWrapper>
         </Flex>
       </Flex>
-    </Modal>
+    </StyledModal>
   )
 }
 

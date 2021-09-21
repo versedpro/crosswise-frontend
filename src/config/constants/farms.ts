@@ -17,7 +17,6 @@ const farms: FarmConfig[] = [
   //   quoteToken: tokens.wbnb,
   // },
 
-
   {
     pid: 0,
     lpSymbol: 'CRSS-BNB LP',
@@ -39,7 +38,7 @@ const farms: FarmConfig[] = [
     token: tokens.crss,
     quoteToken: tokens.busd,
   },
-   {
+  {
     pid: 2,
     lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
@@ -50,9 +49,6 @@ const farms: FarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
 
- 
-
-  
   // {
   //   pid: 252,
   //   lpSymbol: '  ',
