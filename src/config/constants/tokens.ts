@@ -18,21 +18,21 @@ import { ChainId, Token } from '@pancakeswap/sdk'
 // }
 
 export const CAKE: { [chainId: number]: Token } = {
-    [ChainId.MAINNET]: new Token(
-      ChainId.MAINNET,
-      '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      18,
-      'CAKE',
-      'PancakeSwap Token',
-    ),
-    [ChainId.TESTNET]: new Token(
-      ChainId.TESTNET,
-      '0xA98D21C3D61A7EB9Dd3BE9C9a1132Abb7c7Be2Dd',
-      18,
-      'CRSS',
-      'PancakeSwap Token',
-    ),
-  }
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET,
+    '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+    18,
+    'CAKE',
+    'PancakeSwap Token',
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0xA98D21C3D61A7EB9Dd3BE9C9a1132Abb7c7Be2Dd',
+    18,
+    'CRSS',
+    'PancakeSwap Token',
+  ),
+}
 export const BUSD: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,

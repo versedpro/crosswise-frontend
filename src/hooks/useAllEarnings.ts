@@ -19,9 +19,9 @@ const useAllEarnings = () => {
         params: [farm.pid, account],
       }))
 
-      const res = await multicall(masterChefABI, calls)
+      // const res = await multicall(masterChefABI, calls)
 
-      setBalance(res)
+      // setBalance(res)
     }
 
     if (account) {
