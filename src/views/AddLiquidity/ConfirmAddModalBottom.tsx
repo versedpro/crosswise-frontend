@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Fraction, Percent } from '@pancakeswap/sdk'
+import { Currency, CurrencyAmount, Fraction, Percent } from '@crosswise/sdk'
 import React from 'react'
 import { Button, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'

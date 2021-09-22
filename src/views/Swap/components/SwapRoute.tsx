@@ -1,5 +1,5 @@
 import React, { Fragment, memo } from 'react'
-import { Trade } from '@pancakeswap/sdk'
+import { Trade } from '@crosswise/sdk'
 import { Text, Flex, ChevronRightIcon } from '@crosswise/uikit'
 import { unwrappedToken } from 'utils/wrappedCurrency'
 

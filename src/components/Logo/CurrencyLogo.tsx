@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@pancakeswap/sdk'
+import { Currency, ETHER, Token } from '@crosswise/sdk'
 import { BinanceIcon } from '@crosswise/uikit'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'

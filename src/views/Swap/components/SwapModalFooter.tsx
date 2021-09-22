@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Trade, TradeType } from '@pancakeswap/sdk'
+import { Trade, TradeType } from '@crosswise/sdk'
 import { Button, Text, AutoRenewIcon } from '@crosswise/uikit'
 import { Field } from 'state/swap/actions'
 import {

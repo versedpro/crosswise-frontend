@@ -1,5 +1,5 @@
 import React from 'react'
-import { Currency, Pair } from '@pancakeswap/sdk'
+import { Currency, Pair } from '@crosswise/sdk'
 import { Button, Text, Flex } from '@crosswise/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
