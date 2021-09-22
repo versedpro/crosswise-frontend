@@ -1,6 +1,6 @@
 import React from 'react'
 import { Price } from '@pancakeswap/sdk'
-import { Text, AutoRenewIcon } from 'crosswise-uikit'
+import { Text, AutoRenewIcon } from '@crosswise/uikit'
 import { StyledBalanceMaxMini } from './styleds'
 
 interface TradePriceProps {

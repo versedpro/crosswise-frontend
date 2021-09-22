@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box } from 'crosswise-uikit'
+import { Box } from '@crosswise/uikit'
 
 const Card = styled(Box)<{
   width?: string

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading } from 'crosswise-uikit'
+import { Flex, Heading } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 export interface TimerProps {

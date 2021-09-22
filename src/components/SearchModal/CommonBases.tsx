@@ -1,6 +1,6 @@
 import React from 'react'
 import { ChainId, Currency, currencyEquals, ETHER, Token } from '@pancakeswap/sdk'
-import { Text } from 'crosswise-uikit'
+import { Text } from '@crosswise/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 

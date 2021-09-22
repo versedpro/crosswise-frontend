@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button, Text } from 'crosswise-uikit'
+import { Heading, Card, CardBody, Button, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
 

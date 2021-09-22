@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, Link } from 'crosswise-uikit'
+import { Flex, Text, Button, Link } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import CompositeImage, { CompositeImageProps } from '../CompositeImage'
 import PurpleWordHeading from '../PurpleWordHeading'

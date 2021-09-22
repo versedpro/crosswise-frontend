@@ -1,5 +1,5 @@
 import React from 'react'
-import { useModal, Button, Skeleton } from 'crosswise-uikit'
+import { useModal, Button, Skeleton } from '@crosswise/uikit'
 import WhitelistedBiddersModal from './WhitelistedBiddersModal'
 import useWhitelistedAddresses from '../hooks/useWhitelistedAddresses'
 

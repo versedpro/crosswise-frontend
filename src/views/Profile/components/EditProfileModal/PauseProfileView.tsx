@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AutoRenewIcon, Button, Checkbox, Flex, InjectedModalProps, Text } from 'crosswise-uikit'
+import { AutoRenewIcon, Button, Checkbox, Flex, InjectedModalProps, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useGetProfileCosts from 'views/Profile/hooks/useGetProfileCosts'
 import { useAppDispatch } from 'state'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ExpandableLabel, Flex, FlexProps, Text } from 'crosswise-uikit'
+import { ExpandableLabel, Flex, FlexProps, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 interface FoldableTextProps extends FlexProps {

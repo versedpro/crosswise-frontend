@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components'
-import { CardHeader as UIKitCardHeader } from 'crosswise-uikit'
+import { CardHeader as UIKitCardHeader } from '@crosswise/uikit'
 
 const getBackground = (theme: DefaultTheme) => {
   if (theme.isDark) {

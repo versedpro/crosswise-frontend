@@ -15,7 +15,7 @@ import {
   BlockIcon,
   VisibilityOn,
   VisibilityOff,
-} from 'crosswise-uikit'
+} from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useProfile } from 'state/profile/hooks'
 import usePersistState from 'hooks/usePersistState'

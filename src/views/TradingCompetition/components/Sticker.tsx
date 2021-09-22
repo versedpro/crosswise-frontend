@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex } from 'crosswise-uikit'
+import { Flex } from '@crosswise/uikit'
 
 interface StickerProps {
   backgroundColor?: string

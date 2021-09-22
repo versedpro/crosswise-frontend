@@ -1,4 +1,4 @@
-import { Toast } from 'crosswise-uikit'
+import { Toast } from '@crosswise/uikit'
 
 type ToastSignature = (title: Toast['title'], description?: Toast['description']) => void
 

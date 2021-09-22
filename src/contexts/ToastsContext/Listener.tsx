@@ -1,5 +1,5 @@
 import React from 'react'
-import { ToastContainer } from 'crosswise-uikit'
+import { ToastContainer } from '@crosswise/uikit'
 import useToast from 'hooks/useToast'
 
 const ToastListener = () => {

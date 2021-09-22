@@ -1,4 +1,4 @@
-import { MenuEntry } from 'crosswise-uikit'
+import { MenuEntry } from '@crosswise/uikit'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [

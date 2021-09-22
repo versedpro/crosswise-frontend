@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex } from 'crosswise-uikit'
+import { Flex } from '@crosswise/uikit'
 import styled from 'styled-components'
 
 const Wrapper = styled(Flex)`
