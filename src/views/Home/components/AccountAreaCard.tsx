@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody } from 'crosswise-uikit'
+import { Heading, Card, CardBody } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledText = styled.a`

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Text, Heading, Image } from 'crosswise-uikit'
+import { Flex, Text, Heading, Image } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import FlipperBunny from '../../pngs/flippers.png'
 

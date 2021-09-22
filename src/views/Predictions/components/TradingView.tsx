@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Box } from 'crosswise-uikit'
+import { Box } from '@crosswise/uikit'
 import { DefaultTheme, useTheme } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 

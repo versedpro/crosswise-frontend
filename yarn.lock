@@ -1491,6 +1491,32 @@
     buffer "^5.4.3"
     seedrandom "^3.0.5"
 
+"@crosswise/sdk@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@crosswise/sdk/-/sdk-0.0.1.tgz#cefaff4d451fb9228c2fff77426e40fd5a17a428"
+  integrity sha512-P14biBD0MpbERE5v3R//uxDhqWhAgE99TrTLZtzz/O+KuMmKpbWqxjU4khdWGeh1b5kpnC2hYhP9XlLXiGb3Dw==
+  dependencies:
+    "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.1"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
+
+"@crosswise/uikit@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@crosswise/uikit/-/uikit-0.2.0.tgz#f4f0c20090c97e4b99a045b2bafcf98512972bb0"
+  integrity sha512-wBcljigduF1E6XMe5SObEiU7dTWZIT+pINHK7RkRlSl5iZXjq4dsvIKdc3bXIidwS96JhE/9IWsnPbBYBPlbyw==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    "@types/lodash" "^4.14.168"
+    "@types/styled-system" "^5.1.10"
+    lodash "^4.17.20"
+    react-popper "^2.2.5"
+    react-transition-group "^4.4.1"
+    styled-system "^5.1.5"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -2589,19 +2615,6 @@
     eslint-plugin-jsx-a11y "^6.4.1"
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
-
-"@pancakeswap/sdk@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@pancakeswap/sdk/-/sdk-2.3.2.tgz#35c986ac4965dff713bb06d523ffa34312a07228"
-  integrity sha512-ILwO8RsOF9hc/k63WkbUB36uAGPi4QWtPWv/smNAdzIM2F09VdaWL8/NsSdp8bB6cA4ZmqP2DUFsTMvLOodl0A==
-  dependencies:
-    "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
-    big.js "^5.2.2"
-    decimal.js-light "^2.5.0"
-    jsbi "^3.1.1"
-    tiny-invariant "^1.1.0"
-    tiny-warning "^1.0.3"
-    toformat "^2.0.0"
 
 "@pancakeswap/uikit@^0.46.0":
   version "0.46.0"
@@ -7333,19 +7346,6 @@ cross-spawn@^6.0.0:
     semver "^5.5.0"
     shebang-command "^1.2.0"
     which "^1.2.9"
-
-crosswise-uikit@^0.32.11:
-  version "0.32.11"
-  resolved "https://registry.yarnpkg.com/crosswise-uikit/-/crosswise-uikit-0.32.11.tgz#4c3b690345a9ec04e216fe729faeb8913cd67770"
-  integrity sha512-NHenNi8CfzrDLMW43Wq0F0+bzhnR8dt3kj9uiX7E63X3pTTWgHmG5NVOl4nIen7GjinuvBYPNApBlEBxes0zug==
-  dependencies:
-    "@popperjs/core" "^2.9.2"
-    "@types/lodash" "^4.14.168"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-popper "^2.2.5"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
 
 crypto-browserify@3.12.0, crypto-browserify@^3.11.0:
   version "3.12.0"

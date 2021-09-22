@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Skeleton } from 'crosswise-uikit'
+import { Skeleton } from '@crosswise/uikit'
 
 export interface EarnedProps {
   earnings: number

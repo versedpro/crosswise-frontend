@@ -1,5 +1,5 @@
 import React from 'react'
-import { TagProps } from 'crosswise-uikit'
+import { TagProps } from '@crosswise/uikit'
 import { ClosedTag, CommunityTag, CoreTag, SoonTag, VoteNowTag } from 'components/Tags'
 import { ProposalState } from 'state/types'
 

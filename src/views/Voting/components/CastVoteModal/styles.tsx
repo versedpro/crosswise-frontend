@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, BoxProps } from 'crosswise-uikit'
+import { Box, BoxProps } from '@crosswise/uikit'
 import styled from 'styled-components'
 
 export const VotingBox = styled.div`

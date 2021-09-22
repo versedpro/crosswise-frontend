@@ -1,5 +1,5 @@
 import React from 'react'
-import { BunnyPlaceholderIcon, Flex, Heading } from 'crosswise-uikit'
+import { BunnyPlaceholderIcon, Flex, Heading } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 interface ComingSoonProps {

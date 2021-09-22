@@ -1,6 +1,6 @@
-import { Currency, Percent, Price } from '@pancakeswap/sdk'
+import { Currency, Percent, Price } from '@crosswise/sdk'
 import React from 'react'
-import { Text } from 'crosswise-uikit'
+import { Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { AutoColumn } from '../../components/Layout/Column'
 import { AutoRow } from '../../components/Layout/Row'

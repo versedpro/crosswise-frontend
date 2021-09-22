@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text } from 'crosswise-uikit'
+import { Box, Text } from '@crosswise/uikit'
 import styled from 'styled-components'
 
 const BaseLabel = styled.label`

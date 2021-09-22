@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, useModal, RefreshIcon } from 'crosswise-uikit'
+import { Button, useModal, RefreshIcon } from '@crosswise/uikit'
 import TransactionsModal from './TransactionsModal'
 
 const Transactions = () => {

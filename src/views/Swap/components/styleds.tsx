@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, ErrorIcon, Card } from 'crosswise-uikit'
+import { Text, ErrorIcon, Card } from '@crosswise/uikit'
 import styled, { css } from 'styled-components'
 import { AutoColumn } from 'components/Layout/Column'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from 'crosswise-uikit'
+import { Button } from '@crosswise/uikit'
 
 interface PercentageButtonProps {
   onClick: () => void
