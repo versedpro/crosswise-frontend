@@ -7,7 +7,7 @@ import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import { CurrencyLogo } from '../../components/Logo'
 import { MinimalPositionCard } from '../../components/PositionCard'
-import Row from '../../components/Layout/Row'
+import Row, { AutoRow } from '../../components/Layout/Row'
 import CurrencySearchModal from '../../components/SearchModal/CurrencySearchModal'
 import { PairState, usePair } from '../../hooks/usePairs'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
@@ -24,11 +24,20 @@ enum Fields {
   TOKEN1 = 1,
 }
 
+const StyledAppBody = styled(AppBody)`
+  margin: 16px 32px;
+`
+
 const StyledButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.input};
   color: ${({ theme }) => theme.colors.text};
   box-shadow: none;
-  border-radius: 16px;
+  border-radius: 4px;
+  width: 100%;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 47%;
+  }
 `
 
 export default function PoolFinder() {
@@ -91,9 +100,9 @@ export default function PoolFinder() {
 
   return (
     <Page>
-      <AppBody>
+      <StyledAppBody>
         <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/pool" />
-        <AutoColumn style={{ padding: '1rem' }} gap="md">
+        <AutoRow justify="space-between" style={{ padding: '1rem 1rem 0' }}>
           <StyledButton
             endIcon={<ChevronDownIcon />}
             onClick={() => {
@@ -111,9 +120,7 @@ export default function PoolFinder() {
             )}
           </StyledButton>
 
-          <ColumnCenter>
-            <AddIcon />
-          </ColumnCenter>
+          <AddIcon />
 
           <StyledButton
             endIcon={<ChevronDownIcon />}
@@ -131,7 +138,8 @@ export default function PoolFinder() {
               <Text as={Row}>{t('Select a Token')}</Text>
             )}
           </StyledButton>
-
+        </AutoRow>
+        <AutoColumn style={{ padding: '1rem' }} gap="md">
           {hasPosition && (
             <ColumnCenter
               style={{ justifyItems: 'center', backgroundColor: '', padding: '12px 0px', borderRadius: '12px' }}
@@ -196,7 +204,7 @@ export default function PoolFinder() {
           showCommonBases
           selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
         /> */}
-      </AppBody>
+      </StyledAppBody>
     </Page>
   )
 }
