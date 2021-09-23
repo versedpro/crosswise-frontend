@@ -189,7 +189,6 @@ const Farms: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
-  console.log(userDataLoaded)
   const cakePrice = usePriceCakeBusd()
 
   const [query, setQuery] = useState('')
@@ -341,12 +340,11 @@ const Farms: React.FC = () => {
       setObserverIsSet(true)
     }
   }, [chosenFarmsMemoized, observerIsSet])
-  console.log('chosenFarmsMemoized', chosenFarmsMemoized)
   const rowData = chosenFarmsMemoized.map((farm) => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('CROSSWISE', '')
 
     const row: RowProps = {
       apr: {
@@ -546,14 +544,14 @@ const Farms: React.FC = () => {
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
               <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
-                  Vesting
+                  {t('Vesting')}
                 </Text>
                 <Toggle checked={vesting} scale="sm" />
               </ToggleWrapper>
 
               <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
-                  Auto-compound
+                  {t('Auto-compound')}
                 </Text>
                 <Toggle checked={autoCompound} scale="sm" />
               </ToggleWrapper>

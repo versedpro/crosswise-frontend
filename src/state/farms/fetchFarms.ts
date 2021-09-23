@@ -9,7 +9,6 @@ const fetchFarms = async (farmsToFetch: FarmConfig[]) => {
       return farm
     }),
   )
-  console.log('farm index', data)
   return data
 }
 
