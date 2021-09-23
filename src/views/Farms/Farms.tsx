@@ -59,14 +59,13 @@ const FarmHeader = styled.div`
 `
 
 const FramHeaderLayout = styled.div`
+  padding: 0 24px;
   max-width: 1200px;
   margin: auto;
   position: relative;
 `
 
 const FarmHeadCard = styled.div<{ isDarkTheme: boolean }>`
-  margin-top: 40px;
-  margin-bottom: 30px;
   padding: 40px;
   border-radius: 12px;
   position: relative;
@@ -76,8 +75,8 @@ const FarmHeadCard = styled.div<{ isDarkTheme: boolean }>`
     -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
     box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.4), -4px -4px 8px 0 rgba(224, 224, 255, 0.04), 0 1px 1px 0 rgba(9, 13, 20, 0.4);
-    border: solid 1px var(--pale-grey-6);
-    background-image: linear-gradient(102deg, rgba(245, 247, 250, 0.12), var(--pale-grey-6) 52%, rgba(245, 247, 250, 0) 100%);c
+    border: solid 1px rgba(245, 247, 250, 0.06);
+    background-image: linear-gradient(102deg, rgba(245, 247, 250, 0.12), rgba(245, 247, 250, 0.06) 52%, rgba(245, 247, 250, 0) 100%);c
     `}
 
   ${(props) =>
@@ -497,8 +496,8 @@ const Farms: React.FC = () => {
             {/**
              * Add buttons for active and inactive
              */}
-            <Button variant="secondaryGradient">Inactive</Button>
-            <Button disabled>Inactive</Button>
+            <Button variant="secondaryGradient">{t('Active')}</Button>
+            <Button disabled>{t('Inactive')}</Button>
 
             <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
 
@@ -510,8 +509,7 @@ const Farms: React.FC = () => {
           </FilterContainer>
         </HeaderTopBar>
         <Text fontSize="20px" color="textSecondary">
-          {/* {t('Stake LP tokens to earn.')} */}
-          Stake LP Tokens to Earn CRSS
+          {t('Stake LP tokens to Earn CRSS')}
         </Text>
         {/* <NavLink exact activeClassName="active" to="/farms/auction" id="lottery-pot-banner">
           <Button p="0" variant="text">
@@ -532,7 +530,7 @@ const Farms: React.FC = () => {
               </div>
               <div style={{ paddingLeft: '15px' }}>
                 <Text fontSize="13px" color="textSecondary">
-                  TOTAL BALANCE
+                  {t('TOTAL BALANCE')}
                 </Text>
                 <div style={{ display: 'flex', alignItems: 'baseline' }}>
                   <Text fontSize="22px" color="primary">
