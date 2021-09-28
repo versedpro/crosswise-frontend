@@ -18,7 +18,7 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 1,
-    stakingToken: tokens.crss,  
+    stakingToken: tokens.crss,
     earningToken: tokens.busd,
     contractAddress: {
       97: '0xb31b99aadA093d58bf87ceA535eaCD5349039f56',
@@ -29,8 +29,7 @@ const pools: PoolConfig[] = [
     sortOrder: 2,
     tokenPerBlock: '0.0868',
     isFinished: false,
-  }
-  
+  },
 ]
 
 export default pools

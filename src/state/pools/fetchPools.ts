@@ -24,7 +24,7 @@ export const fetchPoolsBlockLimits = async () => {
   })
   const starts = await multicall(sousChefABI, callsStartBlock)
   const ends = await multicall(sousChefABI, callsEndBlock)
-  console.log(starts, ends);
+  console.log(starts, ends)
   return poolsWithEnd.map((cakePoolConfig, index) => {
     const startBlock = starts[index]
     const endBlock = ends[index]

@@ -68,13 +68,12 @@ const HeaderTopBar = styled.div`
 `
 
 const PoolHeaderLayout = styled.div`
+  padding: 0 24px;
   max-width: 1200px;
   margin: auto;
   position: relative;
 `
 const PoolHeadCard = styled.div<{ isDarkTheme: boolean }>`
-  margin-top: 40px;
-  margin-bottom: 30px;
   padding: 40px;
   border-radius: 12px;
   position: relative;
@@ -167,6 +166,8 @@ const Pools: React.FC = () => {
   const chosenPoolsLength = useRef(0)
   const [isDark] = useThemeManager()
 
+  const [active, setActive] = useState(true)
+
   const {
     userData: { cakeAtLastUserAction, userShares },
     fees: { performanceFee },
@@ -183,7 +184,10 @@ const Pools: React.FC = () => {
   // }, [poolsWithoutAutoVault])
   // console.log('pools'. pools)
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
-  const [openPools, finishedPools] = useMemo(() => partition(poolsWithoutAutoVault, (pool) => pool.isFinished), [poolsWithoutAutoVault])
+  const [openPools, finishedPools] = useMemo(
+    () => partition(poolsWithoutAutoVault, (pool) => pool.isFinished),
+    [poolsWithoutAutoVault],
+  )
   // console.log("openPools", openPools, finishedPools);
   const stakedOnlyFinishedPools = useMemo(
     () =>
@@ -288,7 +292,7 @@ const Pools: React.FC = () => {
   } else {
     chosenPools = stakedOnly ? stakedOnlyOpenPools : openPools
   }
-  // console.log("chosenPools", chosenPools, showFinishedPools, stakedOnly)
+
   if (searchQuery) {
     const lowercaseQuery = latinise(searchQuery.toLowerCase())
     chosenPools = chosenPools.filter((pool) =>
@@ -318,12 +322,12 @@ const Pools: React.FC = () => {
     <>
       <PoolHeader>
         <HeaderTopBar>
-          <Heading as="h1" scale="xl" color="text" mb="32px">
+          <Heading scale="xl" color="text" mb="32px" style={{ fontSize: '48px' }}>
             {t('Syrup Pools')}
           </Heading>
 
           <FilterContainer>
-            <LabelWrapper>
+            {/* <LabelWrapper>
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Sort by')}
               </Text>
@@ -350,35 +354,28 @@ const Pools: React.FC = () => {
                   onChange={handleSortOptionChange}
                 />
               </ControlStretch>
-            </LabelWrapper>
-            {/**
-             * Add buttons for active and inactive
-             */}
+            </LabelWrapper> */}
 
-            <Button variant="secondaryGradient">Active</Button>
-            <Button disabled>Inactive</Button>
+            <PoolTabButtons
+              stakedOnly={stakedOnly}
+              setStakedOnly={setStakedOnly}
+              hasStakeInFinishedPools={hasStakeInFinishedPools}
+              viewMode={viewMode}
+              setViewMode={setViewMode}
+            />
 
-            {/* <PoolTabButtons
-            stakedOnly={stakedOnly}
-            setStakedOnly={setStakedOnly}
-            hasStakeInFinishedPools={hasStakeInFinishedPools}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
-          /> */}
-
-            <LabelWrapper style={{ marginLeft: 16 }}>
+            {/* <LabelWrapper style={{ marginLeft: 16 }}>
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Search')}
               </Text>
               <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-            </LabelWrapper>
+            </LabelWrapper> */}
 
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
           </FilterContainer>
         </HeaderTopBar>
         <Text fontSize="20px" color="textSecondary">
-          {/* {t('Stake LP tokens to earn.')} */}
-          Simply stake tokens to earn. High APR, low risk.
+          {t('Simply stake tokens to earn. High APR, low risk.')}
         </Text>
       </PoolHeader>
       <PoolHeaderLayout>
@@ -391,14 +388,14 @@ const Pools: React.FC = () => {
               </div>
               <div style={{ paddingLeft: '15px' }}>
                 <Text fontSize="20px" color="text">
-                  Claim 1 CRSS token
+                  {t('Claim 1 CRSS token')}
                 </Text>
               </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
               <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
-                  Option
+                  {t('Option')}
                 </Text>
                 <Toggle checked={poolOption} onChange={() => setPoolOption(!poolOption)} scale="sm" />
               </ToggleWrapper>
@@ -412,7 +409,6 @@ const Pools: React.FC = () => {
               </ToggleWrapper>
             </div>
           </div>
-
           {/** end first block */}
 
           {/** start second block  */}
@@ -420,7 +416,7 @@ const Pools: React.FC = () => {
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ marginBottom: '5px' }}>
                 <Text color="textSecondary" fontSize="13px">
-                  TOTAL BALANCE
+                  {t('TOTAL BALANCE')}
                 </Text>
               </div>
 
@@ -435,7 +431,7 @@ const Pools: React.FC = () => {
             </div>
             <div style={{ display: 'flex' }}>
               <Button variant="primaryGradient" mr="24px">
-                Claim
+                {t('Claim')}
               </Button>
             </div>
           </div>
@@ -449,51 +445,6 @@ const Pools: React.FC = () => {
         </Planet2>
       </PoolHeaderLayout>
       <Page>
-        {/* <PoolControls>
-          <PoolTabButtons
-            stakedOnly={stakedOnly}
-            setStakedOnly={setStakedOnly}
-            hasStakeInFinishedPools={hasStakeInFinishedPools}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
-          />
-          <FilterContainer>
-            <LabelWrapper>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Sort by')}
-              </Text>
-              <ControlStretch>
-                <Select
-                  options={[
-                    {
-                      label: t('Hot'),
-                      value: 'hot',
-                    },
-                    {
-                      label: t('APR'),
-                      value: 'apr',
-                    },
-                    {
-                      label: t('Earned'),
-                      value: 'earned',
-                    },
-                    {
-                      label: t('Total staked'),
-                      value: 'totalStaked',
-                    },
-                  ]}
-                  onChange={handleSortOptionChange}
-                />
-              </ControlStretch>
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
-                {t('Search')}
-              </Text>
-              <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
-            </LabelWrapper>
-          </FilterContainer>
-        </PoolControls> */}
         {showFinishedPools && (
           <Text fontSize="20px" color="failure" pb="32px">
             {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
@@ -506,14 +457,6 @@ const Pools: React.FC = () => {
         )}
         {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
-        {/* <Image
-          mx="auto"
-          mt="12px"
-          src="/images/decorations/3d-syrup-bunnies.png"
-          alt="Pancake illustration"
-          width={192}
-          height={184.5}
-        /> */}
       </Page>
     </>
   )
