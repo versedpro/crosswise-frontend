@@ -32,7 +32,6 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
     userData: { userShares },
   } = useCakeVault()
   const hasVaultShares = userShares && userShares.gt(0)
-
   const stakingTokenSymbol = stakingToken.symbol
   const earningTokenSymbol = earningToken.symbol
 
