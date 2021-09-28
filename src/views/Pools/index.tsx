@@ -175,15 +175,16 @@ const Pools: React.FC = () => {
   } = useCakeVault()
   const accountHasVaultShares = userShares && userShares.gt(0)
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
-
-  const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, isAutoVault: true }
-    return [cakeAutoVault, ...poolsWithoutAutoVault]
-  }, [poolsWithoutAutoVault])
-
+  // console.log("poolsWithoutAutoVault", poolsWithoutAutoVault);
+  // const pools = useMemo(() => {
+  //   const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+  //   const cakeAutoVault = { ...cakePool, isAutoVault: true }
+  //   return [...poolsWithoutAutoVault]
+  // }, [poolsWithoutAutoVault])
+  // console.log('pools'. pools)
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
-  const [finishedPools, openPools] = useMemo(() => partition(pools, (pool) => pool.isFinished), [pools])
+  const [openPools, finishedPools] = useMemo(() => partition(poolsWithoutAutoVault, (pool) => pool.isFinished), [poolsWithoutAutoVault])
+  // console.log("openPools", openPools, finishedPools);
   const stakedOnlyFinishedPools = useMemo(
     () =>
       finishedPools.filter((pool) => {
@@ -207,7 +208,6 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
-  useFetchCakeVault()
   useFetchPublicPoolsData()
 
   useEffect(() => {
@@ -288,7 +288,7 @@ const Pools: React.FC = () => {
   } else {
     chosenPools = stakedOnly ? stakedOnlyOpenPools : openPools
   }
-
+  // console.log("chosenPools", chosenPools, showFinishedPools, stakedOnly)
   if (searchQuery) {
     const lowercaseQuery = latinise(searchQuery.toLowerCase())
     chosenPools = chosenPools.filter((pool) =>
@@ -296,14 +296,15 @@ const Pools: React.FC = () => {
     )
   }
 
-  chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
+  // chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   chosenPoolsLength.current = chosenPools.length
 
   const cardLayout = (
     <CardLayout>
       {chosenPools.map((pool) =>
         pool.isAutoVault ? (
-          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+          // <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+          <></>
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),
