@@ -30,15 +30,10 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const earningsBusd = rawEarningsBalance ? rawEarningsBalance.multipliedBy(cakePrice).toNumber() : 0
 
   return (
-    <Flex mb="8px" justifyContent="space-between" alignItems="center">
-      <Flex flexDirection="column" alignItems="flex-start">
-        <Heading color={rawEarningsBalance.eq(0) ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
-        {earningsBusd > 0 && (
-          <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
-        )}
-      </Flex>
+    <Flex justifyContent="space-between" alignItems="center" width="50%">
       <Button
         disabled={rawEarningsBalance.eq(0) || pendingTx}
+        variant="tertiary"
         onClick={async () => {
           setPendingTx(true)
           try {
@@ -58,6 +53,8 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
           }
           dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
         }}
+        width="100%"
+        style={{ backgroundColor: 'transparent' }}
       >
         {t('Harvest')}
       </Button>

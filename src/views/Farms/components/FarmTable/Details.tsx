@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronDownIcon, useMatchBreakpoints } from '@crosswise/uikit'
+import { ChevronDownIcon, SettingIcon, useMatchBreakpoints } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 interface DetailsProps {
@@ -12,7 +12,7 @@ const Container = styled.div`
   width: 100%;
   justify-content: flex-end;
   padding-right: 8px;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.textSecondary};
 
   ${({ theme }) => theme.mediaQueries.sm} {
     padding-right: 0px;
@@ -31,8 +31,9 @@ const Details: React.FC<DetailsProps> = ({ actionPanelToggled }) => {
 
   return (
     <Container>
-      {!isMobile && t('Details')}
-      <ArrowIcon color="primary" toggled={actionPanelToggled} />
+      <SettingIcon color="textSecondary" style={{ marginRight: '8px' }} />
+      {!isMobile && actionPanelToggled ? t('HIDE DETAILS') : t('MORE DETAILS')}
+      <ArrowIcon color="textSecondary" toggled={actionPanelToggled} />
     </Container>
   )
 }

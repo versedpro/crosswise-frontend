@@ -120,10 +120,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       return (
         <ActionContainer>
           <ActionTitles>
-            <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
+            <Text bold color="text" fontSize="12px" pr="4px">
               {lpSymbol}
             </Text>
-            <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+            <Text bold color="textSubtle" fontSize="12px">
               {t('Staked')}
             </Text>
           </ActionTitles>
@@ -143,14 +143,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             </div>
             <IconButtonWrapper>
               <IconButton variant="secondary" onClick={onPresentWithdraw} mr="6px">
-                <MinusIcon color="primary" width="14px" />
+                <MinusIcon color="textSubtle" width="14px" />
               </IconButton>
               <IconButton
                 variant="secondary"
                 onClick={onPresentDeposit}
                 disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
               >
-                <AddIcon color="primary" width="14px" />
+                <AddIcon color="textSubtle" width="14px" />
               </IconButton>
             </IconButtonWrapper>
           </ActionContent>
@@ -161,10 +161,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px" pr="4px">
+          <Text bold color="textSubtle" fontSize="12px" pr="4px">
             {t('Stake').toUpperCase()}
           </Text>
-          <Text bold textTransform="uppercase" color="secondary" fontSize="12px">
+          <Text bold color="textSubtle" fontSize="12px">
             {lpSymbol}
           </Text>
         </ActionTitles>
@@ -172,7 +172,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <Button
             width="100%"
             onClick={onPresentDeposit}
-            variant="secondary"
+            variant="primaryGradient"
             disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
           >
             {t('Stake LP')}
@@ -200,7 +200,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   return (
     <ActionContainer>
       <ActionTitles>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+        <Text bold color="textSubtle" fontSize="12px">
           {t('Enable Farm')}
         </Text>
       </ActionTitles>
