@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   cursor: pointer;
 
   svg {
-    fill: ${({ theme }) => theme.colors.primary};
+    fill: ${({ theme }) => theme.colors.textSecondary};
   }
 `
 
@@ -24,9 +24,7 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
 
   return (
     <Wrapper aria-label={t('Hide or show expandable content')} role="button" onClick={() => onClick()}>
-      <Text color="primary" bold>
-        {expanded ? t('Hide') : t('Details')}
-      </Text>
+      <Text color="textSecondary">{expanded ? t('HIDE DETAILS') : t('MORE DETAILS')}</Text>
       {expanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
     </Wrapper>
   )

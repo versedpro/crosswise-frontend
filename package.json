@@ -34,7 +34,7 @@
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crosswise/sdk": "^0.0.1",
-    "@crosswise/uikit": "^0.2.1",
+    "@crosswise/uikit": "^0.2.3",
     "@ethersproject/experimental": "^5.0.1",
     "@pancakeswap/uikit": "^0.46.0",
     "@reduxjs/toolkit": "^1.5.0",

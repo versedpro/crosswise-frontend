@@ -54,8 +54,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
       : ''
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
-  const earnLabel = farm.dual ? farm.dual.earnLabel : t('CAKE + Fees')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('CROSSWISE', '')
+  const earnLabel = farm.dual ? farm.dual.earnLabel : t('CRSS')
 
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: farm.quoteToken.address,
@@ -63,7 +63,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
   })
   const addLiquidityUrl = `${BASE_ADD_LIQUIDITY_URL}/${liquidityUrlPathParts}`
   const lpAddress = getAddress(farm.lpAddresses)
-  const isPromotedFarm = farm.token.symbol === 'CAKE'
+  const isPromotedFarm = farm.token.symbol === 'CRSS'
 
   return (
     <StyledCard isActive={isPromotedFarm}>
@@ -77,7 +77,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
         />
         {!removed && (
           <Flex justifyContent="space-between" alignItems="center">
-            <Text>{t('APR')}:</Text>
+            <Text>{t('APR')}</Text>
             <Text bold style={{ display: 'flex', alignItems: 'center' }}>
               {farm.apr ? (
                 <>
@@ -97,7 +97,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
           </Flex>
         )}
         <Flex justifyContent="space-between">
-          <Text>{t('Earn')}:</Text>
+          <Text>{t('Earn')}</Text>
           <Text bold>{earnLabel}</Text>
         </Flex>
         <CardActionsContainer farm={farm} account={account} addLiquidityUrl={addLiquidityUrl} />

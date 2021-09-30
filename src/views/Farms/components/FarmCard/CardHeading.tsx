@@ -25,16 +25,18 @@ const MultiplierTag = styled(Tag)`
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, isCommunityFarm, token, quoteToken }) => {
   return (
-    <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
-      <Flex flexDirection="column" alignItems="flex-end">
-        <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
-        <Flex justifyContent="center">
-          {isCommunityFarm ? <CommunityTag /> : <CoreTag />}
-          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
+    <>
+      <Wrapper justifyContent="flex-start" alignItems="center" mb="12px">
+        <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
+        <Flex flexDirection="column" alignItems="flex-end" ml="12px">
+          <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
         </Flex>
+      </Wrapper>
+      <Flex justifyContent="start">
+        {/* {isCommunityFarm ? <CommunityTag /> : <CoreTag />} */}
+        <MultiplierTag variant="success">{multiplier}</MultiplierTag>
       </Flex>
-    </Wrapper>
+    </>
   )
 }
 
