@@ -4,7 +4,7 @@ import { ArrowDropDownIcon, Text } from '@crosswise/uikit'
 
 const DropDownHeader = styled.div`
   width: 100%;
-  height: 40px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,7 +21,7 @@ const DropDownListContainer = styled.div`
   height: 0;
   position: absolute;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.input};
+  background: ${({ theme }) => theme.colors.dropdown};
   z-index: ${({ theme }) => theme.zIndices.dropdown};
   transition: transform 0.15s, opacity 0.15s;
   transform: scaleY(0);
@@ -39,8 +39,8 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   width: ${({ width }) => width}px;
   position: relative;
   background: ${({ theme }) => theme.colors.input};
-  border-radius: 16px;
-  height: 40px;
+  border-radius: 6px;
+  height: 48px;
   min-width: 136px;
   user-select: none;
 
@@ -54,7 +54,7 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
       ${DropDownHeader} {
         border-bottom: 1px solid ${({ theme }) => theme.colors.inputSecondary};
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
-        border-radius: 16px 16px 0 0;
+        border-radius: 6px 6px 0 0;
       }
 
       ${DropDownListContainer} {
@@ -63,7 +63,7 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
         opacity: 1;
         // border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
         border-top-width: 0;
-        border-radius: 0 0 2px 2px;
+        border-radius: 0 0 6px 6px;
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
       }
     `}
@@ -80,6 +80,7 @@ const DropDownList = styled.ul`
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background: ${({ theme }) => theme.colors.gradients.gradsecondary};
   z-index: ${({ theme }) => theme.zIndices.dropdown};
 `
 

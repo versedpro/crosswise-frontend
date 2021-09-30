@@ -458,13 +458,13 @@ const Farms: React.FC = () => {
     <>
       <FarmHeader>
         <HeaderTopBar>
-          <Heading as="h1" scale="xl" color="text" mb="32px">
+          <Heading scale="xl" color="text" mb="32px" style={{ fontSize: '48px' }}>
             {t('Farms')}
           </Heading>
 
           <FilterContainer>
             <LabelWrapper>
-              <Text color="textDisabled">{t('Sort by')}</Text>
+              <Text color="textSubtle">{t('Sort by')}</Text>
               <Select
                 options={[
                   {
@@ -491,18 +491,11 @@ const Farms: React.FC = () => {
                 onChange={handleSortOptionChange}
               />
             </LabelWrapper>
-            {/**
-             * Add buttons for active and inactive
-             */}
-            <Button variant="secondaryGradient">{t('Active')}</Button>
-            <Button disabled>{t('Inactive')}</Button>
-
             <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
 
-            <LabelWrapper style={{ marginLeft: 16 }}>
+            {/* <LabelWrapper style={{ marginLeft: 16 }}>
               <SearchInput onChange={handleChangeQuery} placeholder="Search" />
-            </LabelWrapper>
-            {/* <Button variant="secondaryGradient" style={{height:'42px', marginLeft: '5px', paddingLeft: '12px', paddingRight:'5px'  }} startIcon={<ListViewIcon/>} /> */}
+            </LabelWrapper> */}
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
           </FilterContainer>
         </HeaderTopBar>
@@ -546,14 +539,14 @@ const Farms: React.FC = () => {
                 <Text fontSize="14px" pr="15px" color="textSecondary">
                   {t('Vesting')}
                 </Text>
-                <Toggle checked={vesting} scale="sm" />
+                <Toggle checked={vesting} scale="sm" onChange={() => setVesting(!vesting)} />
               </ToggleWrapper>
 
               <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
                   {t('Auto-compound')}
                 </Text>
-                <Toggle checked={autoCompound} scale="sm" />
+                <Toggle checked={autoCompound} scale="sm" onChange={() => setAutoCompound(!autoCompound)} />
               </ToggleWrapper>
 
               <ToggleWrapper>

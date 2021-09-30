@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Heading, Skeleton, Text } from '@crosswise/uikit'
+import { Button, Heading, Skeleton, Text, Flex } from '@crosswise/uikit'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
@@ -42,21 +42,39 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
 
   return (
     <ActionContainer>
-      <ActionTitles>
-        <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          CAKE
-        </Text>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          {t('Earned')}
-        </Text>
-      </ActionTitles>
+      <Flex justifyContent="start">
+        <ActionTitles>
+          <Text bold textTransform="uppercase" color="textSubtle" fontSize="14px" pr="4px">
+            CRSS
+          </Text>
+          <Text bold color="textSubtle" fontSize="14px">
+            {t('Earned')}
+          </Text>
+        </ActionTitles>
+        <ActionTitles style={{ marginLeft: '20px' }}>
+          <Text bold textTransform="uppercase" color="textSubtle" fontSize="14px" pr="4px">
+            XCRSS
+          </Text>
+          <Text bold color="textSubtle" fontSize="14px">
+            {t('Earned')}
+          </Text>
+        </ActionTitles>
+      </Flex>
       <ActionContent>
-        <div>
-          <Heading>{displayBalance}</Heading>
-          {earningsBusd > 0 && (
-            <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
-          )}
-        </div>
+        <Flex justifyContent="start">
+          <div>
+            <Heading>{displayBalance}</Heading>
+            {earningsBusd > 0 && (
+              <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
+            )}
+          </div>
+          <div style={{ marginLeft: '40px' }}>
+            <Heading>{displayBalance}</Heading>
+            {earningsBusd > 0 && (
+              <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
+            )}
+          </div>
+        </Flex>
         <Button
           disabled={earnings.eq(0) || pendingTx || !userDataReady}
           onClick={async () => {

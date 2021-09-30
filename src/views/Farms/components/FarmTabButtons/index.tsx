@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useLocation, Link, useRouteMatch } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@crosswise/uikit'
+import { ButtonMenu, ButtonMenuItem, NotificationDot, Button } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 interface FarmTabButtonsProps {
@@ -31,7 +31,7 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
 
   return (
     <Wrapper>
-      <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
+      {/* <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
         <ButtonMenuItem as={Link} to={`${url}`}>
           {t('Live')}
         </ButtonMenuItem>
@@ -40,7 +40,29 @@ const FarmTabButtons: React.FC<FarmTabButtonsProps> = ({ hasStakeInFinishedFarms
             {t('Finished')}
           </ButtonMenuItem>
         </NotificationDot>
-      </ButtonMenu>
+      </ButtonMenu> */}
+      <>
+        <Button
+          variant={activeIndex === 0 ? 'secondaryGradient' : 'tertiary'}
+          scale="md"
+          as={Link}
+          to={`${url}`}
+          style={{ margin: '0 8px 0 0', padding: '10px 24px' }}
+        >
+          {t('Active')}
+        </Button>
+        <NotificationDot show={hasStakeInFinishedFarms}>
+          <Button
+            variant={activeIndex === 1 ? 'secondaryGradient' : 'tertiary'}
+            scale="md"
+            as={Link}
+            to={`${url}/history`}
+            style={{ margin: '0 8px 0 0', padding: '10px 24px' }}
+          >
+            {t('Inactive')}
+          </Button>
+        </NotificationDot>
+      </>
     </Wrapper>
   )
 }
