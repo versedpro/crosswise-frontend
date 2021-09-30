@@ -77,15 +77,15 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   )
 
   const actionTitle = isAutoVault ? (
-    <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-      {t('Recent CAKE profit')}
+    <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+      {t('Recent CRSS profit')}
     </Text>
   ) : (
     <>
-      <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+      <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
         {earningToken.symbol}{' '}
       </Text>
-      <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+      <Text fontSize="12px" bold color="textSubtle" as="span">
         {t('Earned')}
       </Text>
     </>
@@ -161,7 +161,11 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Flex>
           </Flex>
         ) : (
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+          <Button
+            disabled={!hasEarnings}
+            onClick={onPresentCollect}
+            variant={hasEarnings ? 'secondaryGradient' : 'text'}
+          >
             {isCompoundPool ? t('Collect') : t('Harvest')}
           </Button>
         )}
