@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Text, Flex, BlockIcon, LinkExternal } from 'crosswise-uikit'
+import { Card, CardBody, Text, Flex, BlockIcon, LinkExternal } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { NodeRound, BetPosition } from 'state/types'
 import { useGetTotalIntervalBlocks } from 'state/predictions/hooks'

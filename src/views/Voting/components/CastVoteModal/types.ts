@@ -1,4 +1,4 @@
-import { InjectedModalProps } from 'crosswise-uikit'
+import { InjectedModalProps } from '@crosswise/uikit'
 
 export enum ConfirmVoteView {
   MAIN = 'main',

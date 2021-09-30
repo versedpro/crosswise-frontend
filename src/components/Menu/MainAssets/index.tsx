@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, BinanceIcon, CardIcon } from 'crosswise-uikit'
+import { Flex, BinanceIcon, CardIcon } from '@crosswise/uikit'
 import styled from 'styled-components'
 
 const NetworkBlock = styled.div`

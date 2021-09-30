@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from 'crosswise-uikit'
+import { Flex } from '@crosswise/uikit'
 import PrizesText from './PrizesText'
 import PrizesCard from './PrizesCard'
 

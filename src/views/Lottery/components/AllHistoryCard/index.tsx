@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import { Card, Text, Skeleton, CardHeader, Box } from 'crosswise-uikit'
+import { Card, Text, Skeleton, CardHeader, Box } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useLottery } from 'state/lottery/hooks'
 import { fetchLottery } from 'state/lottery/helpers'

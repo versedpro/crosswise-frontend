@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from 'crosswise-uikit'
+import { Text } from '@crosswise/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import CopyToClipboard from './CopyToClipboard'

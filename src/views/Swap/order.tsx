@@ -9,7 +9,7 @@ import {
   Flex,
   Toggle,
   CardsLayout,
-} from 'crosswise-uikit'
+} from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { ArrowWrapper, SwapCallbackError, Wrapper, StyledCard } from './components/styleds'
 import { AppHeader, AppBody } from '../../components/App'

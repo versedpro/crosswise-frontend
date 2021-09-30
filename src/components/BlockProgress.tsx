@@ -1,5 +1,5 @@
 import React from 'react'
-import { Progress, ProgressProps } from 'crosswise-uikit'
+import { Progress, ProgressProps } from '@crosswise/uikit'
 import { useBlock } from 'state/block/hooks'
 
 interface BlockProgressProps extends ProgressProps {

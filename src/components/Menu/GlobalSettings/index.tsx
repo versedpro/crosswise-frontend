@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, IconButton, useModal, ChartLIcon } from 'crosswise-uikit'
+import { Flex, IconButton, useModal, ChartLIcon } from '@crosswise/uikit'
 import SettingsModal from './SettingsModal'
 
 const GlobalSettings = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Text, CopyIcon } from 'crosswise-uikit'
+import { Text, CopyIcon } from '@crosswise/uikit'
 
 interface Props {
   toCopy: string

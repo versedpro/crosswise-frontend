@@ -1,4 +1,4 @@
-import { Flex, Text } from 'crosswise-uikit'
+import { Flex, Text } from '@crosswise/uikit'
 import styled from 'styled-components'
 
 const BaseCell = styled.div`

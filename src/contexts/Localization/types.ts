@@ -1,5 +1,5 @@
 import { ReactText } from 'react'
-import { Language } from 'crosswise-uikit'
+import { Language } from '@crosswise/uikit'
 
 export type ContextData = {
   [key: string]: ReactText

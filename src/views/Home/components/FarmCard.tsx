@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Card, CardBody, Button, Text } from 'crosswise-uikit'
+import { Heading, Card, CardBody, Button, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
 import CrssHarvestBalance from './FarmCardComponents/CrssHarvestBalance'

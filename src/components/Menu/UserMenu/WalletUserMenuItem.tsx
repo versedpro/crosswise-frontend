@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, UserMenuItem, WarningIcon } from 'crosswise-uikit'
+import { Flex, UserMenuItem, WarningIcon } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 interface WalletUserMenuItemProps {

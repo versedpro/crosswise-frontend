@@ -1,5 +1,5 @@
 import React from 'react'
-import { Svg, SvgProps } from 'crosswise-uikit'
+import { Svg, SvgProps } from '@crosswise/uikit'
 
 const TicketPurchaseCard: React.FC<SvgProps> = (props) => {
   return (

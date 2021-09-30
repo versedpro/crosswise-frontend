@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { useCountUp } from 'react-countup'
-import { Text } from 'crosswise-uikit'
+import { Text } from '@crosswise/uikit'
 
 const StyledText = styled(Text)<{
   opacity?: string

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AutoRenewIcon, Button } from 'crosswise-uikit'
+import { AutoRenewIcon, Button } from '@crosswise/uikit'
 import { PoolIds } from 'config/constants/types'
 import { WalletIfoData } from 'views/Ifos/types'
 import { useTranslation } from 'contexts/Localization'

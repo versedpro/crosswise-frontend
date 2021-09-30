@@ -1,5 +1,5 @@
 import React from 'react'
-import { TokenPairImage, ImageProps } from 'crosswise-uikit'
+import { TokenPairImage, ImageProps } from '@crosswise/uikit'
 import tokens from 'config/constants/tokens'
 import { getAddress } from 'utils/addressHelpers'
 

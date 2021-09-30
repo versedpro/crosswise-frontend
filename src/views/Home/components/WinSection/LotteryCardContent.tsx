@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Flex, Text, Skeleton, Link, Button, ArrowForwardIcon } from 'crosswise-uikit'
+import { Flex, Text, Skeleton, Link, Button, ArrowForwardIcon } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useRefresh from 'hooks/useRefresh'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'

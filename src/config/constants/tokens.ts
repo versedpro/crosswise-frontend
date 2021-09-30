@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@pancakeswap/sdk'
+import { ChainId, Token } from '@crosswise/sdk'
 
 export const CRSS: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(

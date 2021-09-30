@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css, DefaultTheme } from 'styled-components'
-import { Box } from 'crosswise-uikit'
+import { Box } from '@crosswise/uikit'
 import { ClipFill } from '../types'
 
 interface CurveProps {

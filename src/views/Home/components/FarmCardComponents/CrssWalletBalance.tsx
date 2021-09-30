@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'crosswise-uikit'
+import { Text } from '@crosswise/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import { usePriceCakeBusd } from 'state/farms/hooks'

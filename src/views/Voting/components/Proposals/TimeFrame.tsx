@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'crosswise-uikit'
+import { Text } from '@crosswise/uikit'
 import { toDate, format } from 'date-fns'
 import { useTranslation } from 'contexts/Localization'
 import { ProposalState } from 'state/types'

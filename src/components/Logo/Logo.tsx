@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { HelpIcon } from 'crosswise-uikit'
+import { HelpIcon } from '@crosswise/uikit'
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
 

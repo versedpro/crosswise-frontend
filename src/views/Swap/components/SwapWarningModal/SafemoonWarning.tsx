@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
-import { Text } from 'crosswise-uikit'
+import { Text } from '@crosswise/uikit'
 
 const SafemoonWarning = () => {
   const { t } = useTranslation()
