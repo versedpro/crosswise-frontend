@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Flex, LogoutIcon, useModal, UserMenu as UIKitUserMenu, UserMenuDivider, UserMenuItem } from 'crosswise-uikit'
 import useAuth from 'hooks/useAuth'
@@ -9,6 +9,7 @@ import { useTranslation } from 'contexts/Localization'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
 import ProfileUserMenuItem from './ProfileUserMenutItem'
 import WalletUserMenuItem from './WalletUserMenuItem'
+// import useRecordReferrer from './hooks/useRecordReferral'
 
 const UserMenu = () => {
   const { t } = useTranslation()
@@ -21,6 +22,23 @@ const UserMenu = () => {
   const hasProfile = isInitialized && !!profile
   const avatarSrc = profile && profile.nft ? `/images/nfts/${profile.nft.images.sm}` : undefined
   const hasLowBnbBalance = fetchStatus === FetchStatus.SUCCESS && balance.lte(LOW_BNB_BALANCE)
+
+  // const { onRecord } = useRecordReferrer(account, 'referUser')
+
+  // const handleRecord = useCallback(async () => {
+  //   console.log('before try catch')
+  //   try {
+  //     console.log('before onRecord')
+  //     await onRecord()
+  //     console.log('after onRecord')
+  //   } catch (e) {
+  //     console.error(e)
+  //   }
+  // }, [onRecord])
+
+  // useEffect(() => {
+  //   handleRecord()
+  // }, [handleRecord, account])
 
   if (!account) {
     return <ConnectWalletButton scale="sm" variant="primaryGradient" />

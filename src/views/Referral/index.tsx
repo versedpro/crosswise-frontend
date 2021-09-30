@@ -8,6 +8,7 @@ import { BaseLayout, Heading, Text } from 'crosswise-uikit'
 import { useTranslation } from 'contexts/Localization'
 import TotalCard from './components/TotalCard'
 import CommissionsCard from './components/CommissionsCard'
+import GetReferralLinkCard from './components/GetReferralLinkCard'
 import ProgramCard from './components/ProgramCard'
 // import LotteryCard from './components/LotteryCard'
 // import LiquidityCard from './components/LiquidityCard'
@@ -74,6 +75,7 @@ const Home: React.FC = () => {
           <CommissionsCard />
         </CardsRow>
         {/* <CardsRow> */}
+        {/* <GetReferralLinkCard /> */}
         <ProgramCard />
         {/* </CardsRow> */}
       </StyledPage>

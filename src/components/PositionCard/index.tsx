@@ -66,7 +66,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
             <AutoColumn gap="16px">
               <FixedHeightRow>
                 <RowFixed>
-                  <Text color="secondary" bold>
+                  <Text color="textSubtle" bold>
                     {t('LP tokens in your wallet')}
                   </Text>
                 </RowFixed>

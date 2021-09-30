@@ -17,6 +17,7 @@ import {
   getEasterNftContract,
   getErc721Contract,
   getCakeVaultContract,
+  getCrssReferralContract,
   getPredictionsContract,
   getChainlinkOracleContract,
   getSouschefV2Contract,
@@ -133,6 +134,11 @@ export const useEasterNftContract = () => {
 export const useCakeVaultContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getCakeVaultContract(library.getSigner()), [library])
+}
+
+export const useCrssReferralContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getCrssReferralContract(library.getSigner()), [library])
 }
 
 export const usePredictionsContract = () => {

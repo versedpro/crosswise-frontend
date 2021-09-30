@@ -9,7 +9,7 @@ export const getAddress = (address: Address): string => {
 }
 
 export const getCakeAddress = () => {
-  return getAddress(tokens.cake.address)
+  return getAddress(tokens.crss.address)
 }
 export const getMasterChefAddress = () => {
   return getAddress(addresses.masterChef)
@@ -49,6 +49,9 @@ export const getEasterNftAddress = () => {
 }
 export const getCakeVaultAddress = () => {
   return getAddress(addresses.cakeVault)
+}
+export const getCrssReferralAddress = () => {
+  return getAddress(addresses.crssReferral)
 }
 export const getPredictionsAddress = () => {
   return getAddress(addresses.predictions)

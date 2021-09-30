@@ -35,6 +35,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'PoolIcon',
     href: '/pools',
   },
+  {
+    label: t('Referral'),
+    icon: 'IfoIcon',
+    href: '/referral',
+  },
   // {
   //   label: t('Prediction (BETA)'),
   //   icon: 'PredictionsIcon',

@@ -385,7 +385,7 @@ export default function AddLiquidity({
                 />
                 {currencies[Field.CURRENCY_A] && currencies[Field.CURRENCY_B] && pairState !== PairState.INVALID && (
                   <>
-                    <LightCard padding="0px" borderRadius="20px">
+                    <LightCard padding="0px" margin="10px 0" borderRadius="4px">
                       <RowBetween padding="1rem">
                         <Text fontSize="14px">
                           {noLiquidity ? t('Initial prices and pool share') : t('Prices and pool share')}
@@ -422,6 +422,7 @@ export default function AddLiquidity({
                             onClick={approveACallback}
                             disabled={approvalA === ApprovalState.PENDING}
                             width={approvalB !== ApprovalState.APPROVED ? '48%' : '100%'}
+                            variant="primaryGradient"
                           >
                             {approvalA === ApprovalState.PENDING ? (
                               <Dots>{t('Enabling %asset%', { asset: currencies[Field.CURRENCY_A]?.symbol })}</Dots>
@@ -435,6 +436,7 @@ export default function AddLiquidity({
                             onClick={approveBCallback}
                             disabled={approvalB === ApprovalState.PENDING}
                             width={approvalA !== ApprovalState.APPROVED ? '48%' : '100%'}
+                            variant="primaryGradient"
                           >
                             {approvalB === ApprovalState.PENDING ? (
                               <Dots>{t('Enabling %asset%', { asset: currencies[Field.CURRENCY_B]?.symbol })}</Dots>
@@ -449,7 +451,7 @@ export default function AddLiquidity({
                     variant={
                       !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
                         ? 'danger'
-                        : 'primary'
+                        : 'primaryGradient'
                     }
                     onClick={() => {
                       if (expertMode) {

@@ -364,7 +364,7 @@ export default function OrderSell() {
             ) : showApproveFlow ? (
               <RowBetween>
                 <Button
-                  variant={approval === ApprovalState.APPROVED ? 'success' : 'secondaryGradient'}
+                  variant={approval === ApprovalState.APPROVED ? 'success' : 'primaryGradient'}
                   onClick={approveCallback}
                   disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                   width="48%"
@@ -380,7 +380,7 @@ export default function OrderSell() {
                   )}
                 </Button>
                 <Button
-                  variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'secondaryGradient'}
+                  variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primaryGradient'}
                   onClick={() => {
                     if (isExpertMode) {
                       handleSwap()
@@ -409,7 +409,7 @@ export default function OrderSell() {
               </RowBetween>
             ) : (
               <Button
-                variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'secondaryGradient'}
+                variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primaryGradient'}
                 onClick={() => {
                   if (isExpertMode) {
                     handleSwap()

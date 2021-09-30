@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Heading, Card, CardBody, Text, Input, Button } from 'crosswise-uikit'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
+import GetReferralLinkCard from './GetReferralLinkCard'
 
 const StyledProgramCard = styled(Card)``
 
@@ -71,12 +72,13 @@ const ProgramCard = () => {
               </LabelRow>
               {/* <Input placeholder="Your link" value="https://crosswise.com/?ref=adsf51a632safd21fad5fs2f0xdf1a1sd5fas3d2fasdr4q56ew3fdsaf" /> */}
               <InputRow>
-                <LinkLabel>
+                <GetReferralLinkCard />
+                {/* <LinkLabel>
                   https://crosswise.com/?ref=adsf51a632safd21fad5fs2f0xdf1a1sd5fas3d2fasdr4q56ew3fdsaf
                 </LinkLabel>
                 <Text color="primary" style={{ padding: '0.75rem 1rem 0.75rem 1rem', cursor: 'pointer' }}>
                   Copy
-                </Text>
+                </Text> */}
               </InputRow>
             </Container>
           </Block>

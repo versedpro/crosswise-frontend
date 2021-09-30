@@ -119,7 +119,7 @@ export default function SwapModalFooter({
 
       <AutoRow>
         <Button
-          variant={severity > 2 ? 'danger' : 'primary'}
+          variant={severity > 2 ? 'danger' : 'primaryGradient'}
           onClick={onConfirm}
           disabled={disabledConfirm}
           mt="12px"
