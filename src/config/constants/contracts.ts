@@ -55,6 +55,10 @@ export default {
     56: '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC',
     97: '',
   },
+  crssReferral: {
+    56: '',
+    97: '0xedeb979459a8A44De5139Fd40B2BAd359E8f2077',
+  },
   predictions: {
     56: '0x516ffd7D1e0Ca40b1879935B2De87cb20Fc1124b',
     97: '0x4f3140C74789F1D809420343ea83BcE52B7bbAA5',

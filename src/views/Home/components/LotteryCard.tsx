@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Heading, Card, CardBody, Button, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
+import { useWeb3React } from '@web3-react/core'
 
 const StyledLotteryCard = styled(Card)`
   background-image: url('/images/home/planets/solid-2.png'), url('/images/home/planets/solid.png');
@@ -30,6 +31,7 @@ const Actions = styled.div`
 `
 
 const LotteryCard = () => {
+  const { account } = useWeb3React()
   const { t } = useTranslation()
 
   return (

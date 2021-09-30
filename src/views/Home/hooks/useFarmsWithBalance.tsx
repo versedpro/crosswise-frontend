@@ -27,19 +27,19 @@ const useFarmsWithBalance = () => {
         params: [farm.pid, account],
       }))
 
-      const rawResults = await multicall(masterChefABI, calls)
-      const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
-      const farmsWithBalances = results.filter((balanceType) => balanceType.balance.gt(0))
-      const totalEarned = farmsWithBalances.reduce((accum, earning) => {
-        const earningNumber = new BigNumber(earning.balance)
-        if (earningNumber.eq(0)) {
-          return accum
-        }
-        return accum + earningNumber.div(DEFAULT_TOKEN_DECIMAL).toNumber()
-      }, 0)
+      // const rawResults = await multicall(masterChefABI, calls)
+      // const results = farmsConfig.map((farm, index) => ({ ...farm, balance: new BigNumber(rawResults[index]) }))
+      // const farmsWithBalances = results.filter((balanceType) => balanceType.balance.gt(0))
+      // const totalEarned = farmsWithBalances.reduce((accum, earning) => {
+      //   const earningNumber = new BigNumber(earning.balance)
+      //   if (earningNumber.eq(0)) {
+      //     return accum
+      //   }
+      //   return accum + earningNumber.div(DEFAULT_TOKEN_DECIMAL).toNumber()
+      // }, 0)
 
-      setFarmsWithStakedBalance(farmsWithBalances)
-      setEarningsSum(totalEarned)
+      // setFarmsWithStakedBalance(farmsWithBalances)
+      // setEarningsSum(totalEarned)
     }
 
     if (account) {

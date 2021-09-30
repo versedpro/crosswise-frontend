@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useWeb3React } from '@web3-react/core'
 import { Heading, Card, CardBody, Button, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
+import CrssHarvestBalance from './FarmCardComponents/CrssHarvestBalance'
+import CrssWalletBalance from './FarmCardComponents/CrssWalletBalance'
+import useFarmsWithBalance from '../hooks/useFarmsWithBalance'
 
 const StyledFarmCard = styled(Card)`
   background-image: url('/images/home/planets/planet-6.png');
@@ -30,7 +34,11 @@ const Actions = styled.div`
 `
 
 const FarmCard = () => {
+  const [pendingTx, setPendingTx] = useState(false)
   const { t } = useTranslation()
+  const { account } = useWeb3React()
+  const farmsWithBalance = useFarmsWithBalance()
+  const balancesWithValue = farmsWithBalance.farmsWithStakedBalance
 
   return (
     <StyledFarmCard>
@@ -45,26 +53,33 @@ const FarmCard = () => {
             <Label small color="textSubtle">
               {t('To Harvest')}:
             </Label>
-            <Text fontSize="30px" bold>
+            {/* <Text fontSize="30px" bold>
               0.000
-            </Text>
-            <Label small color="textSubtle">
+            </Text> */}
+            {/* <Label small color="textSubtle">
               ~$ 0.00
-            </Label>
+            </Label> */}
+            <CrssHarvestBalance />
           </Block>
           <Block>
             <Label small color="textSubtle">
               {t('In Wallet')}:
             </Label>
-            <Text fontSize="30px" bold>
+            {/* <Text fontSize="30px" bold>
               0.000
             </Text>
             <Label small color="textSubtle">
               ~$ 0.00
-            </Label>
+            </Label> */}
+            <CrssWalletBalance />
           </Block>
         </Row>
         <Actions>
+          {/* {account ? (
+            <Button>Account true</Button>
+          ): (
+            <Button>Accaount false</Button>
+          )} */}
           <Button
             id="harvest-all"
             variant="primaryGradient"
@@ -72,7 +87,7 @@ const FarmCard = () => {
             // variant={balancesWithValue.length <= 0 || pendingTx ? 'primary' : 'primaryGradient'}
             // onClick={harvestAllFarms}
           >
-            {t('Harvest all')}
+            {pendingTx ? t('Collecting CRSS') : t('Harvest all')}
           </Button>
         </Actions>
       </CardBody>

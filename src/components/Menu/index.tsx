@@ -8,6 +8,7 @@ import { useProfile } from 'state/profile/hooks'
 import config from './config'
 import UserMenu from './UserMenu'
 import GlobalSettings from './GlobalSettings'
+import MainAssets from './MainAssets'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
@@ -18,7 +19,7 @@ const Menu = (props) => {
   return (
     <UikitMenu
       userMenu={<UserMenu />}
-      globalMenu={<></>}
+      globalMenu={<MainAssets />}
       isDark={isDark}
       toggleTheme={toggleTheme}
       currentLang={currentLanguage.code}
