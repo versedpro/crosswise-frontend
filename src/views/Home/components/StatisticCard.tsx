@@ -48,7 +48,7 @@ const StatisticCard = () => {
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">CRSS in Circulation</Label>
-            <Text fontSize="20px">25,08%</Text>
+            <Text fontSize="20px">0,00%</Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">CRSS Burned</Label>

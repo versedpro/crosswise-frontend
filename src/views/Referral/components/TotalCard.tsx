@@ -35,7 +35,7 @@ const TotalCard = () => {
             {/* </Block> */}
             {/* <Block> */}
             <Text color="text" fontSize="30px" bold>
-              192
+              0
             </Text>
           </Block>
         </Row>

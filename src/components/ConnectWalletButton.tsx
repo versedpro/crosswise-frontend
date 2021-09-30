@@ -9,8 +9,14 @@ const ConnectWalletButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
-      {t('Connect Wallet')}
+    <Button
+      onClick={() => {
+        onPresentConnectModal()
+      }}
+      {...props}
+    >
+      {t('Connect')}
+      {/* {t('Connect Wallet')} */}
     </Button>
   )
 }
