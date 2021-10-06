@@ -152,14 +152,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           <ActionContent>
             <IconButtonWrapper>
               <IconButton variant="secondaryGradient" onClick={onPresentWithdraw} mr="6px">
-                <MinusIcon color="textSubtle" width="14px" />
+                <MinusIcon color="text" width="14px" />
               </IconButton>
               <IconButton
                 variant="secondaryGradient"
                 onClick={onPresentDeposit}
                 disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
               >
-                <AddIcon color="textSubtle" width="14px" />
+                <AddIcon color="text" width="14px" />
               </IconButton>
             </IconButtonWrapper>
           </ActionContent>
@@ -170,12 +170,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text bold color="textSubtle" fontSize="12px" pr="4px">
-            {t('Stake').toUpperCase()}
-          </Text>
-          <Text bold color="textSubtle" fontSize="12px">
-            {lpSymbol}
-          </Text>
+          <div>
+            <Text bold color="textSecondary" fontSize="14px" pr="4px">
+              {t('Stake').toUpperCase()}
+            </Text>
+            <Text bold color="textSecondary" fontSize="14px">
+              {lpSymbol}
+            </Text>
+          </div>
         </ActionTitles>
         <ActionContent>
           <Button
@@ -195,7 +197,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+          <Text bold textTransform="uppercase" color="textSecondary" fontSize="12px">
             {t('Start Farming')}
           </Text>
         </ActionTitles>
@@ -208,8 +210,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   return (
     <ActionContainer>
-      <ActionTitles>
-        <Text bold color="textSubtle" fontSize="12px">
+      <ActionTitles style={{ alignItems: 'center' }}>
+        <Text bold color="textSecondary" fontSize="14px">
           {t('Enable Farm')}
         </Text>
       </ActionTitles>
