@@ -76,6 +76,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const renderStakingButtons = () => {
     return stakedBalance.eq(0) ? (
       <Button
+        variant="primaryGradient"
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
       >
@@ -83,23 +84,23 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
       </Button>
     ) : (
       <IconButtonWrapper>
-        <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">
-          <MinusIcon color="primary" width="14px" />
-        </IconButton>
-        <IconButton
-          variant="tertiary"
+        <Button variant="secondaryGradient" onClick={onPresentWithdraw} mr="6px">
+          <MinusIcon color="text" width="14px" />
+        </Button>
+        <Button
+          variant="primaryGradient"
           onClick={onPresentDeposit}
           disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
         >
-          <AddIcon color="primary" width="14px" />
-        </IconButton>
+          <AddIcon color="text" width="14px" />
+        </Button>
       </IconButtonWrapper>
     )
   }
 
   return (
     <Flex justifyContent="space-between" alignItems="center">
-      <Flex flexDirection="column" alignItems="flex-start">
+      {/* <Flex flexDirection="column" alignItems="flex-start">
         <Heading color={stakedBalance.eq(0) ? 'textDisabled' : 'text'}>{displayBalance()}</Heading>
         {stakedBalance.gt(0) && lpPrice.gt(0) && (
           <Balance
@@ -111,7 +112,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
             prefix="~"
           />
         )}
-      </Flex>
+      </Flex> */}
       {renderStakingButtons()}
     </Flex>
   )
