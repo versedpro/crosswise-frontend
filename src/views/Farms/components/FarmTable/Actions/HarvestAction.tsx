@@ -13,7 +13,7 @@ import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import useHarvestFarm from '../../../hooks/useHarvestFarm'
 
-import { ActionContainer, ActionTitles, ActionContent } from './styles'
+import { ActionContainer, ActionTitles, ActionContent, ActionTitlesContainer, ActionTitleContent } from './styles'
 
 interface HarvestActionProps extends FarmWithStakedValue {
   userDataReady: boolean
@@ -42,39 +42,59 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
 
   return (
     <ActionContainer>
-      <Flex justifyContent="start">
-        <ActionTitles>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="14px" pr="4px">
-            CRSS
-          </Text>
-          <Text bold color="textSubtle" fontSize="14px">
-            {t('Earned')}
-          </Text>
-        </ActionTitles>
-        <ActionTitles style={{ marginLeft: '20px' }}>
-          <Text bold textTransform="uppercase" color="textSubtle" fontSize="14px" pr="4px">
-            XCRSS
-          </Text>
-          <Text bold color="textSubtle" fontSize="14px">
-            {t('Earned')}
-          </Text>
-        </ActionTitles>
-      </Flex>
+      <ActionTitlesContainer>
+        <ActionTitleContent>
+          <ActionTitles>
+            <Text bold textTransform="uppercase" color="textSecondary" fontSize="14px" pr="4px">
+              CRSS
+            </Text>
+            <Text bold color="textSecondary" fontSize="14px">
+              {t('Earned')}
+            </Text>
+          </ActionTitles>
+          <ActionContent>
+            <div>
+              <Text fontSize="14px">{displayBalance}</Text>
+              {earningsBusd > 0 && (
+                <Balance
+                  fontSize="12px"
+                  color="textSecondary"
+                  decimals={2}
+                  value={earningsBusd}
+                  unit=" USD"
+                  prefix="~"
+                />
+              )}
+            </div>
+          </ActionContent>
+        </ActionTitleContent>
+        <ActionTitleContent>
+          <ActionTitles>
+            <Text bold textTransform="uppercase" color="textSecondary" fontSize="14px" pr="4px">
+              XCRSS
+            </Text>
+            <Text bold color="textSecondary" fontSize="14px">
+              {t('Earned')}
+            </Text>
+          </ActionTitles>
+          <ActionContent>
+            <div>
+              <Text fontSize="14px">{displayBalance}</Text>
+              {earningsBusd > 0 && (
+                <Balance
+                  fontSize="12px"
+                  color="textSecondary"
+                  decimals={2}
+                  value={earningsBusd}
+                  unit=" USD"
+                  prefix="~"
+                />
+              )}
+            </div>
+          </ActionContent>
+        </ActionTitleContent>
+      </ActionTitlesContainer>
       <ActionContent>
-        <Flex justifyContent="start">
-          <div>
-            <Heading>{displayBalance}</Heading>
-            {earningsBusd > 0 && (
-              <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
-            )}
-          </div>
-          <div style={{ marginLeft: '40px' }}>
-            <Heading>{displayBalance}</Heading>
-            {earningsBusd > 0 && (
-              <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
-            )}
-          </div>
-        </Flex>
         <Button
           disabled={earnings.eq(0) || pendingTx || !userDataReady}
           onClick={async () => {
@@ -83,7 +103,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
               await onReward()
               toastSuccess(
                 `${t('Harvested')}!`,
-                t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'CAKE' }),
+                t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'CRSS' }),
               )
             } catch (e) {
               toastError(
@@ -96,6 +116,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
             }
             dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
           }}
+          variant="secondaryGradient"
           ml="4px"
         >
           {t('Harvest')}

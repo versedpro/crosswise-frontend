@@ -44,7 +44,8 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<Farm[], number[]>(
       return farm.pid
     })
 
-    return farmsWithoutHelperLps
+    // return farmsWithoutHelperLps
+    return farmsWithPrices
   },
 )
 
