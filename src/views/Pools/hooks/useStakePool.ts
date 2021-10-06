@@ -4,7 +4,7 @@ import { useAppDispatch } from 'state'
 import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
 import { stakeFarm } from 'utils/calls'
 import BigNumber from 'bignumber.js'
-import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
+import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT, DEFAULT_REFERRER_ADDRESS } from 'config'
 import { BIG_TEN } from 'utils/bigNumber'
 import { useMasterchef, useSousChef } from 'hooks/useContract'
 
@@ -33,7 +33,7 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
   const handleStake = useCallback(
     async (amount: string, decimals: number) => {
       if (sousId === 0) {
-        await stakeFarm(masterChefContract, 0, amount)
+        await stakeFarm(masterChefContract, 0, amount, DEFAULT_REFERRER_ADDRESS)
       } else if (isUsingBnb) {
         await sousStakeBnb(sousChefContract, amount)
       } else {
