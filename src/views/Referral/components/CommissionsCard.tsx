@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useWeb3React } from '@web3-react/core'
 import { Heading, Card, CardBody, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
@@ -20,6 +21,7 @@ const Label = styled(Text)`
 
 const CommissionsCard = () => {
   const { t } = useTranslation()
+  const { account } = useWeb3React()
 
   return (
     <StyledCommissionsCard>
@@ -32,11 +34,15 @@ const CommissionsCard = () => {
             <Label small color="textSubtle">
               {t('Total CRSS Balance')}
             </Label>
-            {/* </Block> */}
-            {/* <Block> */}
-            <Text color="text" fontSize="30px" bold>
-              0.0000 CRSS
-            </Text>
+            {!account ? (
+              <Text color="textSubtle" style={{ lineHeight: '44px', opacity: 0.6 }}>
+                {t('Locked')}
+              </Text>
+            ) : (
+              <Text color="text" fontSize="30px" bold>
+                0.0000 CRSS
+              </Text>
+            )}
           </Block>
         </Row>
       </CardBody>
