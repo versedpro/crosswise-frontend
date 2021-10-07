@@ -24,8 +24,6 @@ const StyledIconButton = styled(IconButton)`
 const ToggleView: React.FunctionComponent<ToggleViewProps> = ({ viewMode, onToggle }) => {
   const handleToggle = (mode: ViewMode) => {
     if (viewMode !== mode) {
-      console.log(viewMode)
-      console.log('mode', mode)
       onToggle(mode)
     }
   }

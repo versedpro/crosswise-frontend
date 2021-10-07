@@ -32,8 +32,8 @@ export const usePollFarmsData = (includeArchive = false) => {
  * 251 = CAKE-BNB LP
  * 252 = BUSD-BNB LP
  * 0 = CRSS-BNB LP
- * 1 = CRSS - BUSD LP
- * 2 = BNB - BUSD LP
+ * 1 = CRSS-BUSD LP
+ * 2 = BNB-BUSD LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
