@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Button, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -31,9 +32,11 @@ const ReferUserCard = () => {
         </Heading>
         <Label color="textSubtle">{t('Get 1 % of users lifetime earnings')}</Label>
         <Actions>
-          <Button id="check-it" variant="primaryGradient">
-            {t('Сopy Ref link')}
-          </Button>
+          <RouterLink to="referral">
+            <Button id="check-it" variant="primaryGradient">
+              {t('Сopy Ref link')}
+            </Button>
+          </RouterLink>
         </Actions>
       </CardBody>
     </StyledReferUserCard>

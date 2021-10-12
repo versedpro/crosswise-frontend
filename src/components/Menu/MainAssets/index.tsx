@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useWeb3React } from '@web3-react/core'
 import { Flex, BinanceIcon, CardIcon } from '@crosswise/uikit'
 import styled from 'styled-components'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { getFullDisplayBalance } from 'utils/formatBalance'
+import { getCakeAddress, getXCrssAddress } from 'utils/addressHelpers'
 
 const NetworkBlock = styled.div`
   display: inline-flex;
@@ -46,6 +50,10 @@ const StyledContent = styled.div`
 `
 
 const MainAssets = () => {
+  const { account } = useWeb3React()
+  const { balance: crssBalance } = useTokenBalance(getCakeAddress())
+  const { balance: xcrssBalance } = useTokenBalance(getXCrssAddress())
+
   return (
     <Flex>
       <NetworkBlock>
@@ -54,11 +62,11 @@ const MainAssets = () => {
       </NetworkBlock>
       <Block>
         <CardIcon />
-        <StyledContent>0.00 XCRSS</StyledContent>
+        <StyledContent>{getFullDisplayBalance(xcrssBalance, 18, 2)} XCRSS</StyledContent>
       </Block>
       <Block>
         <CardIcon />
-        <StyledContent>0.00 CRSS</StyledContent>
+        <StyledContent>{getFullDisplayBalance(crssBalance, 18, 2)} CRSS</StyledContent>
       </Block>
       <Block>
         {/* <CardIcon /> */}

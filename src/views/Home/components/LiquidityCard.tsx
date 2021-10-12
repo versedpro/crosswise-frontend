@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Button, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
@@ -39,7 +40,9 @@ const LiquidityCard = () => {
             <Label small color="textSubtle">
               {t('Add a pair of 2 coins as liquidity and get rewards in our own coin')}
             </Label>
-            <Button variant="primaryGradient">Add Liquidity</Button>
+            <RouterLink to="/liquidity">
+              <Button variant="primaryGradient">Add Liquidity</Button>
+            </RouterLink>
           </Block>
         </Row>
       </CardBody>

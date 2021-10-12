@@ -25,6 +25,8 @@ import {
   getBunnySpecialCakeVaultContract,
   getBunnySpecialPredictionContract,
   getFarmAuctionContract,
+  getXCrssTokenContract,
+  getCrssTokenContract,
 } from 'utils/contractHelpers'
 
 // Imports below migrated from Exchange useContract.ts
@@ -134,6 +136,16 @@ export const useEasterNftContract = () => {
 export const useCakeVaultContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getCakeVaultContract(library.getSigner()), [library])
+}
+
+export const useCrssTokenContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getCrssTokenContract(library.getSigner()), [library])
+}
+
+export const useXCrssTokenContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getXCrssTokenContract(library.getSigner()), [library])
 }
 
 export const useCrssReferralContract = () => {
