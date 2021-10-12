@@ -6,6 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
 import CrssHarvestBalance from './FarmCardComponents/CrssHarvestBalance'
 import CrssWalletBalance from './FarmCardComponents/CrssWalletBalance'
+import useHarvestFarm from '../hooks/useHarvestFarm'
 import useFarmsWithBalance from '../hooks/useFarmsWithBalance'
 
 const StyledFarmCard = styled(Card)`
@@ -39,6 +40,21 @@ const FarmCard = () => {
   const { account } = useWeb3React()
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.farmsWithStakedBalance
+
+  console.log('balancesWithValue', balancesWithValue)
+
+  // const { onReward } = useHarvestFarm(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid))
+
+  // const harvestAllFarms = useCallback(async () => {
+  //   setPendingTx(true)
+  //   try {
+  //     await onReward()
+  //   } catch (error) {
+  //     // TODO: find a way to handle when the user rejects transaction or it fails
+  //   } finally {
+  //     setPendingTx(false)
+  //   }
+  // }, [onReward])
 
   return (
     <StyledFarmCard>
@@ -82,9 +98,9 @@ const FarmCard = () => {
           )} */}
           <Button
             id="harvest-all"
-            variant="primaryGradient"
-            // disabled={balancesWithValue.length <= 0 || pendingTx}
-            // variant={balancesWithValue.length <= 0 || pendingTx ? 'primary' : 'primaryGradient'}
+            // variant="primaryGradient"
+            disabled={balancesWithValue.length <= 0 || pendingTx}
+            variant={balancesWithValue.length <= 0 || pendingTx ? 'primary' : 'primaryGradient'}
             // onClick={harvestAllFarms}
           >
             {pendingTx ? t('Collecting CRSS') : t('Harvest all')}

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Heading, Card, CardBody, Text } from '@crosswise/uikit'
+import { useGetStats } from 'hooks/api'
+import { formatLocalisedCompactNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
 import Column from 'components/Layout/Column'
@@ -31,6 +33,10 @@ const Label = styled(Text)`
 
 const BreakDownCard = () => {
   const { t } = useTranslation()
+  const data = useGetStats()
+
+  const tvlString = data ? formatLocalisedCompactNumber(data.tvl) : '-'
+  console.log(tvlString)
 
   return (
     <StyledBreakDownCard>

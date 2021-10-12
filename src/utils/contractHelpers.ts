@@ -49,6 +49,8 @@ import tradingCompetitionAbi from 'config/abi/tradingCompetition.json'
 import easterNftAbi from 'config/abi/easterNft.json'
 import cakeVaultAbi from 'config/abi/cakeVault.json'
 import crssReferralAbi from 'config/abi/crssReferral.json'
+import crssTokenAbi from 'config/abi/crssToken.json'
+import xCrssTokenAbi from 'config/abi/xCrssToken.json'
 import predictionsAbi from 'config/abi/predictions.json'
 import chainlinkOracleAbi from 'config/abi/chainlinkOracle.json'
 import MultiCallAbi from 'config/abi/Multicall.json'
@@ -121,6 +123,14 @@ export const getEasterNftContract = (signer?: ethers.Signer | ethers.providers.P
 }
 export const getCakeVaultContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
   return getContract(cakeVaultAbi, getCakeVaultAddress(), signer)
+}
+
+export const getCrssTokenContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(crssTokenAbi, getCrssReferralAddress(), signer)
+}
+
+export const getXCrssTokenContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(xCrssTokenAbi, getCrssReferralAddress(), signer)
 }
 
 export const getCrssReferralContract = (signer?: ethers.Signer | ethers.providers.Provider) => {

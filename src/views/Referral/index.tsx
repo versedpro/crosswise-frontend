@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@web3-react/core'
 // import useTheme from 'hooks/useTheme'
 import { AutoColumn } from 'components/Layout/Column'
 import Page from 'components/Layout/Page'
@@ -10,12 +10,6 @@ import TotalCard from './components/TotalCard'
 import CommissionsCard from './components/CommissionsCard'
 import GetReferralLinkCard from './components/GetReferralLinkCard'
 import ProgramCard from './components/ProgramCard'
-// import LotteryCard from './components/LotteryCard'
-// import LiquidityCard from './components/LiquidityCard'
-// import BreakDownCard from './components/BreakDownCard'
-// import StatisticCard from './components/StatisticCard'
-// import ReferUserCard from './components/ReferUserCard'
-// import AccountAreaCard from './components/AccountAreaCard'
 
 const StyledPage = styled(Page)`
   background-image: url('/images/home/planets/planet-pluto.png'), url('/images/home/planets/planet-7.png');
@@ -56,7 +50,7 @@ const Label = styled(Text)`
 
 const Home: React.FC = () => {
   // const { theme } = useTheme()
-  // const { account } = useWeb3React()
+  const { account } = useWeb3React()
   const { t } = useTranslation()
 
   return (
@@ -74,10 +68,13 @@ const Home: React.FC = () => {
           <TotalCard />
           <CommissionsCard />
         </CardsRow>
-        {/* <CardsRow> */}
-        {/* <GetReferralLinkCard /> */}
-        <ProgramCard />
-        {/* </CardsRow> */}
+        {account !== undefined ? (
+          <>
+            <ProgramCard />
+          </>
+        ) : (
+          <></>
+        )}
       </StyledPage>
     </>
   )
