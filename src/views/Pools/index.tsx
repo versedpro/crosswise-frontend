@@ -80,12 +80,18 @@ const PoolHeadCard = styled.div<{ isDarkTheme: boolean }>`
   ${(props) =>
     props.isDarkTheme &&
     css`
-  -webkit-backdrop-filter: blur(40px);
-  backdrop-filter: blur(40px);
-  box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.4), -4px -4px 8px 0 rgba(224, 224, 255, 0.04), 0 1px 1px 0 rgba(9, 13, 20, 0.4);
-  border: solid 1px rgba(245, 247, 250, 0.06);
-  background-image: linear-gradient(102deg, rgba(245, 247, 250, 0.12), rgba(245, 247, 250, 0.06) 52%, rgba(245, 247, 250, 0) 100%);c
-  `}
+      -webkit-backdrop-filter: blur(40px);
+      backdrop-filter: blur(40px);
+      box-shadow: 8px 8px 24px 0 rgba(9, 13, 20, 0.4), -4px -4px 8px 0 rgba(224, 224, 255, 0.04),
+        0 1px 1px 0 rgba(9, 13, 20, 0.4);
+      border: solid 1px rgba(245, 247, 250, 0.06);
+      background-image: linear-gradient(
+        102deg,
+        rgba(245, 247, 250, 0.12),
+        rgba(245, 247, 250, 0.06) 52%,
+        rgba(245, 247, 250, 0) 100%
+      );
+    `}
 
   ${(props) =>
     !props.isDarkTheme &&
@@ -176,15 +182,9 @@ const Pools: React.FC = () => {
   } = useCakeVault()
   const accountHasVaultShares = userShares && userShares.gt(0)
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
-  // console.log("poolsWithoutAutoVault", poolsWithoutAutoVault);
-  // const pools = useMemo(() => {
-  //   const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-  //   const cakeAutoVault = { ...cakePool, isAutoVault: true }
-  //   return [...poolsWithoutAutoVault]
-  // }, [poolsWithoutAutoVault])
-  // console.log('pools'. pools)
+
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
-  const [openPools, finishedPools] = useMemo(
+  const [finishedPools, openPools] = useMemo(
     () => partition(poolsWithoutAutoVault, (pool) => pool.isFinished),
     [poolsWithoutAutoVault],
   )

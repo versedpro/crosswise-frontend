@@ -135,7 +135,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color="textSecondary" as="span" textTransform="uppercase">
             {t('Start staking')}
           </Text>
         </ActionTitles>
@@ -150,7 +150,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color="textSecondary" as="span" textTransform="uppercase">
             {t('Start staking')}
           </Text>
         </ActionTitles>
@@ -165,12 +165,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color="textSecondary" as="span" textTransform="uppercase">
             {t('Enable pool')}
           </Text>
         </ActionTitles>
         <ActionContent>
-          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="secondary">
+          <Button width="100%" disabled={requestedApproval} onClick={handleApprove} variant="primaryGradient">
             {t('Enable')}
           </Button>
         </ActionContent>
@@ -183,10 +183,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     return (
       <ActionContainer>
         <ActionTitles>
-          <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color="textSecondary" as="span" textTransform="uppercase">
             {stakingToken.symbol}{' '}
           </Text>
-          <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+          <Text fontSize="12px" bold color="textSecondary" as="span">
             {isAutoVault ? t('Staked (compounding)') : t('Staked')}
           </Text>
         </ActionTitles>
@@ -194,7 +194,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
           <Flex flex="1" pt="16px" flexDirection="column" alignSelf="flex-start">
             <Balance
               lineHeight="1"
-              bold
               fontSize="20px"
               decimals={5}
               value={isAutoVault ? cakeAsNumberBalance : stakedTokenBalance}
@@ -202,7 +201,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
             <Balance
               fontSize="12px"
               display="inline"
-              color="textSubtle"
+              color="textSecondary"
               decimals={2}
               value={isAutoVault ? stakedAutoDollarValue : stakedTokenDollarBalance}
               unit=" USD"
@@ -210,22 +209,22 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
             />
           </Flex>
           <IconButtonWrapper>
-            <IconButton variant="secondary" onClick={onUnstake} mr="6px">
-              <MinusIcon color="primary" width="14px" />
+            <IconButton variant="secondaryGradient" onClick={onUnstake} mr="6px">
+              <MinusIcon color="text" width="14px" />
             </IconButton>
             {reachStakingLimit ? (
               <span ref={targetRef}>
-                <IconButton variant="secondary" disabled>
+                <IconButton variant="secondaryGradient" disabled>
                   <AddIcon color="textDisabled" width="24px" height="24px" />
                 </IconButton>
               </span>
             ) : (
               <IconButton
-                variant="secondary"
+                variant="secondaryGradient"
                 onClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
                 disabled={isFinished}
               >
-                <AddIcon color="primary" width="14px" />
+                <AddIcon color="text" width="14px" />
               </IconButton>
             )}
           </IconButtonWrapper>
@@ -238,10 +237,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   return (
     <ActionContainer>
       <ActionTitles>
-        <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+        <Text fontSize="12px" bold color="textSecondary" as="span" textTransform="uppercase">
           {t('Stake')}{' '}
         </Text>
-        <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+        <Text fontSize="12px" bold color="textSecondary" as="span" textTransform="uppercase">
           {stakingToken.symbol}
         </Text>
       </ActionTitles>

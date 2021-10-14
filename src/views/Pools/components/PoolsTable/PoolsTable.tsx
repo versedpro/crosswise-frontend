@@ -14,16 +14,14 @@ interface PoolsTableProps {
 const StyledTable = styled.div`
   border-radius: ${({ theme }) => theme.radii.card};
 
-  // background-color: ${({ theme }) => theme.card.background};
   > div:not(:last-child) {
     border-bottom: 1px solid #ffffff0f;
-    // border-bottom: 2px solid ${({ theme }) => theme.colors.disabled};
   }
 `
 
 const StyledTableBorder = styled.div`
+  filter: ${({ theme }) => theme.card.dropShadow};
   border-radius: ${({ theme }) => theme.radii.card};
-  background-color: ${({ theme }) => theme.colors.cardBorder};
   padding: 1px 1px 3px 1px;
   background-size: 400% 400%;
 
