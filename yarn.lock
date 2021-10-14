@@ -1504,10 +1504,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@crosswise/uikit@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@crosswise/uikit/-/uikit-0.2.3.tgz#0ad030284dc0865aa1c591b9375d9faf7e63b7a4"
-  integrity sha512-ilKFCRKTZyhgs0S80dqUgMAbh9vmM9sjunC/j8efK+I4QDrTieCylu1gwfF89r+x+Dp2ewHzGSgsiIXXHoOang==
+"@crosswise/uikit@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@crosswise/uikit/-/uikit-0.2.5.tgz#bc0fb96d991377b0164111a3317ac280ddd87aef"
+  integrity sha512-RHW8Si3kSRmoTfnt5npzWJ7InawwIJ916qCT9deL/kcaUJa8WanJ174SKCej9KAddzHy4M6WMDuHl7vCMlKNGg==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

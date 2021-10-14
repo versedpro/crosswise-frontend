@@ -82,10 +82,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
     </Text>
   ) : (
     <>
-      <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
+      <Text fontSize="12px" bold color="textSecondary" as="span" textTransform="uppercase">
         {earningToken.symbol}{' '}
       </Text>
-      <Text fontSize="12px" bold color="textSubtle" as="span">
+      <Text fontSize="12px" bold color="textSecondary" as="span">
         {t('Earned')}
       </Text>
     </>
@@ -96,8 +96,12 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
       <ActionContainer>
         <ActionTitles>{actionTitle}</ActionTitles>
         <ActionContent>
-          <Heading>0</Heading>
-          <Button disabled>{isCompoundPool ? t('Collect') : t('Harvest')}</Button>
+          <Text fontSize="16px" color="text">
+            0
+          </Text>
+          <Button variant="secondaryGradient" disabled>
+            {isCompoundPool ? t('Collect') : t('Harvest')}
+          </Button>
         </ActionContent>
       </ActionContainer>
     )
@@ -122,12 +126,12 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
           <>
             {hasEarnings ? (
               <>
-                <Balance lineHeight="1" bold fontSize="20px" decimals={5} value={earningTokenBalance} />
+                <Balance lineHeight="1" fontSize="20px" decimals={5} value={earningTokenBalance} />
                 {earningTokenPrice > 0 && (
                   <Balance
                     display="inline"
                     fontSize="12px"
-                    color="textSubtle"
+                    color="textSecondary"
                     decimals={2}
                     prefix="~"
                     value={earningTokenDollarBalance}
@@ -137,8 +141,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
               </>
             ) : (
               <>
-                <Heading color="textDisabled">0</Heading>
-                <Text fontSize="12px" color="textDisabled">
+                <Text fontSize="16px" color="textDisabled">
+                  0
+                </Text>
+                <Text fontSize="12px" color="textSecondary">
                   0 USD
                 </Text>
               </>
@@ -161,11 +167,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Flex>
           </Flex>
         ) : (
-          <Button
-            disabled={!hasEarnings}
-            onClick={onPresentCollect}
-            variant={hasEarnings ? 'secondaryGradient' : 'text'}
-          >
+          <Button disabled={!hasEarnings} onClick={onPresentCollect} variant="secondaryGradient">
             {isCompoundPool ? t('Collect') : t('Harvest')}
           </Button>
         )}
