@@ -32,6 +32,7 @@
     ]
   },
   "dependencies": {
+    "@biconomy/mexa": "^2.0.21",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crosswise/sdk": "^0.0.1",
     "@crosswise/uikit": "^0.2.5",
