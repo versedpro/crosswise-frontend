@@ -21,4 +21,10 @@ const formatTimePeriod = (periods: ReturnType<typeof getTimePeriods>, excludePer
   return textArr.join(' ')
 }
 
+// date: timestamp in miliseconds
+export const localToUTC = (date: number): Date => {
+  const now = new Date();
+  return new Date(date + now.getTimezoneOffset() * 60000);
+};
+
 export default formatTimePeriod

@@ -47,6 +47,7 @@ const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
+const OrderBook = lazy(() => import('./views/OrderBook'))
 const Settings = lazy(() => import('./views/Settings'))
 
 // This config is required for number formatting
@@ -79,6 +80,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/orderbook">
+              <OrderBook />
             </Route>
             <Route path="/lottery">
               <Lottery />

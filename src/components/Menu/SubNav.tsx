@@ -46,13 +46,28 @@ const getActiveIndex = (pathname: string): number => {
   return 0
 }
 
+
 const Nav = () => {
   const location = useLocation()
   const { t } = useTranslation()
+
+  const getTabHead = (activeIndex: number): string => {
+    if (activeIndex === 1) {
+      return t('Liquidity')
+    }
+    if (activeIndex === 2) {
+      return t('Bridge')
+    }
+    if (activeIndex === 3) {
+      return t('OrderBook')
+    }
+    return t('Exchange')
+  }
+
   return (
     <StyledNav>
       <Heading>
-        <HeadLine>{getActiveIndex(location.pathname) === 0 ? t('Exchange') : t('Liquidity')}</HeadLine>
+        <HeadLine>{getTabHead(getActiveIndex(location.pathname))}</HeadLine>
       </Heading>
       {/* <ButtonMenu activeIndex={getActiveIndex(location.pathname)} scale="sm" variant="subtle">
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
