@@ -63,19 +63,12 @@ const TableBody = styled.tbody`
   }
 `
 
-const Row = ({
-  tradeFrom,
-  amountFrom,
-  tradeTo,
-  amountTo,
-  limitSellPrice,
-  limitBuyPrice,
-  executedTime
-} : RowProps) => {
-  const { chainId } = useActiveWeb3React();
+const Row = ({ tradeFrom, amountFrom, tradeTo, amountTo, limitSellPrice, limitBuyPrice, executedTime }: RowProps) => {
+  const { chainId } = useActiveWeb3React()
 
   return (
     <tr>
+      <td>Order id</td>
       <td>{tradeFrom.symbol}</td>
       <td>{amountFrom.toFixed(2)}</td>
       <td>{tradeTo.symbol}</td>
@@ -87,22 +80,21 @@ const Row = ({
   )
 }
 
-const LimitOrderPendingTable = ({
-  data,
-  columns
-}: TableProps) => {
+const LimitOrderPendingTable = ({ data, columns }: TableProps) => {
   const { t } = useTranslation()
-  const { rows } = useTable(columns, data, { sortable: false, sortColumn: 'txDate' });
+  const { rows } = useTable(columns, data, { sortable: false, sortColumn: 'txDate' })
 
   return (
     <TableContainer>
       <StyledTable>
         <TableHeader>
           <tr>
-            {columns.map(column => {
-              const schema = LimitOrderPendingColumnSchema.find(colSchema => colSchema.name === column.name);
+            {columns.map((column) => {
+              const schema = LimitOrderPendingColumnSchema.find((colSchema) => colSchema.name === column.name)
               return (
-                <th key={`${schema.id}th`} style={{ width: schema.width }}>{schema.label ?? column.label}</th>
+                <th key={`${schema.id}th`} style={{ width: schema.width }}>
+                  {schema.label ?? column.label}
+                </th>
               )
             })}
           </tr>

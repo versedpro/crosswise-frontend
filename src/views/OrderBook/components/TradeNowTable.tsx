@@ -5,7 +5,7 @@ import { ColumnType, LinkExternal, useTable } from '@crosswise/uikit'
 
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { getBscScanLink } from 'utils';
+import { getBscScanLink } from 'utils'
 import { TradeNowColumnSchema } from './types'
 
 export type Token = {
@@ -63,15 +63,8 @@ const TableBody = styled.tbody`
   }
 `
 
-const Row = ({
-  tradeFrom,
-  amountFrom,
-  tradeTo,
-  amountTo,
-  txDate,
-  txLink
-} : RowProps) => {
-  const { chainId } = useActiveWeb3React();
+const Row = ({ tradeFrom, amountFrom, tradeTo, amountTo, txDate, txLink }: RowProps) => {
+  const { chainId } = useActiveWeb3React()
 
   return (
     <tr>
@@ -81,30 +74,27 @@ const Row = ({
       <td>{amountTo.toFixed(2)}</td>
       <td>{txDate.toString()}</td>
       <td>
-        <LinkExternal href={getBscScanLink(txLink, 'transaction')}>
-          View on BscScan
-        </LinkExternal>
+        <LinkExternal href={getBscScanLink(txLink, 'transaction')}>View on BscScan</LinkExternal>
       </td>
     </tr>
   )
 }
 
-const TradeNowTable = ({
-  data,
-  columns
-}: TableProps) => {
+const TradeNowTable = ({ data, columns }: TableProps) => {
   const { t } = useTranslation()
-  const { rows } = useTable(columns, data, { sortable: false, sortColumn: 'txDate' });
+  const { rows } = useTable(columns, data, { sortable: false, sortColumn: 'txDate' })
 
   return (
     <TableContainer>
       <StyledTable>
         <TableHeader>
           <tr>
-            {columns.map(column => {
-              const schema = TradeNowColumnSchema.find(colSchema => colSchema.name === column.name);
+            {columns.map((column) => {
+              const schema = TradeNowColumnSchema.find((colSchema) => colSchema.name === column.name)
               return (
-                <th key={`${schema.id}th`} style={{ width: schema.width }}>{schema.label ?? column.label}</th>
+                <th key={`${schema.id}th`} style={{ width: schema.width }}>
+                  {schema.label ?? column.label}
+                </th>
               )
             })}
           </tr>

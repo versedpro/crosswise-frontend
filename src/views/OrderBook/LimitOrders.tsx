@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, useRouteMatch, useLocation } from 'react-router-dom'
+import { Link, useRouteMatch, useLocation, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button, ChevronUpIcon, Card, CardBody, Flex } from '@crosswise/uikit'
 import { useWeb3React } from '@web3-react/core'
@@ -8,11 +8,7 @@ import { useTranslation } from 'contexts/Localization'
 
 import LimitOrderPendingTable from './components/LimitOrderPendingTable'
 import LimitOrderExecutedTable from './components/LimitOrderExecutedTable'
-import {
-  LimitOrderPendingColumnSchema,
-  LimitOrderExecutedColumnSchema
-} from './components/types'
-
+import { LimitOrderPendingColumnSchema, LimitOrderExecutedColumnSchema } from './components/types'
 
 const TableWrapper = styled.div`
   overflow: visible;
@@ -41,31 +37,35 @@ const LimitOrders = () => {
   const { t } = useTranslation()
   const tableWrapperEl = useRef<HTMLDivElement>(null)
 
+  const [activeIndex, setActiveIndex] = useState<number>(0)
+
   const { chainId } = useWeb3React()
 
-  const [activeIndex, setActiveIndex] = useState<number>(0)
   const [rowData, setRowData] = useState([])
 
   useEffect(() => {
     switch (pathname) {
-      case `${path}/limitorder`:
-        case `${path}/limitorder/pending`:
+      case '/orderbook/limitorder':
+      case '/orderbook/limitorder/pending':
+        // activeIndex = 0
         setActiveIndex(0)
         break
-      case `${path}/limitorder/executed`:
+      case '/orderbook/limitorder/executed':
+        // activeIndex = 1
         setActiveIndex(1)
         break
       default:
+        // activeIndex = 0
         setActiveIndex(0)
         break
     }
   }, [pathname, path])
 
   const renderContent = (): JSX.Element => {
-    return (
-      activeIndex === 0
-        ? <LimitOrderPendingTable data={rowData} columns={LimitOrderPendingColumnSchema} />
-        : <LimitOrderExecutedTable data={rowData} columns={LimitOrderExecutedColumnSchema} />
+    return activeIndex === 0 ? (
+      <LimitOrderPendingTable data={rowData} columns={LimitOrderPendingColumnSchema} />
+    ) : (
+      <LimitOrderExecutedTable data={rowData} columns={LimitOrderExecutedColumnSchema} />
     )
   }
 
@@ -83,7 +83,7 @@ const LimitOrders = () => {
             variant={activeIndex === 0 ? 'secondaryGradient' : 'tertiary'}
             scale="sm"
             as={Link}
-            to={`${path}/limitorder/pending`}
+            to={`${path}/pending`}
             p="6px 16px 6px 16px"
             mr="24px"
             style={{ fontWeight: 400 }}
@@ -94,7 +94,7 @@ const LimitOrders = () => {
             variant={activeIndex === 1 ? 'secondaryGradient' : 'tertiary'}
             scale="sm"
             as={Link}
-            to={`${path}/limitorder/executed`}
+            to={`${path}/executed`}
             p="6px 16px 6px 16px"
             style={{ fontWeight: 400 }}
           >
@@ -104,6 +104,14 @@ const LimitOrders = () => {
         <CardBody>
           <TableWrapper ref={tableWrapperEl}>
             {renderContent()}
+            {/* <Switch>
+              <Route path={`${path}/pending`} exact>
+                <LimitOrderPendingTable data={rowData} columns={LimitOrderPendingColumnSchema} />
+              </Route>
+              <Route path={`${path}/executed`} exact>
+                <LimitOrderExecutedTable data={rowData} columns={LimitOrderExecutedColumnSchema} />
+              </Route>
+            </Switch> */}
           </TableWrapper>
         </CardBody>
       </StyledCard>

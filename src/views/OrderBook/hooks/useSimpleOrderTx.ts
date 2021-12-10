@@ -12,10 +12,10 @@ import { simpleWssProvider } from 'utils/providers'
 import { SimpleOrderTxTypes } from '../types'
 
 const swapAbi = [
-  "event Swap(address indexed sender, uint amount0In, uint amount1In, uint amount0Out, uint amount1Out, address indexed to)",
+  'event Swap(address indexed sender, uint amount0In, uint amount1In, uint amount0Out, uint amount1Out, address indexed to)',
 ]
 
-const lpAddress = "0xdD901faf9652D474b0A70263E13DA294990d49AE" // BOGGED + BNB LPs
+const lpAddress = '0xdD901faf9652D474b0A70263E13DA294990d49AE' // BOGGED + BNB LPs
 
 const pending = []
 
@@ -31,7 +31,7 @@ const getAmountsFromSwapArgs = (swapArgs) => {
     token0AmountBigDecimal = amount0Out
     isBuy = true
   }
-  
+
   let token1AmountBigDecimal = amount1In
   if (token1AmountBigDecimal.eq(0)) {
     token1AmountBigDecimal = amount1Out
@@ -40,30 +40,18 @@ const getAmountsFromSwapArgs = (swapArgs) => {
   return { isBuy, token0AmountBigDecimal, token1AmountBigDecimal }
 }
 
-const convertSwapEventToPrice = ({
-  swapArgs,
-  token0Decimals,
-  token1Decimals
-}) => {
-  const {
-    isBuy,
-    token0AmountBigDecimal,
-    token1AmountBigDecimal,
-  } = getAmountsFromSwapArgs(swapArgs);
+const convertSwapEventToPrice = ({ swapArgs, token0Decimals, token1Decimals }) => {
+  const { isBuy, token0AmountBigDecimal, token1AmountBigDecimal } = getAmountsFromSwapArgs(swapArgs)
 
-  const token0AmountFloat = parseFloat(
-    ethers.utils.formatUnits(token0AmountBigDecimal, token0Decimals)
-  );
-  const token1AmounFloat = parseFloat(
-    ethers.utils.formatUnits(token1AmountBigDecimal, token1Decimals)
-  );
+  const token0AmountFloat = parseFloat(ethers.utils.formatUnits(token0AmountBigDecimal, token0Decimals))
+  const token1AmounFloat = parseFloat(ethers.utils.formatUnits(token1AmountBigDecimal, token1Decimals))
 
   if (token1AmounFloat > 0) {
-    const priceOfToken0InTermsOfToken1 = token0AmountFloat / token1AmounFloat;
+    const priceOfToken0InTermsOfToken1 = token0AmountFloat / token1AmounFloat
     return {
       isBuy,
       price: priceOfToken0InTermsOfToken1,
-      volume: token0AmountFloat
+      volume: token0AmountFloat,
     }
   }
 
@@ -78,31 +66,31 @@ const useSimpleOrderTx = () => {
   const pullNewTx = (): SimpleOrderTxTypes[] => {
     const tempPending = pending.splice(0, pending.length)
 
-    const parsed = tempPending.map(tx => {
+    const parsed = tempPending.map((tx) => {
       return {
         isBuy: tx.isBuy,
         tradeFrom: {
           symbol: tx.isBuy ? WBNB.symbol : CRSS[chainId].symbol,
-          address: tx.isBuy ? WBNB.address : CRSS[chainId].address
+          address: tx.isBuy ? WBNB.address : CRSS[chainId].address,
         },
         amountFrom: tx.isBuy ? tx.amount / tx.price : tx.amount,
         tradeTo: {
           symbol: tx.isBuy ? CRSS[chainId].symbol : WBNB.symbol,
-          address: tx.isBuy ? CRSS[chainId].address : WBNB.address
+          address: tx.isBuy ? CRSS[chainId].address : WBNB.address,
         },
         amountTo: tx.isBuy ? tx.amount : tx.amount / tx.price,
         txDate: format(localToUTC(tx.ts * 1000), 'yyyy-MM-dd HH:mm:ss'),
-        txLink: tx.transactionHash
+        txLink: tx.transactionHash,
       }
     })
 
-    return parsed;
+    return parsed
   }
 
   useEffect(() => {
     tokenContract.current = new ethers.Contract(lpAddress, swapAbi, simpleWssProvider)
 
-    const filterSwap = tokenContract.current.filters.Swap();
+    const filterSwap = tokenContract.current.filters.Swap()
     tokenContract.current.on(filterSwap, async (sender, amount0In, amount1In, amount0Out, amount1Out, to, event) => {
       // console.log(
       //   'Swap',
@@ -118,7 +106,7 @@ const useSimpleOrderTx = () => {
       const { isBuy, price, volume } = convertSwapEventToPrice({
         swapArgs: event.args,
         token0Decimals: CRSS[chainId].decimals,
-        token1Decimals: WBNB.decimals
+        token1Decimals: WBNB.decimals,
       })
 
       const block = await event.getBlock() // library.getBlock(event.blockNumber)
@@ -129,10 +117,10 @@ const useSimpleOrderTx = () => {
         price, // BNB / BOGGED
         amount: volume,
         ts: block.timestamp,
-        transactionHash: event.transactionHash
+        transactionHash: event.transactionHash,
       })
     })
-    
+
     return () => {
       if (tokenContract.current) {
         tokenContract.current.removeAllListeners()

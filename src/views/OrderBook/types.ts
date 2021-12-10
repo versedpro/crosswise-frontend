@@ -11,4 +11,4 @@ export type SimpleOrderTxTypes = {
   amountTo: number
   txDate: string
   txLink: string
-} 
+}

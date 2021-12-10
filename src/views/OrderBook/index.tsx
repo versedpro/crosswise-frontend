@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useRouteMatch, useLocation } from 'react-router-dom'
+import { Link, useRouteMatch, useLocation, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Page from 'components/Layout/Page'
 
 import SubNav from './components/SubNav'
 import TradeNow from './TradeNow'
+import LimitOrders from './LimitOrders'
 
 const StyledPage = styled(Page)`
   background-image: url('/images/home/planets/planet-pluto.png'), url('/images/home/planets/planet-7.png');
@@ -58,23 +59,20 @@ const ControlContainer = styled.div`
 
 const OrderBook = () => {
   const { path } = useRouteMatch()
-  const { pathname } = useLocation()
-
-  const [activeIndex, setActiveIndex] = useState<number>(0)
-
-  useEffect(() => {
-    if (pathname.startsWith(`${path}/tradenow`)) {
-      setActiveIndex(0)
-    } else {
-      setActiveIndex(1)
-    }
-  }, [pathname, path])
 
   return (
     <StyledPage>
       <ControlContainer>
         <SubNav />
-        {activeIndex === 0 && <TradeNow />}
+        <Switch>
+          <Route path={`${path}/tradenow`}>
+            <TradeNow />
+          </Route>
+          <Route path={`${path}/limitorder`}>
+            <LimitOrders />
+          </Route>
+        </Switch>
+        {/* {activeIndex === 0 && <TradeNow />} */}
       </ControlContainer>
     </StyledPage>
   )

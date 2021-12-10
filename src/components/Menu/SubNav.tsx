@@ -46,7 +46,6 @@ const getActiveIndex = (pathname: string): number => {
   return 0
 }
 
-
 const Nav = () => {
   const location = useLocation()
   const { t } = useTranslation()
