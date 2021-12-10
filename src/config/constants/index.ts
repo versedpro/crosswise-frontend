@@ -1,6 +1,8 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@crosswise/sdk'
 import { BUSD, DAI, USDT, BTCB, CRSS, WBNB, UST, ETH, USDC } from './tokens'
 
+export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
+
 export const ROUTER_ADDRESS = '0x2efBEa23f0CD3f80F7802cd3d56E4b53985Fd634'
 
 // a list of tokens by chain

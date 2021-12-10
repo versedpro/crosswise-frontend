@@ -4,10 +4,10 @@ import { BscConnector } from '@binance-chain/bsc-connector'
 import { ConnectorNames } from '@crosswise/uikit'
 import { ethers } from 'ethers'
 import { Biconomy } from '@biconomy/mexa'
-import getNodeUrl from './getRpcUrl'
+import { getRpcUrl } from './getRpcUrl'
 
 const POLLING_INTERVAL = 12000
-const rpcUrl = getNodeUrl()
+const rpcUrl = getRpcUrl()
 // const rpcUrl = "https://data-seed-prebsc-1-s1.binance.org:8545/";
 const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 

@@ -7,7 +7,6 @@ const ConnectWalletButton = (props) => {
   const { t } = useTranslation()
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
-  console.log(props)
   const { content } = props
 
   return (
