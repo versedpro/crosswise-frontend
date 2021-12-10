@@ -83,6 +83,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'InfoIcon',
     href: '',
   },
+  {
+    label: t('Orderbook'),
+    icon: 'ExplorerIcon',
+    href: '/orderbook/tradenow/all',
+  },
   // {
   //   label: t('IFO'),
   //   icon: 'IfoIcon',
