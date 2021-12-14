@@ -7,7 +7,6 @@ const ConnectWalletButton = (props) => {
   const { t } = useTranslation()
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
-  const { content } = props
 
   return (
     <Button
@@ -16,8 +15,7 @@ const ConnectWalletButton = (props) => {
       }}
       {...props}
     >
-      {!content ? t('Connect') : t(content)}
-      {/* {t('Connect')} */}
+      {t('Connect')}
       {/* {t('Connect Wallet')} */}
     </Button>
   )

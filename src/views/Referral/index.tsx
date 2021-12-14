@@ -10,7 +10,6 @@ import TotalCard from './components/TotalCard'
 import CommissionsCard from './components/CommissionsCard'
 import GetReferralLinkCard from './components/GetReferralLinkCard'
 import ProgramCard from './components/ProgramCard'
-import ConnectWalletComponent from './components/ConnectWalletComponent'
 
 const StyledPage = styled(Page)`
   background-image: url('/images/home/planets/planet-pluto.png'), url('/images/home/planets/planet-7.png');
@@ -74,9 +73,7 @@ const Home: React.FC = () => {
             <ProgramCard />
           </>
         ) : (
-          <>
-            <ConnectWalletComponent />
-          </>
+          <></>
         )}
       </StyledPage>
     </>
