@@ -32,7 +32,6 @@
     ]
   },
   "dependencies": {
-    "@biconomy/mexa": "^2.0.21",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crosswise/sdk": "^0.0.1",
     "@crosswise/uikit": "^0.2.5",
@@ -90,13 +89,13 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
+    "eslint-config-crosswise": "^1.0.7",
     "@types/jest": "^26.0.23",
     "@types/react-datepicker": "^3.1.8",
     "@types/react-redux": "^7.1.16",
     "@types/react-transition-group": "^4.4.1",
     "@types/simplemde": "^1.11.7",
     "eslint": "^7.26.0",
-    "eslint-config-crosswise": "^1.0.7",
     "husky": "4.3.5",
     "prettier": "^2.3.0",
     "source-map-explorer": "^2.5.2",

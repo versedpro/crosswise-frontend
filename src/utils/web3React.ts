@@ -3,7 +3,6 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
 import { ConnectorNames } from '@crosswise/uikit'
 import { ethers } from 'ethers'
-import { Biconomy } from '@biconomy/mexa'
 import { getRpcUrl } from './getRpcUrl'
 
 const POLLING_INTERVAL = 12000
@@ -31,14 +30,9 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
-  const biconomy = new Biconomy(provider, { apiKey: 'THr_MRuGO.d8ed9459-bdd0-4db0-88a0-1cb4dd9e6f60', debug: true })
-  const ethersProvider = new ethers.providers.Web3Provider(biconomy)
-  console.log(biconomy)
-  return ethersProvider
-
-  // const library = new ethers.providers.Web3Provider(provider)
-  // library.pollingInterval = POLLING_INTERVAL
-  // return library
+  const library = new ethers.providers.Web3Provider(provider)
+  library.pollingInterval = POLLING_INTERVAL
+  return library
 }
 
 /**
