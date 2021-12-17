@@ -3,51 +3,49 @@ import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
   /**
-   * These 3 farms (PID 0, 251, 252) should always be at the top of the file.
+   * These 3 farms (PID 0, 1, 2) should always be at the top of the file.
    */
-  // {
-  //   pid: 0,
-  //   lpSymbol: 'CAKE',
-  //   lpAddresses: {
-  //     // 97: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
-  //     97: '0xA98D21C3D61A7EB9Dd3BE9C9a1132Abb7c7Be2Dd',
-  //     56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
-  //   },
-  //   token: tokens.syrup,
-  //   quoteToken: tokens.wbnb,
-  // },
-
   {
     pid: 0,
-    lpSymbol: 'CRSS-BNB LP',
+    lpSymbol: 'CRSS',
     lpAddresses: {
-      // 97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
-      97: '0xca0ffB7CBFB1161d2267348Bc6F81758586713be',
-      56: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
+      97: '0x9a3BD51a34Efc4F30407E2637831D792e9ce7EA2',
+      56: '',
     },
     token: tokens.crss,
-    quoteToken: tokens.wbnb,
+    quoteToken: tokens.crss,
   },
+
   {
     pid: 1,
-    lpSymbol: 'CRSS-BUSD LP',
+    lpSymbol: 'CRSS-BNB LP',
     lpAddresses: {
-      97: '0x30CB740CfaecD304f74725ebEA43a4F4f9b831b0',
-      56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+      97: '0x0a304bc254ce104a9fb58c87e28e59e27613e8d9',
+      56: '',
     },
     token: tokens.crss,
-    quoteToken: tokens.busd,
-  },
-  {
-    pid: 2,
-    lpSymbol: 'BUSD-BNB LP',
-    lpAddresses: {
-      97: '0xdb66F7D4Fd939661A9783920A0Efae1D22cd189c',
-      56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
-    },
-    token: tokens.busd,
     quoteToken: tokens.wbnb,
   },
+  // {
+  //   pid: 1,
+  //   lpSymbol: 'CRSS-BUSD LP',
+  //   lpAddresses: {
+  //     97: '0x30CB740CfaecD304f74725ebEA43a4F4f9b831b0',
+  //     56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+  //   },
+  //   token: tokens.crss,
+  //   quoteToken: tokens.busd,
+  // },
+  // {
+  //   pid: 2,
+  //   lpSymbol: 'BUSD-BNB LP',
+  //   lpAddresses: {
+  //     97: '0xdb66F7D4Fd939661A9783920A0Efae1D22cd189c',
+  //     56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
+  //   },
+  //   token: tokens.busd,
+  //   quoteToken: tokens.wbnb,
+  // },
 
   // {
   //   pid: 252,
