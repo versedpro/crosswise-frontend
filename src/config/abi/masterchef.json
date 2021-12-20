@@ -12,6 +12,11 @@
         "type": "address"
       },
       {
+        "internalType": "contract ICrosswiseRouter02",
+        "name": "_crssRouterAddress",
+        "type": "address"
+      },
+      {
         "internalType": "address",
         "name": "_devAddress",
         "type": "address"
@@ -166,25 +171,39 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "pid",
-        "type": "uint256"
-      },
-      {
         "indexed": false,
         "internalType": "uint256",
-        "name": "amountLockedUp",
+        "name": "referralCommissionRate",
         "type": "uint256"
       }
     ],
-    "name": "RewardLockedUp",
+    "name": "SetReferralCommissionRate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "crssReferral",
+        "type": "address"
+      }
+    ],
+    "name": "SetcrssReferral",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "autoCompFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "UpdateAutoCompFee",
     "type": "event"
   },
   {
@@ -243,9 +262,9 @@
     "name": "MAXIMUM_REFERRAL_COMMISSION_RATE",
     "outputs": [
       {
-        "internalType": "uint16",
+        "internalType": "uint256",
         "name": "",
-        "type": "uint16"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -264,9 +283,14 @@
         "type": "address"
       },
       {
-        "internalType": "uint16",
+        "internalType": "uint256",
         "name": "_depositFeeBP",
-        "type": "uint16"
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_strategy",
+        "type": "address"
       },
       {
         "internalType": "bool",
@@ -277,6 +301,19 @@
     "name": "add",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "autoCompFee",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -332,6 +369,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "crssRouterAddress",
+    "outputs": [
+      {
+        "internalType": "contract ICrosswiseRouter02",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -350,7 +400,12 @@
       },
       {
         "internalType": "bool",
-        "name": "immediateClaim",
+        "name": "isVest",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "isAuto",
         "type": "bool"
       }
     ],
@@ -380,7 +435,33 @@
         "type": "uint256"
       }
     ],
+    "name": "earn",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_pid",
+        "type": "uint256"
+      }
+    ],
     "name": "emergencyWithdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "enterStaking",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -412,19 +493,52 @@
   {
     "inputs": [
       {
-        "internalType": "uint256[]",
-        "name": "pools",
-        "type": "uint256[]"
-      },
+        "internalType": "address",
+        "name": "forwarder",
+        "type": "address"
+      }
+    ],
+    "name": "isTrustedForwarder",
+    "outputs": [
       {
         "internalType": "bool",
-        "name": "immediateClaim",
+        "name": "",
         "type": "bool"
       }
     ],
-    "name": "massHarvest",
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "leaveStaking",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "leftCrss",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -435,7 +549,7 @@
         "type": "uint256[]"
       }
     ],
-    "name": "massStake",
+    "name": "massHarvest",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -515,9 +629,14 @@
         "type": "uint256"
       },
       {
-        "internalType": "uint16",
+        "internalType": "uint256",
         "name": "depositFeeBP",
-        "type": "uint16"
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "strategy",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -541,9 +660,9 @@
     "name": "referralCommissionRate",
     "outputs": [
       {
-        "internalType": "uint16",
+        "internalType": "uint256",
         "name": "",
-        "type": "uint16"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -554,6 +673,19 @@
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "routerDeadlineDuration",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -569,9 +701,14 @@
         "type": "uint256"
       },
       {
-        "internalType": "uint16",
+        "internalType": "uint256",
         "name": "_depositFeeBP",
-        "type": "uint16"
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_strategy",
+        "type": "address"
       },
       {
         "internalType": "bool",
@@ -600,9 +737,9 @@
   {
     "inputs": [
       {
-        "internalType": "uint16",
+        "internalType": "uint256",
         "name": "_referralCommissionRate",
-        "type": "uint16"
+        "type": "uint256"
       }
     ],
     "name": "setReferralCommissionRate",
@@ -655,16 +792,14 @@
         "internalType": "uint256",
         "name": "_pid",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
       }
     ],
-    "name": "stakeReward",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "startBlock",
+    "name": "stakedTokens",
     "outputs": [
       {
         "internalType": "uint256",
@@ -677,7 +812,7 @@
   },
   {
     "inputs": [],
-    "name": "timeFirstStep",
+    "name": "startBlock",
     "outputs": [
       {
         "internalType": "uint256",
@@ -702,8 +837,33 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "totalLockedUpRewards",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "totalLocked",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "totalShares",
     "outputs": [
       {
         "internalType": "uint256",
@@ -738,6 +898,32 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "trustedForwarder",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_autoCompFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateAutoCompFee",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -806,8 +992,31 @@
       },
       {
         "internalType": "uint256",
-        "name": "rewardLockedUp",
+        "name": "crssRewardLockedUp",
         "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isVest",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "isAuto",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "versionRecipient",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
