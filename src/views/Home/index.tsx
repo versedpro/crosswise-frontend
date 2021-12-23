@@ -15,6 +15,7 @@ import StatisticCard from './components/StatisticCard'
 import ReferUserCard from './components/ReferUserCard'
 import AccountAreaCard from './components/AccountAreaCard'
 import Header from './components/Header'
+import ComingSoonCard from './components/ComingSoonCard'
 
 const StyledPage = styled(Page)`
   background-image: url('/images/home/planets/planet-pluto.png'), url('/images/home/planets/planet-7.png');
@@ -78,7 +79,9 @@ const Home: React.FC = () => {
         </Row>
         <CardsRow>
           <FarmCard />
-          <LotteryCard />
+          <ComingSoonCard>
+            <LotteryCard />
+          </ComingSoonCard>
         </CardsRow>
         <CardsRow>
           <LiquidityCard />
@@ -88,7 +91,9 @@ const Home: React.FC = () => {
           <StatisticCard />
           <SubCardsRow>
             <ReferUserCard />
-            <AccountAreaCard />
+            <ComingSoonCard>
+              <AccountAreaCard />
+            </ComingSoonCard>
           </SubCardsRow>
         </CardsRow>
       </StyledPage>
