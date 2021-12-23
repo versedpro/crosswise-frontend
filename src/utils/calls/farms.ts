@@ -16,7 +16,7 @@ export const stakeFarm = async (masterChefContract, pid, amount, referrer) => {
   if (!referrer) referrerAddress = DEFAULT_REFERRER_ADDRESS
 
   // Consider auto-compound and vesting feature for deposit method
-  const tx = await masterChefContract.deposit(pid, value, referrerAddress, false, options)
+  const tx = await masterChefContract.deposit(pid, value, referrerAddress, false, false, options)
   const receipt = await tx.wait()
   return receipt.status
 }

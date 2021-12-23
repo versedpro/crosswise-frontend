@@ -42,11 +42,11 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const { onUnstake } = useUnstakeFarms(pid)
   const location = useLocation()
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
   const lpPrice = useLpTokenPrice(tokenName)
 
   const handleStake = async (amount: string) => {
-    await onStake(amount)
+    await onStake(amount, library)
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 

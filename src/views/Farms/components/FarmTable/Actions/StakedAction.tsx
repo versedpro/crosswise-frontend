@@ -40,7 +40,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   userDataReady,
 }) => {
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const { onStake } = useStakeFarms(pid)
@@ -62,9 +62,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     const queryParams = new URLSearchParams(window.location.search)
     const referrer = queryParams.get('ref')
     if (referrer) {
-      await onStake(amount, referrer)
+      await onStake(amount, library, referrer)
     } else {
-      await onStake(amount)
+      await onStake(amount, library)
     }
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
@@ -126,6 +126,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     if (stakedBalance.gt(0)) {
       return (
         <ActionContainer>
+          <Button onClick={() => handleStake('10000000000000')}>test</Button>
           <ActionTitlesContainer style={{ display: 'block', width: '150px' }}>
             <ActionTitles>
               <Text bold color="textSecondary" fontSize="12px" pr="4px">

@@ -194,6 +194,7 @@ const Farms: React.FC = () => {
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'crosswise_farm_view' })
   const { account } = useWeb3React()
+  // console.log(useWeb3React())
   const [sortOption, setSortOption] = useState('hot')
   const chosenFarmsLength = useRef(0)
 
