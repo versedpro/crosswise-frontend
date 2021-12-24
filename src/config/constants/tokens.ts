@@ -67,8 +67,8 @@ const tokens = {
   crss: {
     symbol: 'CRSS',
     address: {
-      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      97: '0xA98D21C3D61A7EB9Dd3BE9C9a1132Abb7c7Be2Dd',
+      56: '',
+      97: '0x9a3BD51a34Efc4F30407E2637831D792e9ce7EA2',
     },
     decimals: 18,
     projectLink: '',

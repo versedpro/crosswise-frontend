@@ -186,10 +186,9 @@ export function useSingleContractMultipleData(
   const results = useCallsData(calls, options)
 
   const latestBlockNumber = useBlockNumber()
-  console.log('here', contract?.Interface)
 
   return useMemo(() => {
-    return results.map((result) => toCallState(result, contract?.Interface, fragment, latestBlockNumber))
+    return results.map((result) => toCallState(result, contract?.interface, fragment, latestBlockNumber))
   }, [fragment, contract, results, latestBlockNumber])
 }
 
@@ -256,6 +255,6 @@ export function useSingleCallResult(
   const latestBlockNumber = useBlockNumber()
 
   return useMemo(() => {
-    return toCallState(result, contract?.Interface, fragment, latestBlockNumber)
+    return toCallState(result, contract?.interface, fragment, latestBlockNumber)
   }, [result, contract, fragment, latestBlockNumber])
 }

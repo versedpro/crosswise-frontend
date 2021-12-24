@@ -37,7 +37,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const isStaked = stakedBalance.gt(0)
-  const isManualCakePool = sousId === 0
+  const isManualCrssPool = sousId === 0
 
   const showStakedTag = isAutoVault ? hasVaultShares : isStaked
 
@@ -46,11 +46,11 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const showSubtitle = sousId !== 0 || (sousId === 0 && !isXs && !isSm)
 
   if (isAutoVault) {
-    title = t('Auto CAKE')
+    title = t('Auto CRSS')
     subtitle = t('Automatic restaking')
-  } else if (isManualCakePool) {
-    title = t('Manual CAKE')
-    subtitle = `${t('Earn')} CAKE ${t('Stake').toLocaleLowerCase()} CAKE`
+  } else if (isManualCrssPool) {
+    title = t('Manual CRSS')
+    subtitle = `${t('Earn')} CRSS ${t('Stake').toLocaleLowerCase()} CRSS`
   }
 
   return (
@@ -62,7 +62,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
       )}
       <CellContent>
         {showStakedTag && (
-          <Text fontSize="12px" bold color={isFinished ? 'failure' : 'secondary'} textTransform="uppercase">
+          <Text fontSize="12px" bold color={isFinished ? 'failure' : 'textSecondary'} textTransform="uppercase">
             {t('Staked')}
           </Text>
         )}
@@ -70,7 +70,7 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
           {title}
         </Text>
         {showSubtitle && (
-          <Text fontSize="12px" color="textSubtle">
+          <Text fontSize="12px" color="textSecondary">
             {subtitle}
           </Text>
         )}
