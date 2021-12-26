@@ -236,7 +236,7 @@ export default function FullPositionCard({ pair, ...props }: PositionCardProps) 
               <Button
                 as={Link}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
-                variant="primary"
+                variant="secondaryGradient"
                 width="100%"
                 mb="8px"
               >
