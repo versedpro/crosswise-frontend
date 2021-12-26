@@ -184,6 +184,19 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_trustedForwarder",
+        "type": "address"
+      }
+    ],
+    "name": "SetTrustedForwarder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "crssReferral",
@@ -555,6 +568,19 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "pools",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "massStakeReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "massUpdatePools",
     "outputs": [],
@@ -724,6 +750,19 @@
   {
     "inputs": [
       {
+        "internalType": "contract ICrssReferral",
+        "name": "_crssReferral",
+        "type": "address"
+      }
+    ],
+    "name": "setCrssReferral",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "_devAddress",
         "type": "address"
@@ -763,12 +802,12 @@
   {
     "inputs": [
       {
-        "internalType": "contract ICrssReferral",
-        "name": "_crssReferral",
+        "internalType": "address",
+        "name": "_trustedForwarder",
         "type": "address"
       }
     ],
-    "name": "setcrssReferral",
+    "name": "setTrustedForwarder",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -922,19 +961,6 @@
       }
     ],
     "name": "updateAutoCompFee",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_crssPerBlock",
-        "type": "uint256"
-      }
-    ],
-    "name": "updateCrssPerBlock",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

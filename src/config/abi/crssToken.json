@@ -10,6 +10,11 @@
         "internalType": "address",
         "name": "_buybackTo",
         "type": "address"
+      },
+      {
+        "internalType": "contract IBEP20",
+        "name": "_oldCrss",
+        "type": "address"
       }
     ],
     "stateMutability": "nonpayable",
@@ -350,6 +355,19 @@
   },
   {
     "inputs": [],
+    "name": "burnAddress",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "buybackFee",
     "outputs": [
       {
@@ -401,6 +419,13 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimV1Token",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -790,6 +815,19 @@
         "internalType": "uint32",
         "name": "",
         "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "oldCrss",
+    "outputs": [
+      {
+        "internalType": "contract IBEP20",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
