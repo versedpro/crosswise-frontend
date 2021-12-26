@@ -10,6 +10,11 @@
         "internalType": "address",
         "name": "_buybackTo",
         "type": "address"
+      },
+      {
+        "internalType": "contract IBEP20",
+        "name": "_oldCrss",
+        "type": "address"
       }
     ],
     "stateMutability": "nonpayable",
@@ -94,6 +99,19 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "router",
+        "type": "address"
+      }
+    ],
+    "name": "Init_router",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": false,
         "internalType": "uint256",
         "name": "minTokensBeforeSwap",
@@ -127,12 +145,31 @@
     "inputs": [
       {
         "indexed": false,
+        "internalType": "uint256",
+        "name": "maxTransferAmountRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetMaxTransferAmountRate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "addr",
+        "type": "address"
+      },
+      {
+        "indexed": false,
         "internalType": "bool",
-        "name": "enabled",
+        "name": "status",
         "type": "bool"
       }
     ],
-    "name": "PresaleEnabledUpdated",
+    "name": "SetWhiteList",
     "type": "event"
   },
   {
@@ -153,7 +190,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "tokensIntoLiqudity",
+        "name": "tokensintoLiquidity",
         "type": "uint256"
       }
     ],
@@ -218,15 +255,9 @@
         "internalType": "uint256",
         "name": "total",
         "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "balance",
-        "type": "uint256"
       }
     ],
-    "name": "transferInsufficient",
+    "name": "WhitelistedTransfer",
     "type": "event"
   },
   {
@@ -324,6 +355,19 @@
   },
   {
     "inputs": [],
+    "name": "burnAddress",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "buybackFee",
     "outputs": [
       {
@@ -375,6 +419,13 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimV1Token",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -663,6 +714,19 @@
   },
   {
     "inputs": [],
+    "name": "maxSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "maxTransferAmount",
     "outputs": [
       {
@@ -758,10 +822,10 @@
   },
   {
     "inputs": [],
-    "name": "owner",
+    "name": "oldCrss",
     "outputs": [
       {
-        "internalType": "address",
+        "internalType": "contract IBEP20",
         "name": "",
         "type": "address"
       }
@@ -771,12 +835,12 @@
   },
   {
     "inputs": [],
-    "name": "presaleEnabled",
+    "name": "owner",
     "outputs": [
       {
-        "internalType": "bool",
+        "internalType": "address",
         "name": "",
-        "type": "bool"
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -824,11 +888,11 @@
     "inputs": [
       {
         "internalType": "bool",
-        "name": "_presaleEnabled",
+        "name": "_enabled",
         "type": "bool"
       }
     ],
-    "name": "setPresaleEnabled",
+    "name": "setSwapAndLiquifyEnabled",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -836,12 +900,17 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_addr",
+        "type": "address"
+      },
+      {
         "internalType": "bool",
-        "name": "_enabled",
+        "name": "_status",
         "type": "bool"
       }
     ],
-    "name": "setSwapAndLiquifyEnabled",
+    "name": "setWhiteList",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

@@ -17,6 +17,8 @@ import {
   toggleTheme,
   updateUserFarmStakedOnly,
   FarmStakedOnly,
+  addWatchlistToken,
+  addWatchlistPool,
 } from './actions'
 
 const currentTimestamp = () => new Date().getTime()
@@ -53,6 +55,9 @@ export interface UserState {
   audioPlay: boolean
   isDark: boolean
   userFarmStakedOnly: FarmStakedOnly
+
+  watchlistTokens: string[]
+  watchlistPools: string[]
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -70,6 +75,8 @@ export const initialState: UserState = {
   audioPlay: true,
   isDark: false,
   userFarmStakedOnly: FarmStakedOnly.ON_FINISHED,
+  watchlistTokens: [],
+  watchlistPools: [],
 }
 
 export default createReducer(initialState, (builder) =>
@@ -150,5 +157,23 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateUserFarmStakedOnly, (state, { payload: { userFarmStakedOnly } }) => {
       state.userFarmStakedOnly = userFarmStakedOnly
+    })
+    .addCase(addWatchlistToken, (state, { payload: { address } }) => {
+      const tokenWatchlist = state.watchlistTokens ?? []
+      if (!tokenWatchlist.includes(address)) {
+        state.watchlistTokens = [...tokenWatchlist, address]
+      } else {
+        const newTokens = state.watchlistTokens.filter((x) => x !== address)
+        state.watchlistTokens = newTokens
+      }
+    })
+    .addCase(addWatchlistPool, (state, { payload: { address } }) => {
+      const PoolWatchlist = state.watchlistPools ?? []
+      if (!PoolWatchlist.includes(address)) {
+        state.watchlistPools = [...PoolWatchlist, address]
+      } else {
+        const newPools = state.watchlistPools.filter((x) => x !== address)
+        state.watchlistPools = newPools
+      }
     }),
 )

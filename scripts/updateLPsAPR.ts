@@ -8,6 +8,7 @@ import farmsConfig from '../src/config/constants/farms'
 
 const BLOCK_SUBGRAPH_ENDPOINT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
 const STREAMING_FAST_ENDPOINT = 'https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2'
+// const STREAMING_FAST_ENDPOINT = 'https://thegraph.com/hosted-service/subgraph/gitproman0211/exchange'
 
 interface BlockResponse {
   blocks: {

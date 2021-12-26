@@ -81,7 +81,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   {
     label: t('Info'),
     icon: 'InfoIcon',
-    href: '',
+    href: '/info',
   },
   {
     label: t('Orderbook'),
@@ -104,12 +104,12 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('Contact'),
-        href: 'https://docs.crosswise.finance/contact-us',
+        href: 'https://t.me/crosswise',
       },
-      {
-        label: t('Voting'),
-        href: '/voting',
-      },
+      // {
+      //   label: t('Voting'),
+      //   href: '/voting',
+      // },
       {
         label: t('Github'),
         href: 'https://github.com/crosswise-finance',
