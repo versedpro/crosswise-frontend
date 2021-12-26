@@ -68,10 +68,9 @@ const MainAssets = () => {
         <CardIcon />
         <StyledContent>{getFullDisplayBalance(crssBalance, 18, 2)} CRSS</StyledContent>
       </Block>
-      <Block>
-        {/* <CardIcon /> */}
+      {/* <Block>
         <StyledContent>0.00 MATIC</StyledContent>
-      </Block>
+      </Block> */}
     </Flex>
   )
 }

@@ -20,6 +20,8 @@ import {
   updateUserFarmStakedOnly,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
+  addWatchlistToken,
+  addWatchlistPool,
 } from '../actions'
 import { deserializeToken, serializeToken } from './helpers'
 
@@ -244,4 +246,28 @@ export function useTrackedTokenPairs(): [Token, Token][] {
 
     return Object.keys(keyed).map((key) => keyed[key])
   }, [combinedList])
+}
+
+export const useWatchlistTokens = (): [string[], (address: string) => void] => {
+  const dispatch = useDispatch<AppDispatch>()
+  const savedTokens = useSelector((state: AppState) => state.user.watchlistTokens) ?? []
+  const updateSavedTokens = useCallback(
+    (address: string) => {
+      dispatch(addWatchlistToken({ address }))
+    },
+    [dispatch],
+  )
+  return [savedTokens, updateSavedTokens]
+}
+
+export const useWatchlistPools = (): [string[], (address: string) => void] => {
+  const dispatch = useDispatch<AppDispatch>()
+  const savedPools = useSelector((state: AppState) => state.user.watchlistPools) ?? []
+  const updateSavedPools = useCallback(
+    (address: string) => {
+      dispatch(addWatchlistPool({ address }))
+    },
+    [dispatch],
+  )
+  return [savedPools, updateSavedPools]
 }
