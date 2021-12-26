@@ -9,7 +9,7 @@ const farms: FarmConfig[] = [
     pid: 0,
     lpSymbol: 'CRSS',
     lpAddresses: {
-      97: '0x9a3BD51a34Efc4F30407E2637831D792e9ce7EA2',
+      97: '0x4325e2ba865a7e582D98204a85bA276AcD476558',
       56: '',
     },
     token: tokens.crss,
@@ -20,7 +20,7 @@ const farms: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'CRSS-BNB LP',
     lpAddresses: {
-      97: '0x0a304bc254ce104a9fb58c87e28e59e27613e8d9',
+      97: '0x96aE684CbdBD6C311A325B1979c743c456979e2c',
       56: '',
     },
     token: tokens.crss,
