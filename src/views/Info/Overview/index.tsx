@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
-import { Flex, Box, Text, Heading, Card, Skeleton } from '@pancakeswap/uikit'
+import { Flex, Box, Text, Heading, Card, Skeleton } from '@crosswise/uikit'
 import { format, fromUnixTime } from 'date-fns'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
@@ -105,7 +105,7 @@ const Overview: React.FC = () => {
   return (
     <Page>
       <Heading scale="lg" mb="16px" id="info-overview-title">
-        {t('PancakeSwap Info & Analytics')}
+        {t('CrossWise Info & Analytics')}
       </Heading>
       <ChartCardsContainer>
         <Card>
