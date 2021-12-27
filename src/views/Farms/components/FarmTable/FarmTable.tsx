@@ -74,6 +74,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
   const { t } = useTranslation()
   const { data, columns, userDataReady } = props
 
+  console.log('table data', data)
   const { rows } = useTable(columns, data, { sortable: true, sortColumn: 'farm' })
 
   const scrollToTop = (): void => {
@@ -88,8 +89,15 @@ const FarmTable: React.FC<ITableProps> = (props) => {
         <TableWrapper ref={tableWrapperEl}>
           <StyledTable>
             <TableBody>
-              {rows.map((row) => {
-                return <Row {...row.original} userDataReady={userDataReady} key={`table-row-${row.id}`} />
+              {rows.map((row, index) => {
+                return (
+                  <Row
+                    {...row.original}
+                    farmOption={data[index].farmOption}
+                    userDataReady={userDataReady}
+                    key={`table-row-${row.id}`}
+                  />
+                )
               })}
             </TableBody>
           </StyledTable>
