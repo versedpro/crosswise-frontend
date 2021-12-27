@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
 import styled, { keyframes, css } from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { LinkExternal, Text } from '@crosswise/uikit'
+import { LinkExternal, Text, Toggle } from '@crosswise/uikit'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
+import BigNumber from 'bignumber.js'
+import { getBalanceAmount } from 'utils/formatBalance'
+
 import { getAddress } from 'utils/addressHelpers'
 import { getBscScanLink } from 'utils'
 import { CommunityTag, CoreTag, DualTag } from 'components/Tags'
+import { BIG_ZERO } from 'utils/bigNumber'
 
 import HarvestAction from './HarvestAction'
 import StakedAction from './StakedAction'
 import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
+import FarmOption, { FarmOptionProps } from '../FarmOption'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -21,6 +27,7 @@ export interface ActionPanelProps {
   details: FarmWithStakedValue
   userDataReady: boolean
   expanded: boolean
+  farmOption: FarmOptionProps
 }
 
 const expandAnimation = keyframes`
@@ -40,7 +47,11 @@ const collapseAnimation = keyframes`
     max-height: 0px;
   }
 `
-
+const ColumnWrap = styled.div`
+  border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
+  display: flex;
+  flex-direction: column;
+`
 const Container = styled.div<{ expanded }>`
   animation: ${({ expanded }) =>
     expanded
@@ -52,7 +63,7 @@ const Container = styled.div<{ expanded }>`
         `};
   overflow: hidden;
   // background: ${({ theme }) => theme.colors.background};
-  border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
+  // border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
   display: flex;
   width: 100%;
   flex-direction: column-reverse;
@@ -115,6 +126,24 @@ const ActionContainer = styled.div`
 const InfoContainer = styled.div`
   min-width: 200px;
 `
+const OptionContainer = styled.div`
+  display: flex;
+  padding: 10px;
+  justify-content: flex-end;
+  ${({ theme }) => theme.mediaQueries.lg} {
+    margin-left: 48px;
+  }
+`
+
+const ToggleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+
+  ${Text} {
+    margin-left: 8px;
+  }
+`
 
 const ValueContainer = styled.div`
   display: block;
@@ -138,10 +167,26 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   liquidity,
   userDataReady,
   expanded,
+  farmOption,
 }) => {
   const farm = details
-
+  const [autoVal, setAutoVal] = useState(false)
+  const [vestVal, setVestVal] = useState(false)
+  console.log('farmoption', farmOption)
+  useEffect(() => {
+    setAutoVal(farmOption.isAuto)
+    setVestVal(farmOption.isVest)
+  }, [farmOption, userDataReady, details])
   const { t } = useTranslation()
+  let stakedBalance = BIG_ZERO
+  const stakedBalanceBigNumber = new BigNumber(details.userData.stakedBalance)
+  // If user didn't connect wallet default balance will be 0
+  if (!stakedBalanceBigNumber.isZero()) {
+    stakedBalance = getBalanceAmount(stakedBalanceBigNumber)
+  }
+  const temp = !userDataReady || !stakedBalance.eq(0)
+  console.log('pool: d', temp)
+
   const isActive = farm.multiplier !== '0X'
   const { quoteToken, token, dual } = farm
   const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
@@ -151,44 +196,62 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   })
   const lpAddress = getAddress(farm.lpAddresses)
   const bsc = getBscScanLink(lpAddress, 'address')
-  const info = `https://pancakeswap.info/pool/${lpAddress}`
-
+  const info = `https://crosswise.info/pool/${lpAddress}`
   return (
-    <Container expanded={expanded}>
-      <InfoContainer>
-        {isActive && (
-          <StakeContainer>
-            <StyledLinkExternal href={`/add/${liquidityUrlPathParts}`}>
-              {t('Get %symbol%', { symbol: lpLabel })}
-            </StyledLinkExternal>
-          </StakeContainer>
-        )}
-        <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
-        <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
-        {/* <TagsContainer>
+    <ColumnWrap>
+      <Container expanded={expanded}>
+        <InfoContainer>
+          {isActive && (
+            <StakeContainer>
+              <StyledLinkExternal href={`/add/${liquidityUrlPathParts}`}>
+                {t('Get %symbol%', { symbol: lpLabel })}
+              </StyledLinkExternal>
+            </StakeContainer>
+          )}
+          <StyledLinkExternal href={bsc}>{t('View Contract')}</StyledLinkExternal>
+          <StyledLinkExternal href={info}>{t('See Pair Info')}</StyledLinkExternal>
+          {/* <TagsContainer>
           {farm.isCommunity ? <CommunityTag /> : <CoreTag />}
           {dual ? <DualTag /> : null}
         </TagsContainer> */}
-      </InfoContainer>
-      <ValueContainer>
-        <ValueWrapper>
-          <Text>{t('APR')}</Text>
-          <Apr {...apr} />
-        </ValueWrapper>
-        <ValueWrapper>
-          <Text>{t('Multiplier')}</Text>
-          <Multiplier {...multiplier} />
-        </ValueWrapper>
-        <ValueWrapper>
-          <Text>{t('Liquidity')}</Text>
-          <Liquidity {...liquidity} />
-        </ValueWrapper>
-      </ValueContainer>
-      <ActionContainer>
-        <HarvestAction {...farm} userDataReady={userDataReady} />
-        <StakedAction {...farm} userDataReady={userDataReady} />
-      </ActionContainer>
-    </Container>
+        </InfoContainer>
+        <ValueContainer>
+          <ValueWrapper>
+            <Text>{t('APR')}</Text>
+            <Apr {...apr} />
+          </ValueWrapper>
+          <ValueWrapper>
+            <Text>{t('Multiplier')}</Text>
+            <Multiplier {...multiplier} />
+          </ValueWrapper>
+          <ValueWrapper>
+            <Text>{t('Liquidity')}</Text>
+            <Liquidity {...liquidity} />
+          </ValueWrapper>
+        </ValueContainer>
+
+        <ActionContainer>
+          <HarvestAction {...farm} userDataReady={userDataReady} />
+          <StakedAction {...farm} userDataReady={userDataReady} />
+        </ActionContainer>
+      </Container>
+      <OptionContainer>
+        <ToggleWrapper>
+          <Text fontSize="14px" pr="15px" color="textSecondary">
+            {t('Vesting')}
+          </Text>
+          {/* <Toggle checked={vesting} scale="sm" onChange={() => setVesting(!vesting)} /> */}
+          <Toggle scale="sm" disabled={!userDataReady || !stakedBalance.eq(0)} checked={vestVal} />
+        </ToggleWrapper>
+
+        <ToggleWrapper>
+          <Text fontSize="14px" pr="15px" color="textSecondary">
+            {t('Auto-compound')}
+          </Text>
+          <Toggle scale="sm" disabled={!userDataReady || !stakedBalance.eq(0)} checked={autoVal} />
+        </ToggleWrapper>
+      </OptionContainer>
+    </ColumnWrap>
   )
 }
 

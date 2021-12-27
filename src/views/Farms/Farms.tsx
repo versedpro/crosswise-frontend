@@ -214,7 +214,7 @@ const Farms: React.FC = () => {
   const [autoCompound, setAutoCompound] = useState(true)
 
   const activeFarms = farmsLP.filter((farm) => farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
-  const inactiveFarms = farmsLP.filter((farm) => farm.multiplier === '0X' && !isArchivedPid(farm.pid))
+  const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
@@ -341,6 +341,7 @@ const Farms: React.FC = () => {
     }
   }, [chosenFarmsMemoized, observerIsSet])
   const rowData = chosenFarmsMemoized.map((farm) => {
+    console.log('farm', farm)
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
@@ -372,6 +373,11 @@ const Farms: React.FC = () => {
       multiplier: {
         multiplier: farm.multiplier,
       },
+      farmOption: {
+        pid: farm.pid,
+        isAuto: farm.userData.isAuto,
+        isVest: farm.userData.isVest,
+      },
       details: farm,
     }
 
@@ -379,6 +385,7 @@ const Farms: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
+    console.log('rowdata', rowData)
     if (viewMode === ViewMode.TABLE && rowData.length) {
       const columnSchema = DesktopColumnSchema
 
@@ -535,7 +542,7 @@ const Farms: React.FC = () => {
               </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
-              <ToggleWrapper>
+              {/* <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
                   {t('Vesting')}
                 </Text>
@@ -547,7 +554,7 @@ const Farms: React.FC = () => {
                   {t('Auto-compound')}
                 </Text>
                 <Toggle checked={autoCompound} scale="sm" onChange={() => setAutoCompound(!autoCompound)} />
-              </ToggleWrapper>
+              </ToggleWrapper> */}
 
               <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">

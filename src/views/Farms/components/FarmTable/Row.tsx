@@ -12,6 +12,7 @@ import Earned, { EarnedProps } from './Earned'
 import Details from './Details'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
+import FarmOption, { FarmOptionProps } from './FarmOption'
 import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
@@ -22,6 +23,7 @@ export interface RowProps {
   earned: EarnedProps
   multiplier: MultiplierProps
   liquidity: LiquidityProps
+  farmOption: FarmOptionProps
   details: FarmWithStakedValue
 }
 
@@ -36,6 +38,7 @@ const cells = {
   details: Details,
   multiplier: Multiplier,
   liquidity: Liquidity,
+  test: false,
 }
 
 const CellInner = styled.div`
@@ -69,6 +72,7 @@ const FarmMobileCell = styled.td`
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
+  console.log('row props', props)
   const { details, userDataReady } = props
   const hasStakedAmount = !!useFarmUser(details.pid).stakedBalance.toNumber()
   const [actionPanelExpanded, setActionPanelExpanded] = useState(hasStakedAmount)

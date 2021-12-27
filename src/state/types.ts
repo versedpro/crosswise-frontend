@@ -36,6 +36,8 @@ export interface Farm extends FarmConfig {
     tokenBalance: string
     stakedBalance: string
     earnings: string
+    isVest: boolean
+    isAuto: boolean
   }
 }
 
