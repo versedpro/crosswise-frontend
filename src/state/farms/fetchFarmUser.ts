@@ -49,6 +49,7 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
   })
 
   const rawStakedBalances = await multicall(masterchefABI, calls)
+  console.log('rawStakedBalance', rawStakedBalances)
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance) => {
     return new BigNumber(stakedBalance[0]._hex).toJSON()
   })
@@ -72,3 +73,40 @@ export const fetchFarmUserEarnings = async (account: string, farmsToFetch: FarmC
   })
   return parsedEarnings
 }
+
+export const fetchFarmUserOption = async (account: string, farmsToFetch: FarmConfig[]) => {
+  const masterChefAddress = getMasterChefAddress()
+
+  const calls = farmsToFetch.map((farm) => {
+    return {
+      address: masterChefAddress,
+      name: 'userInfo',
+      params: [farm.pid, account],
+    }
+  })
+
+  const rawOption = await multicall(masterchefABI, calls)
+  const parsedOption = rawOption.map((auto) => {
+    return [auto.isAuto, auto.isVest]
+  })
+  return parsedOption
+}
+
+// export const fetchFarmUserVest = async (account: string, farmsToFetch: FarmConfig[]) => {
+//   const masterChefAddress = getMasterChefAddress()
+
+//   const calls = farmsToFetch.map((farm) => {
+//     return {
+//       address: masterChefAddress,
+//       name: 'userInfo',
+//       params: [farm.pid, account],
+//     }
+//   })
+
+//   const rawVest = await multicall(masterchefABI, calls)
+//   const parsedVest = rawVest.map((vest) => {
+//     console.log("vest", vest.isAuto)
+//     return vest.isAuto
+//   })
+//   return parsedVest
+// }
