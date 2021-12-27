@@ -36,7 +36,6 @@ const BreakDownCard = () => {
   const data = useGetStats()
 
   const tvlString = data ? formatLocalisedCompactNumber(data.tvl) : '-'
-  console.log(tvlString)
 
   return (
     <StyledBreakDownCard>
