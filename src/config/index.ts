@@ -14,6 +14,11 @@ export const BASE_BSC_SCAN_URLS = {
   [ChainId.TESTNET]: 'https://testnet.bscscan.com',
 }
 
+export const BICONOMY_API_KEY = {
+  [ChainId.MAINNET]: 'kgfeYUcwD.1a6c43b2-ae66-4001-afcd-c443bf98927e',
+  [ChainId.TESTNET]: 'Zz4TWX982.282bae18-a592-4e61-b756-92488b5ff522',
+}
+
 // CRSS_PER_BLOCK details
 // 30 CRSS is minted per block
 // 20 CRSS per block is sent to Burn pool (A farm just for burning crss)

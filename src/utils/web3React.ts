@@ -4,6 +4,7 @@ import { BscConnector } from '@binance-chain/bsc-connector'
 import { ConnectorNames } from '@crosswise/uikit'
 import { ethers } from 'ethers'
 import { Biconomy } from '@biconomy/mexa'
+import { BICONOMY_API_KEY } from 'config'
 import { getRpcUrl } from './getRpcUrl'
 
 const POLLING_INTERVAL = 12000
@@ -31,7 +32,7 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
-  const biconomy = new Biconomy(provider, { apiKey: 'Zz4TWX982.282bae18-a592-4e61-b756-92488b5ff522', debug: true })
+  const biconomy = new Biconomy(provider, { apiKey: BICONOMY_API_KEY[chainId], debug: true })
   const ethersProvider = new ethers.providers.Web3Provider(biconomy)
   console.log(biconomy)
   console.log(ethersProvider)

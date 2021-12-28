@@ -4,7 +4,8 @@ import { useMasterchef } from 'hooks/useContract'
 import { sendTransactionByBiconomy } from 'utils/useBiconomy'
 import masterChef from 'config/abi/masterchef.json'
 import { useWeb3React } from '@web3-react/core'
-import { DEFAULT_REFERRER_ADDRESS } from 'config'
+import { DEFAULT_REFERRER_ADDRESS, DEFAULT_TOKEN_DECIMAL } from 'config'
+import BigNumber from 'bignumber.js'
 
 const useStakeFarms = (pid: number) => {
   const masterChefContract = useMasterchef()
@@ -22,6 +23,7 @@ const useStakeFarms = (pid: number) => {
   const handleStake = useCallback(
     async (amount: string, library: any, referrer?: string) => {
       let referrerAddress = referrer
+      const tokenAmount = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
       if (!referrer) referrerAddress = DEFAULT_REFERRER_ADDRESS
       // const txHash = await stakeFarm(masterChefContract, pid, amount, referrer)
       const txHash = await sendTransactionByBiconomy(
@@ -30,7 +32,7 @@ const useStakeFarms = (pid: number) => {
         masterChef,
         account,
         'deposit',
-        [pid, amount, referrerAddress, false, false],
+        [pid, tokenAmount, referrerAddress, false, false],
       )
       console.info(txHash)
     },
