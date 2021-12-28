@@ -172,7 +172,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const farm = details
   const [autoVal, setAutoVal] = useState(false)
   const [vestVal, setVestVal] = useState(false)
-  console.log('farmoption', farmOption)
   useEffect(() => {
     setAutoVal(farmOption.isAuto)
     setVestVal(farmOption.isVest)
@@ -185,7 +184,6 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     stakedBalance = getBalanceAmount(stakedBalanceBigNumber)
   }
   const temp = !userDataReady || !stakedBalance.eq(0)
-  console.log('pool: d', temp)
 
   const isActive = farm.multiplier !== '0X'
   const { quoteToken, token, dual } = farm
