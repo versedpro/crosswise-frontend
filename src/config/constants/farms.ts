@@ -26,6 +26,26 @@ const farms: FarmConfig[] = [
     token: tokens.crss,
     quoteToken: tokens.wbnb,
   },
+  {
+    pid: 2,
+    lpSymbol: 'CRSS-BUSD LP',
+    lpAddresses: {
+      97: '0x83F2528E12974E8CE2182F39fdD8814fD9FDf216',
+      56: '',
+    },
+    token: tokens.crss,
+    quoteToken: tokens.busd,
+  },
+  {
+    pid: 3,
+    lpSymbol: 'BNB-BUSD LP',
+    lpAddresses: {
+      97: '0xdb66f7d4fd939661a9783920a0efae1d22cd189c',
+      56: '',
+    },
+    token: tokens.wbnb,
+    quoteToken: tokens.busd,
+  }
   // {
   //   pid: 1,
   //   lpSymbol: 'CRSS-BUSD LP',

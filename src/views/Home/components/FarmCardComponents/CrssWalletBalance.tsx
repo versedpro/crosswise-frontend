@@ -20,7 +20,6 @@ const CrssWalletBalance = () => {
   const crssBalance = useTokenBalance(getCakeAddress()).balance
   const crssPriceBusd = usePriceCakeBusd()
   const busdBalance = new BigNumber(getBalanceNumber(crssBalance)).multipliedBy(crssPriceBusd).toNumber()
-  console.log('usePriceCakeBusd', usePriceCakeBusd())
   const { account } = useWeb3React()
   if (!account) {
     return (
