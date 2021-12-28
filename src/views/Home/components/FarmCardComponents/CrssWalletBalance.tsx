@@ -2,7 +2,7 @@ import React from 'react'
 import { Text } from '@crosswise/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 import styled from 'styled-components'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
@@ -18,9 +18,8 @@ const Block = styled.div`
 const CrssWalletBalance = () => {
   const { t } = useTranslation()
   const crssBalance = useTokenBalance(getCakeAddress()).balance
-  const crssPriceBusd = usePriceCakeBusd()
+  const crssPriceBusd = usePriceCrssBusd()
   const busdBalance = new BigNumber(getBalanceNumber(crssBalance)).multipliedBy(crssPriceBusd).toNumber()
-  console.log('usePriceCakeBusd', usePriceCakeBusd())
   const { account } = useWeb3React()
   if (!account) {
     return (

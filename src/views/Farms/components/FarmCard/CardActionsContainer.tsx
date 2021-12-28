@@ -10,7 +10,7 @@ import { useTranslation } from 'contexts/Localization'
 import { useERC20 } from 'hooks/useContract'
 import { getBalanceAmount, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { usePriceCakeBusd, useLpTokenPrice } from 'state/farms/hooks'
+import { usePriceCrssBusd, useLpTokenPrice } from 'state/farms/hooks'
 import Balance from 'components/Balance'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import StakeAction from './StakeAction'
@@ -58,7 +58,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const earnings = new BigNumber(earningsAsString)
   const lpAddress = getAddress(lpAddresses)
   const isApproved = account && allowance && allowance.isGreaterThan(0)
-  const cakePrice = usePriceCakeBusd()
+  const cakePrice = usePriceCrssBusd()
   const dispatch = useAppDispatch()
   const rawEarningsBalance = account ? getBalanceAmount(earnings) : BIG_ZERO
   const displayBalance = rawEarningsBalance.toFixed(3, BigNumber.ROUND_DOWN)
