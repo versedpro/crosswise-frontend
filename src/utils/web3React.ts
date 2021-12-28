@@ -31,7 +31,7 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
-  const biconomy = new Biconomy(provider, { apiKey: 'THr_MRuGO.d8ed9459-bdd0-4db0-88a0-1cb4dd9e6f60', debug: true })
+  const biconomy = new Biconomy(provider, { apiKey: 'Zz4TWX982.282bae18-a592-4e61-b756-92488b5ff522', debug: true })
   const ethersProvider = new ethers.providers.Web3Provider(biconomy)
   console.log(biconomy)
   console.log(ethersProvider)

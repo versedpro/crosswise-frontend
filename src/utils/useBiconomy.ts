@@ -22,7 +22,7 @@ export const sendTransactionByBiconomy = async (
     from: userAddress,
     data,
   })
-  console.log(gasLimit)
+  console.log('gasLimit', gasLimit)
 
   const txParams = {
     data,

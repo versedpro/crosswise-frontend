@@ -342,7 +342,6 @@ const Farms: React.FC = () => {
     }
   }, [chosenFarmsMemoized, observerIsSet])
   const rowData = chosenFarmsMemoized.map((farm) => {
-    console.log('farm', farm)
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
@@ -386,7 +385,6 @@ const Farms: React.FC = () => {
   })
 
   const renderContent = (): JSX.Element => {
-    console.log('rowdata', rowData)
     if (viewMode === ViewMode.TABLE && rowData.length) {
       const columnSchema = DesktopColumnSchema
 
