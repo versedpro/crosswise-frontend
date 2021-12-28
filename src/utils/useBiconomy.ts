@@ -29,7 +29,7 @@ export const sendTransactionByBiconomy = async (
     to: contractAddress,
     from: userAddress,
     gasLimit,
-    signatureType: 'PERSONAL_SIGN',
+    signatureType: 'EIP712_SIGN',
   }
 
   const tx = await library.provider.send('eth_sendTransaction', [txParams])

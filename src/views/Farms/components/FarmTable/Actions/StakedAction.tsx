@@ -126,7 +126,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     if (stakedBalance.gt(0)) {
       return (
         <ActionContainer>
-          <Button onClick={() => handleStake('10000000000000')}>test</Button>
           <ActionTitlesContainer style={{ display: 'block', width: '150px' }}>
             <ActionTitles>
               <Text bold color="textSecondary" fontSize="12px" pr="4px">
@@ -151,6 +150,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             </div>
           </ActionTitlesContainer>
           <ActionContent>
+            <Button onClick={() => handleStake('10000000000000')}>test</Button>
             <IconButtonWrapper>
               <IconButton variant="secondaryGradient" onClick={onPresentWithdraw} mr="6px">
                 <MinusIcon color="text" width="14px" />
@@ -181,6 +181,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           </div>
         </ActionTitles>
         <ActionContent>
+          <Button onClick={() => handleStake('10000000000000')}>test</Button>
           <Button
             width="100%"
             onClick={onPresentDeposit}
