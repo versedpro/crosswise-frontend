@@ -102,13 +102,13 @@ export const usePriceBnbBusd = (): BigNumber => {
   return new BigNumber(bnbBusdFarm.quoteToken.busdPrice)
 }
 
-export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(1)
-  const cakePriceBusdAsString = cakeBnbFarm.token.busdPrice
+export const usePriceCrssBusd = (): BigNumber => {
+  const crssBnbFarm = useFarmFromPid(1)
+  const crssPriceBusdAsString = crssBnbFarm.token.busdPrice
 
-  const cakePriceBusd = useMemo(() => {
-    return new BigNumber(cakePriceBusdAsString)
-  }, [cakePriceBusdAsString])
+  const crssPriceBusd = useMemo(() => {
+    return new BigNumber(crssPriceBusdAsString)
+  }, [crssPriceBusdAsString])
 
-  return cakePriceBusd
+  return crssPriceBusd
 }

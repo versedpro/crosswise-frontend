@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Flex, Skeleton, Heading, Box, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import { LotteryRound } from 'state/types'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 import { useGetLotteryGraphDataById } from 'state/lottery/hooks'
 import { formatNumber, getBalanceNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -26,7 +26,7 @@ const PreviousRoundCardFooter: React.FC<{ lotteryData: LotteryRound; lotteryId: 
 }) => {
   const { t } = useTranslation()
   const lotteryGraphData = useGetLotteryGraphDataById(lotteryId)
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceCrssBusd()
 
   let prizeInBusd = new BigNumber(NaN)
   if (lotteryData) {

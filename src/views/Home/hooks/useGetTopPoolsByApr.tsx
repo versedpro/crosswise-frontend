@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 import { useAppDispatch } from 'state'
 import { orderBy } from 'lodash'
 import { Pool, State } from 'state/types'
@@ -37,7 +37,7 @@ const useGetTopPoolsByApr = (isIntersecting: boolean) => {
     return [cakeAutoVaultWithApr, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault, performanceFeeAsDecimal])
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceCrssBusd()
 
   useEffect(() => {
     const fetchPoolsPublicData = async () => {

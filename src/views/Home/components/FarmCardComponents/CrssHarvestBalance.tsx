@@ -3,7 +3,7 @@ import { Text } from '@crosswise/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 import styled from 'styled-components'
 import { DEFAULT_TOKEN_DECIMAL } from 'config'
 import useAllEarnings from '../../hooks/useAllEarnings'
@@ -25,7 +25,7 @@ const CrssHarvestBalance = () => {
     }
     return accum + earningNumber.div(DEFAULT_TOKEN_DECIMAL).toNumber()
   }, 0)
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceCrssBusd()
   const earningsBusd = new BigNumber(earningsSum).multipliedBy(cakePriceBusd).toNumber()
 
   if (!account) {

@@ -3,7 +3,7 @@ import { Flex, Text, Skeleton, Link, Button, ArrowForwardIcon } from '@crosswise
 import { useTranslation } from 'contexts/Localization'
 import useRefresh from 'hooks/useRefresh'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 import Balance from 'components/Balance'
 import styled from 'styled-components'
 import { fetchCurrentLotteryIdAndMaxBuy, fetchLottery } from 'state/lottery/helpers'
@@ -27,7 +27,7 @@ const LotteryCardContent = () => {
   const { slowRefresh } = useRefresh()
   const [lotteryId, setLotteryId] = useState<string>(null)
   const [currentLotteryPrize, setCurrentLotteryPrize] = useState<BigNumber>(null)
-  const cakePriceBusdAsString = usePriceCakeBusd().toString()
+  const cakePriceBusdAsString = usePriceCrssBusd().toString()
 
   const cakePrizesText = t('%cakePrizeInUsd% in CAKE prizes this round', { cakePrizeInUsd: cakePriceBusdAsString })
   const [pretext, prizesThisRound] = cakePrizesText.split(cakePriceBusdAsString)

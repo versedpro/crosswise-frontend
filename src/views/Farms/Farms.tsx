@@ -7,7 +7,7 @@ import { ChainId } from '@crosswise/sdk'
 import styled, { css } from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
-import { useFarms, usePollFarmsData, usePriceCakeBusd } from 'state/farms/hooks'
+import { useFarms, usePollFarmsData, usePriceCrssBusd } from 'state/farms/hooks'
 import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -189,7 +189,7 @@ const Farms: React.FC = () => {
   const { pathname } = useLocation()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
-  const cakePrice = usePriceCakeBusd()
+  const cakePrice = usePriceCrssBusd()
 
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'crosswise_farm_view' })

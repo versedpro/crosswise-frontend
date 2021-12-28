@@ -17,7 +17,7 @@ import useToast from 'hooks/useToast'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import ApproveConfirmButtons, { ButtonArrangement } from 'views/Profile/components/ApproveConfirmButtons'
 import { ConnectedBidder } from 'config/constants/types'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 
 const StyledModal = styled(Modal)`
   min-width: 280px;
@@ -64,7 +64,7 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({
   const { balance: userCake, fetchStatus } = useTokenBalance(getCakeAddress())
   const userCakeBalance = getBalanceAmount(userCake)
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const cakePriceBusd = usePriceCrssBusd()
   const farmAuctionContract = useFarmAuctionContract()
   const cakeContract = useCake()
 
