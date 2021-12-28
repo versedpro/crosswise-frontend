@@ -3,18 +3,18 @@ import { FarmConfig } from './types'
 
 const farms: FarmConfig[] = [
   /**
-   * These 3 farms (PID 0, 1, 2) should always be at the top of the file.
+   * These 4 farms (PID 0, 1, 2, 3) should always be at the top of the file.
    */
-  {
-    pid: 0,
-    lpSymbol: 'CRSS',
-    lpAddresses: {
-      97: '0x4325e2ba865a7e582D98204a85bA276AcD476558',
-      56: '',
-    },
-    token: tokens.crss,
-    quoteToken: tokens.crss,
-  },
+  // {
+  //   pid: 0,
+  //   lpSymbol: 'CRSS',
+  //   lpAddresses: {
+  //     97: '0x4325e2ba865a7e582D98204a85bA276AcD476558',
+  //     56: '',
+  //   },
+  //   token: tokens.crss,
+  //   quoteToken: tokens.crss,
+  // },
 
   {
     pid: 1,
@@ -26,37 +26,27 @@ const farms: FarmConfig[] = [
     token: tokens.crss,
     quoteToken: tokens.wbnb,
   },
-  // {
-  //   pid: 1,
-  //   lpSymbol: 'CRSS-BUSD LP',
-  //   lpAddresses: {
-  //     97: '0x30CB740CfaecD304f74725ebEA43a4F4f9b831b0',
-  //     56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
-  //   },
-  //   token: tokens.crss,
-  //   quoteToken: tokens.busd,
-  // },
-  // {
-  //   pid: 2,
-  //   lpSymbol: 'BUSD-BNB LP',
-  //   lpAddresses: {
-  //     97: '0xdb66F7D4Fd939661A9783920A0Efae1D22cd189c',
-  //     56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
-  //   },
-  //   token: tokens.busd,
-  //   quoteToken: tokens.wbnb,
-  // },
+  {
+    pid: 2,
+    lpSymbol: 'CRSS-BUSD LP',
+    lpAddresses: {
+      97: '0x83F2528E12974E8CE2182F39fdD8814fD9FDf216',
+      56: '',
+    },
+    token: tokens.crss,
+    quoteToken: tokens.busd,
+  },
+  {
+    pid: 3,
+    lpSymbol: 'BNB-BUSD LP',
+    lpAddresses: {
+      97: '0xdb66f7d4fd939661a9783920a0efae1d22cd189c',
+      56: '',
+    },
+    token: tokens.wbnb,
+    quoteToken: tokens.busd,
+  },
 
-  // {
-  //   pid: 252,
-  //   lpSymbol: '  ',
-  //   lpAddresses: {
-  //     97: '',
-  //     56: '0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16',
-  //   },
-  //   token: tokens.busd,
-  //   quoteToken: tokens.wbnb,
-  // },
   /**
    * V3 by order of release (some may be out of PID order due to multiplier boost)
    */

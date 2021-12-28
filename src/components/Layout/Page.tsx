@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router'
 import { DEFAULT_META, getCustomMeta } from 'config/constants/meta'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 import Container from './Container'
 
 const StyledPage = styled(Container)`
@@ -29,9 +29,9 @@ const StyledPage = styled(Container)`
 const PageMeta: React.FC<{ symbol?: string }> = ({ symbol }) => {
   const { t } = useTranslation()
   const { pathname } = useLocation()
-  const cakePriceUsd = usePriceCakeBusd()
-  const cakePriceUsdDisplay = cakePriceUsd.gt(0)
-    ? `$${cakePriceUsd.toNumber().toLocaleString(undefined, {
+  const crssPriceUsd = usePriceCrssBusd()
+  const crssPriceUsdDisplay = crssPriceUsd.gt(0)
+    ? `$${crssPriceUsd.toNumber().toLocaleString(undefined, {
         minimumFractionDigits: 3,
         maximumFractionDigits: 3,
       })}`
@@ -39,7 +39,7 @@ const PageMeta: React.FC<{ symbol?: string }> = ({ symbol }) => {
 
   const pageMeta = getCustomMeta(pathname, t) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  let pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
+  let pageTitle = crssPriceUsdDisplay ? [title, crssPriceUsdDisplay].join(' - ') : title
   if (symbol) {
     pageTitle = [symbol, title].join(' - ')
   }

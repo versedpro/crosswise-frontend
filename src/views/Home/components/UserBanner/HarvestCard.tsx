@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { AutoRenewIcon, Button, Card, CardBody, Flex, Skeleton, Text, Link, ArrowForwardIcon } from '@crosswise/uikit'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 import useToast from 'hooks/useToast'
 import { useMasterchef } from 'hooks/useContract'
 import { harvestFarm } from 'utils/calls'
@@ -22,8 +22,8 @@ const HarvestCard = () => {
   const { farmsWithStakedBalance, earningsSum: farmEarningsSum } = useFarmsWithBalance()
 
   const masterChefContract = useMasterchef()
-  const cakePriceBusd = usePriceCakeBusd()
-  const earningsBusd = new BigNumber(farmEarningsSum).multipliedBy(cakePriceBusd)
+  const crssPriceBusd = usePriceCrssBusd()
+  const earningsBusd = new BigNumber(farmEarningsSum).multipliedBy(crssPriceBusd)
   const numFarmsToCollect = farmsWithStakedBalance.length
 
   const earningsText = t('%earningsBusd% to collect from %count% %farms%', {

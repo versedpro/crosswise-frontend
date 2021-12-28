@@ -3,7 +3,7 @@ import { Menu as UikitMenu } from '@crosswise/uikit'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceCrssBusd } from 'state/farms/hooks'
 import { useProfile } from 'state/profile/hooks'
 import config from './config'
 import UserMenu from './UserMenu'
@@ -12,7 +12,7 @@ import MainAssets from './MainAssets'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceCakeBusd()
+  const crssPriceUsd = usePriceCrssBusd()
   const { profile } = useProfile()
   const { currentLanguage, setLanguage, t } = useTranslation()
 
@@ -25,7 +25,7 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      crssPriceUsd={cakePriceUsd.toNumber()}
+      crssPriceUsd={crssPriceUsd.toNumber()}
       links={config(t)}
       profile={{
         username: profile?.username,
