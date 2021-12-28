@@ -25,8 +25,8 @@ const CrssHarvestBalance = () => {
     }
     return accum + earningNumber.div(DEFAULT_TOKEN_DECIMAL).toNumber()
   }, 0)
-  const cakePriceBusd = usePriceCrssBusd()
-  const earningsBusd = new BigNumber(earningsSum).multipliedBy(cakePriceBusd).toNumber()
+  const crssPriceBusd = usePriceCrssBusd()
+  const earningsBusd = new BigNumber(earningsSum).multipliedBy(crssPriceBusd).toNumber()
 
   if (!account) {
     return (
@@ -39,7 +39,7 @@ const CrssHarvestBalance = () => {
   return (
     <Block>
       <CardValue value={earningsSum} lineHeight="1.5" fontSize="30px" bold />
-      {!cakePriceBusd.eq(0) && <CardBusdValue value={earningsBusd} />}
+      {!crssPriceBusd.eq(0) && <CardBusdValue value={earningsBusd} />}
     </Block>
   )
 }

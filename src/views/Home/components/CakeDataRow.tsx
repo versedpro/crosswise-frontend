@@ -48,8 +48,8 @@ const CakeDataRow = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = getBalanceNumber(useBurnedBalance(getCakeAddress()))
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
-  const cakePriceBusd = usePriceCrssBusd()
-  const mcap = cakePriceBusd.times(cakeSupply)
+  const crssPriceBusd = usePriceCrssBusd()
+  const mcap = crssPriceBusd.times(cakeSupply)
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
 
   return (
