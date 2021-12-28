@@ -37,7 +37,7 @@ const useGetTopPoolsByApr = (isIntersecting: boolean) => {
     return [cakeAutoVaultWithApr, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault, performanceFeeAsDecimal])
 
-  const cakePriceBusd = usePriceCrssBusd()
+  const crssPriceBusd = usePriceCrssBusd()
 
   useEffect(() => {
     const fetchPoolsPublicData = async () => {
@@ -67,7 +67,7 @@ const useGetTopPoolsByApr = (isIntersecting: boolean) => {
     if (fetchStatus === FetchStatus.SUCCESS && !topPools[0]) {
       getTopPoolsByApr(pools)
     }
-  }, [setTopPools, pools, fetchStatus, cakePriceBusd, topPools, performanceFeeAsDecimal])
+  }, [setTopPools, pools, fetchStatus, crssPriceBusd, topPools, performanceFeeAsDecimal])
 
   return { topPools }
 }

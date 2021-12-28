@@ -35,11 +35,11 @@ const BountyCard = () => {
     estimatedCakeBountyReward,
     fees: { callFee },
   } = useCakeVault()
-  const cakePriceBusd = usePriceCrssBusd()
+  const crssPriceBusd = usePriceCrssBusd()
 
   const estimatedDollarBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
-  }, [cakePriceBusd, estimatedCakeBountyReward])
+    return new BigNumber(estimatedCakeBountyReward).multipliedBy(crssPriceBusd)
+  }, [crssPriceBusd, estimatedCakeBountyReward])
 
   const hasFetchedDollarBounty = estimatedDollarBountyReward.gte(0)
   const hasFetchedCakeBounty = estimatedCakeBountyReward ? estimatedCakeBountyReward.gte(0) : false

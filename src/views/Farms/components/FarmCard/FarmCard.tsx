@@ -40,11 +40,11 @@ interface FarmCardProps {
   farm: FarmWithStakedValue
   displayApr: string
   removed: boolean
-  cakePrice?: BigNumber
+  crssPrice?: BigNumber
   account?: string
 }
 
-const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePrice, account }) => {
+const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, crssPrice, account }) => {
   const { t } = useTranslation()
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
@@ -84,7 +84,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, cakePric
                   <ApyButton
                     lpLabel={lpLabel}
                     addLiquidityUrl={addLiquidityUrl}
-                    cakePrice={cakePrice}
+                    crssPrice={crssPrice}
                     apr={farm.apr}
                     displayApr={displayApr}
                   />

@@ -12,7 +12,7 @@ import MainAssets from './MainAssets'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceCrssBusd()
+  const crssPriceUsd = usePriceCrssBusd()
   const { profile } = useProfile()
   const { currentLanguage, setLanguage, t } = useTranslation()
 
@@ -25,7 +25,7 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      crssPriceUsd={cakePriceUsd.toNumber()}
+      crssPriceUsd={crssPriceUsd.toNumber()}
       links={config(t)}
       profile={{
         username: profile?.username,

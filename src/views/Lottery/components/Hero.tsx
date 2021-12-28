@@ -219,8 +219,8 @@ const Hero = () => {
     isTransitioning,
   } = useLottery()
 
-  const cakePriceBusd = usePriceCrssBusd()
-  const prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
+  const crssPriceBusd = usePriceCrssBusd()
+  const prizeInBusd = amountCollectedInCake.times(crssPriceBusd)
   const prizeTotal = getBalanceNumber(prizeInBusd)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 

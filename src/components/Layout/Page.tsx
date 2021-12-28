@@ -29,9 +29,9 @@ const StyledPage = styled(Container)`
 const PageMeta: React.FC<{ symbol?: string }> = ({ symbol }) => {
   const { t } = useTranslation()
   const { pathname } = useLocation()
-  const cakePriceUsd = usePriceCrssBusd()
-  const cakePriceUsdDisplay = cakePriceUsd.gt(0)
-    ? `$${cakePriceUsd.toNumber().toLocaleString(undefined, {
+  const crssPriceUsd = usePriceCrssBusd()
+  const crssPriceUsdDisplay = crssPriceUsd.gt(0)
+    ? `$${crssPriceUsd.toNumber().toLocaleString(undefined, {
         minimumFractionDigits: 3,
         maximumFractionDigits: 3,
       })}`
@@ -39,7 +39,7 @@ const PageMeta: React.FC<{ symbol?: string }> = ({ symbol }) => {
 
   const pageMeta = getCustomMeta(pathname, t) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  let pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
+  let pageTitle = crssPriceUsdDisplay ? [title, crssPriceUsdDisplay].join(' - ') : title
   if (symbol) {
     pageTitle = [symbol, title].join(' - ')
   }

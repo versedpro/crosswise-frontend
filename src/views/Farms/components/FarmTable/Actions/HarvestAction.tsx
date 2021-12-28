@@ -22,7 +22,7 @@ interface HarvestActionProps extends FarmWithStakedValue {
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userData, userDataReady }) => {
   const { toastSuccess, toastError } = useToast()
   const earningsBigNumber = new BigNumber(userData.earnings)
-  const cakePrice = usePriceCrssBusd()
+  const crssPrice = usePriceCrssBusd()
   let earnings = BIG_ZERO
   let earningsBusd = 0
   let displayBalance = userDataReady ? earnings.toLocaleString() : <Skeleton width={60} />
@@ -30,7 +30,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   // If user didn't connect wallet default balance will be 0
   if (!earningsBigNumber.isZero()) {
     earnings = getBalanceAmount(earningsBigNumber)
-    earningsBusd = earnings.multipliedBy(cakePrice).toNumber()
+    earningsBusd = earnings.multipliedBy(crssPrice).toNumber()
     displayBalance = earnings.toFixed(3, BigNumber.ROUND_DOWN)
   }
 
