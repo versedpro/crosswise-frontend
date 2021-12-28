@@ -150,7 +150,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             </div>
           </ActionTitlesContainer>
           <ActionContent>
-            <Button onClick={() => handleStake('10000000000000')}>test</Button>
+            {/* <Button onClick={() => handleStake('10000000000000')}>test</Button> */}
             <IconButtonWrapper>
               <IconButton variant="secondaryGradient" onClick={onPresentWithdraw} mr="6px">
                 <MinusIcon color="text" width="14px" />
@@ -181,7 +181,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           </div>
         </ActionTitles>
         <ActionContent>
-          <Button onClick={() => handleStake('10000000000000')}>test</Button>
+          {/* <Button onClick={() => handleStake('10000000000000')}>test</Button> */}
           <Button
             width="100%"
             onClick={onPresentDeposit}
