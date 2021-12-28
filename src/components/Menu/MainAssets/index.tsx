@@ -12,8 +12,8 @@ const NetworkBlock = styled.div`
   background-color: ${({ theme }) => theme.colors.input};
   position: relative;
   height: 44px;
-  margin-left: 8px;
-  margin-right: 8px;
+  // margin-left: 8px;
+  // margin-right: 8px;
   padding-left: 16px;
   padding-right: 16px;
   & > div {
@@ -33,7 +33,7 @@ const Block = styled.div`
   padding-right: 16px;
   opacity: 0.6;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.xs} {
     display: none;
   }
 
@@ -47,6 +47,14 @@ const StyledContent = styled.div`
   vertical-align: middle;
   position: relative;
   color: ${({ theme }) => theme.colors.textSubtle};
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    display: none;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: block;
+  }
 `
 
 const MainAssets = () => {

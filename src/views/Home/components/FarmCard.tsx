@@ -41,8 +41,6 @@ const FarmCard = () => {
   const farmsWithBalance = useFarmsWithBalance()
   const balancesWithValue = farmsWithBalance.farmsWithStakedBalance
 
-  console.log('balancesWithValue', balancesWithValue)
-
   // const { onReward } = useHarvestFarm(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid))
 
   // const harvestAllFarms = useCallback(async () => {

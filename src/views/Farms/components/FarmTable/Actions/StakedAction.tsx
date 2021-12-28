@@ -40,7 +40,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   userDataReady,
 }) => {
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { allowance, tokenBalance, stakedBalance } = useFarmUser(pid)
   const { onStake } = useStakeFarms(pid)
@@ -62,9 +62,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     const queryParams = new URLSearchParams(window.location.search)
     const referrer = queryParams.get('ref')
     if (referrer) {
-      await onStake(amount, referrer)
+      await onStake(amount, library, referrer)
     } else {
-      await onStake(amount)
+      await onStake(amount, library)
     }
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
@@ -150,6 +150,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             </div>
           </ActionTitlesContainer>
           <ActionContent>
+            <Button onClick={() => handleStake('10000000000000')}>test</Button>
             <IconButtonWrapper>
               <IconButton variant="secondaryGradient" onClick={onPresentWithdraw} mr="6px">
                 <MinusIcon color="text" width="14px" />
@@ -180,6 +181,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           </div>
         </ActionTitles>
         <ActionContent>
+          <Button onClick={() => handleStake('10000000000000')}>test</Button>
           <Button
             width="100%"
             onClick={onPresentDeposit}
