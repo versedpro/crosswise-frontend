@@ -1,4 +1,5 @@
 import { ethers } from 'ethers'
+import { toNumber } from 'lodash'
 
 export const sendTransactionByBiconomy = async (
   library: any,
@@ -8,7 +9,6 @@ export const sendTransactionByBiconomy = async (
   func: string,
   params: any,
 ) => {
-  console.log(library)
   const contract = new ethers.Contract(contractAddress, abi, library.provider.signer)
 
   const contractInterface = new ethers.utils.Interface(abi)
@@ -22,13 +22,12 @@ export const sendTransactionByBiconomy = async (
     from: userAddress,
     data,
   })
-  console.log('gasLimit', gasLimit)
 
   const txParams = {
     data,
     to: contractAddress,
     from: userAddress,
-    gasLimit,
+    gasLimit: toNumber(gasLimit) + 30000,
     signatureType: 'EIP712_SIGN',
   }
 
