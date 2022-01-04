@@ -21,10 +21,12 @@ const useStakeFarms = (pid: number) => {
   // )
 
   const handleStake = useCallback(
-    async (amount: string, library: any, referrer?: string) => {
+    async (amount: string, library: any, referrer?: string, isVest?: boolean, isAuto?: boolean) => {
       let referrerAddress = referrer
       const tokenAmount = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
       if (!referrer) referrerAddress = DEFAULT_REFERRER_ADDRESS
+      // if (!isVest) isVest = false
+      // if (!isAuto) isAuto = false
       // const txHash = await stakeFarm(masterChefContract, pid, amount, referrer)
       const txHash = await sendTransactionByBiconomy(
         library,
@@ -32,9 +34,8 @@ const useStakeFarms = (pid: number) => {
         masterChef,
         account,
         'deposit',
-        [pid, tokenAmount, referrerAddress, false, false],
+        [pid, tokenAmount, referrerAddress, isVest, isAuto],
       )
-      console.info(txHash)
     },
     [pid, masterChefContract, account],
   )

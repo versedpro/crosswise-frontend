@@ -28,6 +28,7 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import useMassFarm from './hooks/useMassFarm'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -190,10 +191,12 @@ const Farms: React.FC = () => {
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()
   const crssPrice = usePriceCrssBusd()
+  const [crssTokenPrice, setCrssTokenPrice] = useState(new BigNumber(0));
+  const [pendingTx, setPendingTx] = useState(false)
 
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'crosswise_farm_view' })
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
   // console.log(useWeb3React())
   const [sortOption, setSortOption] = useState('hot')
   const chosenFarmsLength = useRef(0)
@@ -213,6 +216,7 @@ const Farms: React.FC = () => {
   const [stakedOnly, setStakedOnly] = useUserFarmStakedOnly(isActive)
   const [vesting, setVesting] = useState(true)
   const [autoCompound, setAutoCompound] = useState(true)
+  const { onMassHarvest, onMassStakeReward } = useMassFarm();
 
   const activeFarms = farmsLP.filter((farm) => farm.multiplier !== '0X' && !isArchivedPid(farm.pid))
   const inactiveFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier === '0X' && !isArchivedPid(farm.pid))
@@ -229,7 +233,7 @@ const Farms: React.FC = () => {
   const stakedArchivedFarms = archivedFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
   )
-
+  
   const farmsList = useCallback(
     (farmsToDisplay: Farm[]): FarmWithStakedValue[] => {
       let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
@@ -317,6 +321,12 @@ const Farms: React.FC = () => {
     numberOfFarmsVisible,
   ])
 
+  const activePids = useMemo(() => {
+    let activeFarmPids = []
+    activeFarmPids = stakedOnlyFarms.map((farm) => farm.pid)
+    return activeFarmPids;
+  }, [stakedOnlyFarms])
+
   chosenFarmsLength.current = chosenFarmsMemoized.length
 
   useEffect(() => {
@@ -341,6 +351,25 @@ const Farms: React.FC = () => {
       setObserverIsSet(true)
     }
   }, [chosenFarmsMemoized, observerIsSet])
+
+  useEffect(() => {
+    setCrssTokenPrice(crssPrice)
+  }, [crssPrice])
+
+  const handleMassHarvest = async() => {
+    setPendingTx(true)
+    const resp = await onMassHarvest(library, activePids);
+    console.log("massHarvest resp:", resp);
+    setPendingTx(false)
+  }
+
+  const handleMassStakeReward = async() => {
+    setPendingTx(true)
+    const resp = await onMassStakeReward(library, activePids);
+    console.log("massStakeReward resp:", resp);
+    setPendingTx(false)
+  }
+  
   const rowData = chosenFarmsMemoized.map((farm) => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
@@ -384,6 +413,7 @@ const Farms: React.FC = () => {
     return row
   })
 
+
   const renderContent = (): JSX.Element => {
     if (viewMode === ViewMode.TABLE && rowData.length) {
       const columnSchema = DesktopColumnSchema
@@ -424,6 +454,7 @@ const Farms: React.FC = () => {
               displayApr={getDisplayApr(farm.apr, farm.lpRewardsApr)}
               crssPrice={crssPrice}
               account={account}
+              
               removed={false}
             />
           ))}
@@ -572,10 +603,10 @@ const Farms: React.FC = () => {
             <div style={{ display: 'flex' }}>
               <div style={{ display: 'flex', alignItems: 'baseline' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
-                  CRSS
+                  CRSS 
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  $12.435
+                 ${ parseFloat(crssTokenPrice.toString()).toFixed(4) }
                 </Text>
               </div>
 
@@ -584,24 +615,24 @@ const Farms: React.FC = () => {
                   XCRSS
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  $42.453
+                ${ parseFloat(crssTokenPrice.toString()).toFixed(4) }
                 </Text>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+              {/* <div style={{ display: 'flex', alignItems: 'baseline' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
                   STAKED
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
                   $1.812
                 </Text>
-              </div>
+              </div> */}
             </div>
             <div style={{ display: 'flex' }}>
-              <Button variant="secondaryGradient" mr="24px">
+              <Button variant="secondaryGradient" mr="24px" onClick = {() => handleMassHarvest()}>
                 Mass Harvest
               </Button>
-              <Button variant="primaryGradient">Mass Stake Reward</Button>
+              <Button variant="primaryGradient" onClick = {() => handleMassStakeReward()}>Mass Stake Reward</Button>
             </div>
           </div>
           {/** end second block */}
