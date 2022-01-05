@@ -27,6 +27,7 @@ import {
   getFarmAuctionContract,
   getXCrssTokenContract,
   getCrssTokenContract,
+  getPriceConsumerContract,
 } from 'utils/contractHelpers'
 
 // Imports below migrated from Exchange useContract.ts
@@ -39,7 +40,7 @@ import { ERC20_BYTES32_ABI } from '../config/abi/erc20'
 import ERC20_ABI from '../config/abi/erc20.json'
 import WETH_ABI from '../config/abi/weth.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../config/constants/multicall'
-import { getContract } from '../utils'
+import { getContract, getRouterContract } from '../utils'
 
 /**
  * Helper hooks to get specific contracts (by ABI)
@@ -171,6 +172,16 @@ export const useSpecialBunnyCakeVaultContract = () => {
 export const useSpecialBunnyPredictionContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getBunnySpecialPredictionContract(library.getSigner()), [library])
+}
+
+export const usePriceConsumerContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getPriceConsumerContract(library.getSigner()), [library])
+}
+
+export const useRouterContract = () => {
+  const { account, chainId, library } = useActiveWeb3React()
+  return useMemo(() => getRouterContract(chainId, library, account), [chainId, library, account])
 }
 
 export const useFarmAuctionContract = () => {
