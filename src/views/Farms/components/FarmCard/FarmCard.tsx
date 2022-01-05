@@ -36,7 +36,6 @@ const ExpandingWrapper = styled.div`
   overflow: hidden;
 `
 
-
 interface FarmCardProps {
   farm: FarmWithStakedValue
   displayApr: string
@@ -48,7 +47,6 @@ interface FarmCardProps {
 const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, crssPrice, account }) => {
   const { t } = useTranslation()
   const [showExpandableSection, setShowExpandableSection] = useState(false)
-
 
   const totalValueFormatted =
     farm.liquidity && farm.liquidity.gt(0)

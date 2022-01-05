@@ -39,7 +39,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   pid,
   addLiquidityUrl,
   isVest,
-  isAuto
+  isAuto,
 }) => {
   // console.log("vestval", isVest)
   // console.log("autoVal", isAuto)

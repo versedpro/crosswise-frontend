@@ -174,7 +174,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const [vestVal, setVestVal] = useState(false)
   const [configFlag, setConfigFlag] = useState(false)
   useEffect(() => {
-    if(!configFlag){
+    if (!configFlag) {
       setConfigFlag(true)
       setAutoVal(farmOption.isAuto)
       setVestVal(farmOption.isVest)
@@ -201,15 +201,15 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const info = `https://crosswise.info/pool/${lpAddress}`
 
   const changeVest = () => {
-    console.log("change vest")
+    console.log('change vest')
     setVestVal(!vestVal)
   }
 
   const changeAuto = () => {
-    console.log("change auto")
+    console.log('change auto')
     setAutoVal(!autoVal)
   }
-  
+
   return (
     <ColumnWrap>
       <Container expanded={expanded}>
@@ -254,14 +254,24 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             {t('Vesting')}
           </Text>
           {/* <Toggle checked={vesting} scale="sm" onChange={() => setVesting(!vesting)} /> */}
-          <Toggle scale="sm" disabled={!userDataReady || !stakedBalance.eq(0)} checked={vestVal} onChange={() => changeVest()}/>
+          <Toggle
+            scale="sm"
+            disabled={!userDataReady || !stakedBalance.eq(0)}
+            checked={vestVal}
+            onChange={() => changeVest()}
+          />
         </ToggleWrapper>
 
         <ToggleWrapper>
           <Text fontSize="14px" pr="15px" color="textSecondary">
             {t('Auto-compound')}
           </Text>
-          <Toggle scale="sm" disabled={!userDataReady || !stakedBalance.eq(0)} checked={autoVal} onChange={() => changeAuto()}/>
+          <Toggle
+            scale="sm"
+            disabled={!userDataReady || !stakedBalance.eq(0)}
+            checked={autoVal}
+            onChange={() => changeAuto()}
+          />
         </ToggleWrapper>
       </OptionContainer>
     </ColumnWrap>

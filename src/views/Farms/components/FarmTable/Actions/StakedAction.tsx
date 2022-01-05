@@ -41,7 +41,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   token,
   userDataReady,
   isVest,
-  isAuto
+  isAuto,
 }) => {
   const { t } = useTranslation()
   const { account, library } = useWeb3React()

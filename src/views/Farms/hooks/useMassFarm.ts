@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
 import { harvestFarm } from 'utils/calls'
 import { useMasterchef } from 'hooks/useContract'
-import { sendTransactionByBiconomy } from 'utils/useBiconomy';
-import masterChef from 'config/abi/masterchef.json';
-import { useWeb3React } from '@web3-react/core';
-import BigNumber from 'bignumber.js';
-import { DEFAULT_REFERRER_ADDRESS, DEFAULT_TOKEN_DECIMAL } from 'config';
+import { sendTransactionByBiconomy } from 'utils/useBiconomy'
+import masterChef from 'config/abi/masterchef.json'
+import { useWeb3React } from '@web3-react/core'
+import BigNumber from 'bignumber.js'
+import { DEFAULT_REFERRER_ADDRESS, DEFAULT_TOKEN_DECIMAL } from 'config'
 
 const useMassFarm = () => {
   const masterChefContract = useMasterchef()
@@ -13,13 +13,13 @@ const useMassFarm = () => {
 
   const massHarvest = useCallback(
     async (library: any, pids: number[]) => {
-        const status = await sendTransactionByBiconomy(
+      const status = await sendTransactionByBiconomy(
         library,
         masterChefContract.address,
         masterChef,
         account,
         'massHarvest',
-        [pids]
+        [pids],
       )
       return status
     },
@@ -28,13 +28,13 @@ const useMassFarm = () => {
 
   const massStakeReward = useCallback(
     async (library: any, pids: number[]) => {
-        const status = await sendTransactionByBiconomy(
+      const status = await sendTransactionByBiconomy(
         library,
         masterChefContract.address,
         masterChef,
         account,
         'massStakeReward',
-        [pids]
+        [pids],
       )
       return status
     },

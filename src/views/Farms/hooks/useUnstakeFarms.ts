@@ -2,10 +2,10 @@ import { useCallback } from 'react'
 import { unstakeFarm } from 'utils/calls'
 import { useMasterchef } from 'hooks/useContract'
 import { sendTransactionByBiconomy } from 'utils/useBiconomy'
-import masterChef from 'config/abi/masterchef.json';
-import { useWeb3React } from '@web3-react/core';
-import { DEFAULT_TOKEN_DECIMAL } from 'config';
-import BigNumber from 'bignumber.js';
+import masterChef from 'config/abi/masterchef.json'
+import { useWeb3React } from '@web3-react/core'
+import { DEFAULT_TOKEN_DECIMAL } from 'config'
+import BigNumber from 'bignumber.js'
 
 const useUnstakeFarms = (pid: number) => {
   const masterChefContract = useMasterchef()
@@ -28,7 +28,7 @@ const useUnstakeFarms = (pid: number) => {
         masterChef,
         account,
         'withdraw',
-        [pid, tokenAmount]
+        [pid, tokenAmount],
       )
     },
     [pid, masterChefContract, account],

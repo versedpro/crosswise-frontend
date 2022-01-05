@@ -30,7 +30,6 @@ const ActionWrapper = styled.div`
   background-image: ${({ theme }) => theme.colors.gradients.gradthird};
 `
 
-
 const OptionContainer = styled.div`
   display: flex;
   padding: 10px 0px;
@@ -84,13 +83,12 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   }
 
   useEffect(() => {
-    if(!configFlag){
+    if (!configFlag) {
       setConfigFlag(true)
       setAutoVal(farm.userData.isAuto)
       setVestVal(farm.userData.isVest)
     }
   }, [farm, configFlag])
-  
 
   const stakedBalance = useMemo(() => {
     return new BigNumber(stakedBalanceAsString)
@@ -144,8 +142,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
                 tokenName={farm.lpSymbol}
                 pid={pid}
                 addLiquidityUrl={addLiquidityUrl}
-                isVest = {vestVal}
-                isAuto = {autoVal}
+                isVest={vestVal}
+                isAuto={autoVal}
               />
             ) : (
               <Button width="50%" disabled={requestedApproval} onClick={handleApprove} variant="primaryGradient">
@@ -156,23 +154,32 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
           </Flex>
         </ActionWrapper>
 
-          {/* Auto Compound & Vesting trigger button start */}
-          <OptionContainer>
-            <ToggleWrapper>
-              <Text fontSize="14px" pr="15px" color="textSecondary">
-                {t('Vesting')}
-              </Text>
-              <Toggle scale="sm" disabled={!account || !stakedBalance.eq(0)} checked={vestVal} onChange={() => changeVest()}/>
-              
-            </ToggleWrapper>
+        {/* Auto Compound & Vesting trigger button start */}
+        <OptionContainer>
+          <ToggleWrapper>
+            <Text fontSize="14px" pr="15px" color="textSecondary">
+              {t('Vesting')}
+            </Text>
+            <Toggle
+              scale="sm"
+              disabled={!account || !stakedBalance.eq(0)}
+              checked={vestVal}
+              onChange={() => changeVest()}
+            />
+          </ToggleWrapper>
 
-            <ToggleWrapper>
-              <Text fontSize="14px" pr="15px" color="textSecondary">
-                {t('Auto Compound')}
-              </Text>
-              <Toggle scale="sm" disabled={!account || !stakedBalance.eq(0)} checked={autoVal} onChange={() => changeAuto()}/>
-            </ToggleWrapper>
-          </OptionContainer>
+          <ToggleWrapper>
+            <Text fontSize="14px" pr="15px" color="textSecondary">
+              {t('Auto Compound')}
+            </Text>
+            <Toggle
+              scale="sm"
+              disabled={!account || !stakedBalance.eq(0)}
+              checked={autoVal}
+              onChange={() => changeAuto()}
+            />
+          </ToggleWrapper>
+        </OptionContainer>
       </>
     )
   }
@@ -221,7 +228,6 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         </Flex>
       </Flex>
       {!account ? <ConnectWalletButton mt="8px" width="100%" /> : rederApprovalOrActioinButton()}
-
     </Action>
   )
 }
