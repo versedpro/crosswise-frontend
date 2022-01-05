@@ -29,6 +29,8 @@ const IconButtonWrapper = styled.div`
 
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
+  isVest: boolean
+  isAuto: boolean
 }
 
 const Staked: React.FunctionComponent<StackedActionProps> = ({
@@ -38,6 +40,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   quoteToken,
   token,
   userDataReady,
+  isVest,
+  isAuto,
 }) => {
   const { t } = useTranslation()
   const { account, library } = useWeb3React()
@@ -62,15 +66,15 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     const queryParams = new URLSearchParams(window.location.search)
     const referrer = queryParams.get('ref')
     if (referrer) {
-      await onStake(amount, library, referrer)
+      await onStake(amount, library, referrer, isVest, isAuto)
     } else {
-      await onStake(amount, library)
+      await onStake(amount, library, '', isVest, isAuto)
     }
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
   const handleUnstake = async (amount: string) => {
-    await onUnstake(amount)
+    await onUnstake(amount, library)
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
-import { Card, Flex, Text, Skeleton } from '@crosswise/uikit'
+import { Card, Flex, Text, Skeleton, Toggle } from '@crosswise/uikit'
 import { Farm } from 'state/types'
 import { getBscScanLink } from 'utils'
 import { useTranslation } from 'contexts/Localization'
@@ -46,7 +46,6 @@ interface FarmCardProps {
 
 const FarmCard: React.FC<FarmCardProps> = ({ farm, displayApr, removed, crssPrice, account }) => {
   const { t } = useTranslation()
-
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const totalValueFormatted =

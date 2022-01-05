@@ -18,7 +18,7 @@ interface FarmCardActionsProps {
 }
 
 const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
   const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
   const [pendingTx, setPendingTx] = useState(false)
@@ -37,7 +37,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
         onClick={async () => {
           setPendingTx(true)
           try {
-            await onReward()
+            await onReward(library)
             toastSuccess(
               `${t('Harvested')}!`,
               t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'CAKE' }),

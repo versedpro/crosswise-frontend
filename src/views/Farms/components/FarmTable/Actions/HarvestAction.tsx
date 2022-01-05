@@ -38,7 +38,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   const { onReward } = useHarvestFarm(pid)
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { account } = useWeb3React()
+  const { account, library } = useWeb3React()
 
   return (
     <ActionContainer>
@@ -100,7 +100,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           onClick={async () => {
             setPendingTx(true)
             try {
-              await onReward()
+              await onReward(library)
               toastSuccess(
                 `${t('Harvested')}!`,
                 t('Your %symbol% earnings have been sent to your wallet!', { symbol: 'CRSS' }),

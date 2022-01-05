@@ -172,10 +172,14 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const farm = details
   const [autoVal, setAutoVal] = useState(false)
   const [vestVal, setVestVal] = useState(false)
+  const [configFlag, setConfigFlag] = useState(false)
   useEffect(() => {
-    setAutoVal(farmOption.isAuto)
-    setVestVal(farmOption.isVest)
-  }, [farmOption, userDataReady, details])
+    if (!configFlag) {
+      setConfigFlag(true)
+      setAutoVal(farmOption.isAuto)
+      setVestVal(farmOption.isVest)
+    }
+  }, [farmOption, userDataReady, details, configFlag])
   const { t } = useTranslation()
   let stakedBalance = BIG_ZERO
   const stakedBalanceBigNumber = new BigNumber(details.userData.stakedBalance)
@@ -195,6 +199,17 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const lpAddress = getAddress(farm.lpAddresses)
   const bsc = getBscScanLink(lpAddress, 'address')
   const info = `https://crosswise.info/pool/${lpAddress}`
+
+  const changeVest = () => {
+    console.log('change vest')
+    setVestVal(!vestVal)
+  }
+
+  const changeAuto = () => {
+    console.log('change auto')
+    setAutoVal(!autoVal)
+  }
+
   return (
     <ColumnWrap>
       <Container expanded={expanded}>
@@ -230,7 +245,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
 
         <ActionContainer>
           <HarvestAction {...farm} userDataReady={userDataReady} />
-          <StakedAction {...farm} userDataReady={userDataReady} />
+          <StakedAction {...farm} userDataReady={userDataReady} isVest={vestVal} isAuto={autoVal} />
         </ActionContainer>
       </Container>
       <OptionContainer>
@@ -239,14 +254,24 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
             {t('Vesting')}
           </Text>
           {/* <Toggle checked={vesting} scale="sm" onChange={() => setVesting(!vesting)} /> */}
-          <Toggle scale="sm" disabled={!userDataReady || !stakedBalance.eq(0)} checked={vestVal} />
+          <Toggle
+            scale="sm"
+            disabled={!userDataReady || !stakedBalance.eq(0)}
+            checked={vestVal}
+            onChange={() => changeVest()}
+          />
         </ToggleWrapper>
 
         <ToggleWrapper>
           <Text fontSize="14px" pr="15px" color="textSecondary">
             {t('Auto-compound')}
           </Text>
-          <Toggle scale="sm" disabled={!userDataReady || !stakedBalance.eq(0)} checked={autoVal} />
+          <Toggle
+            scale="sm"
+            disabled={!userDataReady || !stakedBalance.eq(0)}
+            checked={autoVal}
+            onChange={() => changeAuto()}
+          />
         </ToggleWrapper>
       </OptionContainer>
     </ColumnWrap>

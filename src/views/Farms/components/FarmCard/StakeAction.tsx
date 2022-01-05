@@ -21,6 +21,8 @@ interface FarmCardActionsProps {
   tokenName?: string
   pid?: number
   addLiquidityUrl?: string
+  isVest: boolean
+  isAuto: boolean
 }
 
 const IconButtonWrapper = styled.div`
@@ -36,7 +38,12 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   tokenName,
   pid,
   addLiquidityUrl,
+  isVest,
+  isAuto,
 }) => {
+  // console.log("vestval", isVest)
+  // console.log("autoVal", isAuto)
+
   const { t } = useTranslation()
   const { onStake } = useStakeFarms(pid)
   const { onUnstake } = useUnstakeFarms(pid)
@@ -46,12 +53,15 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   const lpPrice = useLpTokenPrice(tokenName)
 
   const handleStake = async (amount: string) => {
-    await onStake(amount, library)
+    // Deposit with referrer link
+    const queryParams = new URLSearchParams(window.location.search)
+    const referrer = queryParams.get('ref')
+    await onStake(amount, library, referrer, isVest, isAuto)
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
   const handleUnstake = async (amount: string) => {
-    await onUnstake(amount)
+    await onUnstake(amount, library)
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
