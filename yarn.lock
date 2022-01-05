@@ -1704,10 +1704,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@crosswise/uikit@^0.2.8":
-  version "0.2.8"
-  resolved "https://registry.npmjs.org/@crosswise/uikit/-/uikit-0.2.8.tgz#5b36422ac894aa8ecd776e33fb4c748e65c38ca4"
-  integrity sha512-ovAow+IPwGsJtkgaBHzv3c/OzXXQvC2419CYF03djkuVHqSK9LdZq39TU2zcGm6+pH6H3I/XlVaN0Y97AY9vAg==
+"@crosswise/uikit@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.npmjs.org/@crosswise/uikit/-/uikit-0.2.9.tgz#1b453eee37c8b3ef5b442234030b16ea3aece12d"
+  integrity sha512-X3DIxtxMKYPCIsJAb6YIXp5Jnn9tps9uhqIKVN0io2+UN6NbgMwjNllf77j7EF1Kvdv41ygOA2sj67liIsMJHg==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
