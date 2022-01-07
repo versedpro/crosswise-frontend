@@ -1,9 +1,0 @@
-{
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "editor.tabSize": 4,
-  "editor.wordWrap": "wordWrapColumn",
-  "editor.wordWrapColumn": 80,
-  "editor.rulers": [80, 120],    
-}
