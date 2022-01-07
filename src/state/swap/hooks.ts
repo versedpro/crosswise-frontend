@@ -1,16 +1,18 @@
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@crosswise/sdk'
+import { Currency, CurrencyAmount, ETHER, Fraction, JSBI, Price, Token, TokenAmount, Trade } from '@crosswise/sdk'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useENS from 'hooks/ENS/useENS'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import useChainLinkPrice, { useMaxSpreadTolerance } from 'hooks/useChainLinkPrice'
 import { useCurrency } from 'hooks/Tokens'
 import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
 import useParsedQueryString from 'hooks/useParsedQueryString'
 import { useTranslation } from 'contexts/Localization'
-import { isAddress } from 'utils'
+import { basisPointsToPercent, getRouterContract, isAddress } from 'utils'
 import { computeSlippageAdjustedAmounts } from 'utils/prices'
+import { PairState, usePair } from 'hooks/usePairs'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
 import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies, typeInput } from './actions'
@@ -104,12 +106,53 @@ function involvesAddress(trade: Trade, checksummedAddress: string): boolean {
   )
 }
 
+export function useVerifyPrice(
+  executionPrice: Price | undefined,
+  inputCurrency: Currency | undefined,
+  outputCurrency: Currency | undefined,
+): {
+  chainLinkPrice: Price | undefined
+  inputError?: string
+} {
+  const { t } = useTranslation()
+
+  const chainLinkPrice = useChainLinkPrice(inputCurrency, outputCurrency)
+
+  const [pairState, pair] = usePair(inputCurrency, outputCurrency)
+  const maxSpreadTolerance = useMaxSpreadTolerance(pair?.liquidityToken)
+
+  if (pairState !== PairState.EXISTS) {
+    return {
+      chainLinkPrice: undefined,
+      inputError: t('Select a token'),
+    }
+  }
+  if (!executionPrice || !chainLinkPrice) {
+    return {
+      chainLinkPrice: undefined,
+      inputError: t('Wait for execution price'),
+    }
+  }
+
+  const minPrice: Price = executionPrice.lessThan(chainLinkPrice) ? executionPrice : chainLinkPrice
+  const maxPrice: Price = executionPrice.greaterThan(chainLinkPrice) ? executionPrice : chainLinkPrice
+
+  const pct = basisPointsToPercent(maxSpreadTolerance)
+  const adjustPrice = new Fraction(JSBI.BigInt(1)).add(pct).multiply(minPrice)
+
+  return {
+    chainLinkPrice,
+    inputError: maxPrice.lessThan(adjustPrice) ? undefined : t('Invalid execution price'),
+  }
+}
+
 // from the current swap inputs, compute the best trade and return it.
 export function useDerivedSwapInfo(): {
   currencies: { [field in Field]?: Currency }
   currencyBalances: { [field in Field]?: CurrencyAmount }
   parsedAmount: CurrencyAmount | undefined
   v2Trade: Trade | undefined
+  chainLinkPrice: Price | undefined
   inputError?: string
 } {
   const { account } = useActiveWeb3React()
@@ -189,11 +232,22 @@ export function useDerivedSwapInfo(): {
     inputError = t('Insufficient %symbol% balance', { symbol: amountIn.currency.symbol })
   }
 
+  const { chainLinkPrice, inputError: verifyError } = useVerifyPrice(
+    v2Trade?.executionPrice,
+    inputCurrency ?? undefined,
+    outputCurrency ?? undefined,
+  )
+
+  if (verifyError) {
+    inputError = inputError ?? verifyError
+  }
+
   return {
     currencies,
     currencyBalances,
     parsedAmount,
     v2Trade: v2Trade ?? undefined,
+    chainLinkPrice,
     inputError,
   }
 }
