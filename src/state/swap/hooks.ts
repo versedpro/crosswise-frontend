@@ -109,54 +109,41 @@ function involvesAddress(trade: Trade, checksummedAddress: string): boolean {
 export function useVerifyPrice(
   executionPrice: Price | undefined,
   inputCurrency: Currency | undefined,
-  outputCurrency: Currency | undefined
+  outputCurrency: Currency | undefined,
 ): {
-  chainLinkPrice: Price | undefined,
+  chainLinkPrice: Price | undefined
   inputError?: string
 } {
   const { t } = useTranslation()
 
-  const chainLinkPrice = useChainLinkPrice(
-    inputCurrency,
-    outputCurrency
-  );
+  const chainLinkPrice = useChainLinkPrice(inputCurrency, outputCurrency)
 
-  const [pairState, pair] = usePair(inputCurrency, outputCurrency);
-  const maxSpreadTolerance = useMaxSpreadTolerance(pair?.liquidityToken);
+  const [pairState, pair] = usePair(inputCurrency, outputCurrency)
+  const maxSpreadTolerance = useMaxSpreadTolerance(pair?.liquidityToken)
 
   if (pairState !== PairState.EXISTS) {
     return {
       chainLinkPrice: undefined,
-      inputError: t('Select a token')
+      inputError: t('Select a token'),
     }
   }
   if (!executionPrice || !chainLinkPrice) {
     return {
       chainLinkPrice: undefined,
-      inputError: t('Wait for execution price')
+      inputError: t('Wait for execution price'),
     }
   }
 
-  const minPrice: Price =
-    executionPrice.lessThan(chainLinkPrice)
-    ? executionPrice
-    : chainLinkPrice;
-  const maxPrice: Price = 
-    executionPrice.greaterThan(chainLinkPrice)
-    ? executionPrice
-    : chainLinkPrice;
+  const minPrice: Price = executionPrice.lessThan(chainLinkPrice) ? executionPrice : chainLinkPrice
+  const maxPrice: Price = executionPrice.greaterThan(chainLinkPrice) ? executionPrice : chainLinkPrice
 
-  const pct = basisPointsToPercent(maxSpreadTolerance);
-  const adjustPrice = new Fraction(JSBI.BigInt(1)).add(pct).multiply(
-    minPrice
-  );
+  const pct = basisPointsToPercent(maxSpreadTolerance)
+  const adjustPrice = new Fraction(JSBI.BigInt(1)).add(pct).multiply(minPrice)
 
   return {
     chainLinkPrice,
-    inputError: maxPrice.lessThan(adjustPrice)
-      ? undefined
-      : t('Invalid execution price')
-  };
+    inputError: maxPrice.lessThan(adjustPrice) ? undefined : t('Invalid execution price'),
+  }
 }
 
 // from the current swap inputs, compute the best trade and return it.
@@ -248,8 +235,8 @@ export function useDerivedSwapInfo(): {
   const { chainLinkPrice, inputError: verifyError } = useVerifyPrice(
     v2Trade?.executionPrice,
     inputCurrency ?? undefined,
-    outputCurrency ?? undefined
-  );
+    outputCurrency ?? undefined,
+  )
 
   if (verifyError) {
     inputError = inputError ?? verifyError
