@@ -67,6 +67,23 @@ export const useTotalSupply = () => {
   return totalSupply
 }
 
+export const useMaxSupply = () => {
+  const { slowRefresh } = useRefresh()
+  const [maxSupply, setMaxSupply] = useState<BigNumber>()
+
+  useEffect(() => {
+    async function fetchMaxSupply() {
+      const cakeContract = getCakeContract()
+      const supply = await cakeContract.maxSupply()
+      setMaxSupply(new BigNumber(supply.toString()))
+    }
+
+    fetchMaxSupply()
+  }, [slowRefresh])
+
+  return maxSupply
+}
+
 export const useBurnedBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(BIG_ZERO)
   const { slowRefresh } = useRefresh()

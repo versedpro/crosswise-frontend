@@ -4,6 +4,11 @@ import { Heading, Card, CardBody, Button, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
 import Column from 'components/Layout/Column'
+import MarketCap from './StatisticComponents/MarketCap'
+import Circulation from './StatisticComponents/Circulation'
+import BurnedCrss from './StatisticComponents/BurnedCrss'
+import Tvl from './StatisticComponents/Tvl'
+import ComingSoonCard from './ComingSoonCard'
 
 const StyledStatisticCard = styled(Card)`
   background-image: url('/images/home/jupiter/planet-jupiter.png');
@@ -44,29 +49,39 @@ const StatisticCard = () => {
         <StyledRow>
           <StyledColumn>
             <Label color="textSubtle">CRSS USD Market Cap:</Label>
-            <Text fontSize="20px">0</Text>
+            <Text fontSize="20px">
+              <MarketCap />
+            </Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">CRSS in Circulation</Label>
-            <Text fontSize="20px">0,00%</Text>
+            <Text fontSize="20px">
+              <Circulation />
+            </Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">CRSS Burned</Label>
-            <Text fontSize="20px">0</Text>
+            <Text fontSize="20px">
+              <BurnedCrss />
+            </Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">DEX Liquidity</Label>
-            <Text fontSize="20px">0</Text>
+            <Text fontSize="20px">-</Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">TVL Value Locked</Label>
-            <Text fontSize="20px">0</Text>
+            <Text fontSize="20px">
+              <Tvl />
+            </Text>
           </StyledColumn>
         </StyledRow>
         <Actions>
-          <Button id="check-it" variant="primaryGradient">
-            {t('Check It')}
-          </Button>
+          <ComingSoonCard isBlock={false}>
+            <Button id="check-it" variant="primaryGradient">
+              {t('Check It')}
+            </Button>
+          </ComingSoonCard>
         </Actions>
       </CardBody>
     </StyledStatisticCard>
