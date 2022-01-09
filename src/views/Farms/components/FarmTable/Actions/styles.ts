@@ -8,6 +8,10 @@ export const ActionContainer = styled.div`
   flex-basis: 0;
   margin-bottom: 16px;
 
+  border: 2px solid ${({ theme }) => theme.colors.input};
+  box-shadow: inset 1px 1px 18px 0px ${({ theme }) => theme.colors.background};
+  border-radius: 20px;
+
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 12px;
     margin-right: 12px;
