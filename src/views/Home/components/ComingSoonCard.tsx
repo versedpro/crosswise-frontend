@@ -6,6 +6,7 @@ import Row from 'components/Layout/Row'
 import { useWeb3React } from '@web3-react/core'
 
 const StyledComingSoonCard = styled(Card)`
+  border: none;
   & > div {
     height: 100%;
   }
@@ -18,7 +19,7 @@ const StyledDiv = styled('div')`
   }
 `
 const MainDiv = styled(StyledDiv)`
-  filter: blur(5px);
+  filter: blur(3px);
 `
 
 const OverlayDiv = styled(StyledDiv)`
@@ -34,7 +35,7 @@ const OverlayDiv = styled(StyledDiv)`
   }
 `
 
-const ComingSoonCard = ({ children }) => {
+const ComingSoonCard = ({ children, isBlock = true }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
 
@@ -42,9 +43,13 @@ const ComingSoonCard = ({ children }) => {
     <StyledComingSoonCard>
       <MainDiv>{children}</MainDiv>
       <OverlayDiv>
-        <Heading scale="xl" color="">
-          {`${t('Coming Soon')} `}
-        </Heading>
+        {isBlock ? (
+          <Heading scale="xl" color="">
+            {`${t('Coming Soon')} `}
+          </Heading>
+        ) : (
+          <></>
+        )}
       </OverlayDiv>
     </StyledComingSoonCard>
   )

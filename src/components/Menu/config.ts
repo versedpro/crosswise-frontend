@@ -83,11 +83,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     icon: 'InfoIcon',
     href: '/info',
   },
-  {
-    label: t('Orderbook'),
-    icon: 'ExplorerIcon',
-    href: '/orderbook/tradenow/all',
-  },
+  // {
+  //   label: t('Orderbook'),
+  //   icon: 'ExplorerIcon',
+  //   href: '/orderbook/tradenow/all',
+  // },
   // {
   //   label: t('IFO'),
   //   icon: 'IfoIcon',
@@ -97,11 +97,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
     label: t('More'),
     icon: 'MoreIcon',
     items: [
-      {
-        label: t('Settings'),
-        icon: 'SettingsIcon',
-        href: '/settings',
-      },
+      // {
+      //   label: t('Settings'),
+      //   icon: 'SettingsIcon',
+      //   href: '/settings',
+      // },
       {
         label: t('Contact'),
         href: 'https://t.me/crosswise',
@@ -116,7 +116,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       },
       {
         label: t('Docs'),
-        href: 'https://docs.crosswise.finance',
+        href: 'https://crosswise.gitbook.io/crosswise-litepaper/',
       },
       {
         label: t('Blog'),

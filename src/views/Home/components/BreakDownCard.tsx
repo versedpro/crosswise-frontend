@@ -6,6 +6,7 @@ import { formatLocalisedCompactNumber } from 'utils/formatBalance'
 import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
 import Column from 'components/Layout/Column'
+import CrssWalletBalance from './BreakDownComponents/CrssWalletBalance'
 
 const StyledBreakDownCard = styled(Card)`
   background-image: url('/images/home/jupiter/planet-jupiter.png');
@@ -55,7 +56,9 @@ const BreakDownCard = () => {
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">Balance</Label>
-            <Text fontSize="20px">0</Text>
+            <Text fontSize="20px">
+              <CrssWalletBalance />
+            </Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">Referal Reward</Label>
@@ -63,7 +66,7 @@ const BreakDownCard = () => {
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">Governance Reward</Label>
-            <Text fontSize="20px">0</Text>
+            <Text fontSize="20px">-</Text>
           </StyledColumn>
         </StyledRow>
       </CardBody>
