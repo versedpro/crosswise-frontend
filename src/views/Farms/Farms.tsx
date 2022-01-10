@@ -10,6 +10,7 @@ import Page from 'components/Layout/Page'
 import { useFarms, usePollFarmsData, usePriceCrssBusd} from 'state/farms/hooks'
 import useTVL from 'hooks/useTvl'
 import useFarmTvl from 'hooks/useFarmTvl'
+import useUserFarmStaked from 'hooks/useUserFarmStaked'
 
 import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
@@ -223,6 +224,7 @@ const Farms: React.FC = () => {
   // const [totalTvl, setTotalTvl] = useState(new BigNumber(0));
   const totalTvl = useTVL()
   const farmTvl = useFarmTvl()
+  const userStakedVal = useUserFarmStaked()
   const [CrssTokenEarned, setCrssTokenEarned] = useState(0)
   const [pendingTx, setPendingTx] = useState(false)
 
@@ -676,6 +678,16 @@ const Farms: React.FC = () => {
                 <Text color="text" fontSize="13px" mr="24px">
                   {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}
                   ${CrssTokenEarned.toFixed(2)}
+                </Text>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection:'column' }}>
+                <Text color="textSecondary" fontSize="13px" pr="8px">
+                  Your Staked Value
+                </Text>
+                <Text color="text" fontSize="13px" mr="24px">
+                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}
+                  ${userStakedVal.toFixed(2)}
                 </Text>
               </div>
 
