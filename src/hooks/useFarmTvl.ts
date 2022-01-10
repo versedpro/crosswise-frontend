@@ -20,7 +20,7 @@ function useFarmTvl() {
     farms.map((farm) => {
       if (farm.lpTotalInQuoteToken && farm.lpTotalInQuoteToken.toString() !== 'NaN') {
         let quoteTokenPriceUsd = new BigNumber(1)
-        if (farm.quoteToken.symbol === 'WBNB') {
+        if (farm.quoteToken.symbol === 'wBNB') {
           quoteTokenPriceUsd = quoteTokenPriceUsd.times(bnbPrice)
         } else if (farm.quoteToken.symbol === 'BUSD') {
           quoteTokenPriceUsd = quoteTokenPriceUsd.times(1)

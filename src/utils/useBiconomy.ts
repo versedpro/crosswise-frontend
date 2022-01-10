@@ -32,9 +32,9 @@ export const sendTransactionByBiconomy = async (
   }
 
   const tx = await library.provider.send('eth_sendTransaction', [txParams])
-  console.log('transactionHash', tx)
+  // console.log('transactionHash', tx)
   library.provider.once(tx, (transaction) => {
-    console.log(transaction)
+    // console.log(transaction)
   })
   const receipt = tx.wait()
   return receipt.status
