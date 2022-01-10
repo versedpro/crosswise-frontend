@@ -69,6 +69,13 @@ const HeaderTopBar = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-direction: row;
+  }
 `
 
 const PoolHeaderLayout = styled.div`
