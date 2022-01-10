@@ -152,7 +152,7 @@ export function useDerivedSwapInfo(): {
   currencyBalances: { [field in Field]?: CurrencyAmount }
   parsedAmount: CurrencyAmount | undefined
   v2Trade: Trade | undefined
-  chainLinkPrice: Price | undefined
+  // chainLinkPrice: Price | undefined
   inputError?: string
 } {
   const { account } = useActiveWeb3React()
@@ -232,22 +232,22 @@ export function useDerivedSwapInfo(): {
     inputError = t('Insufficient %symbol% balance', { symbol: amountIn.currency.symbol })
   }
 
-  const { chainLinkPrice, inputError: verifyError } = useVerifyPrice(
-    v2Trade?.executionPrice,
-    inputCurrency ?? undefined,
-    outputCurrency ?? undefined,
-  )
+  // const { chainLinkPrice, inputError: verifyError } = useVerifyPrice(
+  //   v2Trade?.executionPrice,
+  //   inputCurrency ?? undefined,
+  //   outputCurrency ?? undefined,
+  // )
 
-  if (verifyError) {
-    inputError = inputError ?? verifyError
-  }
+  // if (verifyError) {
+  //   inputError = inputError ?? verifyError
+  // }
 
   return {
     currencies,
     currencyBalances,
     parsedAmount,
     v2Trade: v2Trade ?? undefined,
-    chainLinkPrice,
+    // chainLinkPrice,
     inputError,
   }
 }
