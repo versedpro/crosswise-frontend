@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon, Link } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
+import { useWeb3React } from '@web3-react/core'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
@@ -11,6 +12,10 @@ import { getAddress } from 'utils/addressHelpers'
 import PercentageButton from './PercentageButton'
 import useStakePool from '../../../hooks/useStakePool'
 import useUnstakePool from '../../../hooks/useUnstakePool'
+
+
+import useUnstakeFarms from '../../../../Farms/hooks/useUnstakeFarms'
+import useStakeFarms from '../../../../Farms/hooks/useStakeFarms'
 
 interface StakeModalProps {
   isBnbPool: boolean
@@ -35,14 +40,20 @@ const StakeModal: React.FC<StakeModalProps> = ({
 }) => {
   const { sousId, stakingToken, userData, stakingLimit, earningToken } = pool
   const { t } = useTranslation()
+  const { account, library } = useWeb3React()
   const { theme } = useTheme()
-  const { onStake } = useStakePool(sousId, isBnbPool)
-  const { onUnstake } = useUnstakePool(sousId, pool.enableEmergencyWithdraw)
+  const isCrssManual = sousId === 0;
+  const { onStake } = useStakeFarms(0)
+  const { onUnstake } = useUnstakeFarms(0)
+  // const { onStake } = useStakePool(sousId, isBnbPool)
+  // const { onUnstake } = useUnstakePool(sousId, pool.enableEmergencyWithdraw)
   const { toastSuccess, toastError } = useToast()
   const [pendingTx, setPendingTx] = useState(false)
   const [stakeAmount, setStakeAmount] = useState('')
   const [hasReachedStakeLimit, setHasReachedStakedLimit] = useState(false)
   const [percent, setPercent] = useState(0)
+
+
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {
       return userData.stakedBalance
@@ -82,12 +93,18 @@ const StakeModal: React.FC<StakeModalProps> = ({
   }
 
   const handleConfirmClick = async () => {
+    console.log("stake cnfirm")
     setPendingTx(true)
 
     if (isRemovingStake) {
       // unstaking
       try {
-        await onUnstake(stakeAmount, stakingToken.decimals)
+        if(isCrssManual){
+          await onUnstake(stakeAmount, library)
+        }else{
+          console.log("other type pool unstake")
+           // await onUnstake(stakeAmount, stakingToken.decimals)
+        }
         toastSuccess(
           `${t('Unstaked')}!`,
           t('Your %symbol% earnings have also been harvested to your wallet!', {
@@ -103,7 +120,13 @@ const StakeModal: React.FC<StakeModalProps> = ({
     } else {
       try {
         // staking
-        await onStake(stakeAmount, stakingToken.decimals)
+        if(isCrssManual){
+          await onStake(stakeAmount, library, '', true, false)
+        }else{
+          // await onStake(stakeAmount, stakingToken.decimals)
+          console.log("other type pool stake");
+        }
+        
         toastSuccess(
           `${t('Staked')}!`,
           t('Your %symbol% funds have been staked in the pool!', {

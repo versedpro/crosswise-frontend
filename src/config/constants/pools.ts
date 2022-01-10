@@ -7,7 +7,7 @@ const pools: PoolConfig[] = [
     stakingToken: tokens.crss,
     earningToken: tokens.crss,
     contractAddress: {
-      97: '0x4325e2ba865a7e582D98204a85bA276AcD476558',
+      97: '0x84930868758E8f706a156d725D81f725230eE7b2',
       56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
     },
     poolCategory: PoolCategory.CORE,
