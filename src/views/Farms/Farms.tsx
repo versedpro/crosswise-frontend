@@ -7,7 +7,7 @@ import { ChainId } from '@crosswise/sdk'
 import styled, { css } from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
-import { useFarms, usePollFarmsData, usePriceCrssBusd} from 'state/farms/hooks'
+import { useFarms, usePollFarmsData, usePriceCrssBusd } from 'state/farms/hooks'
 import useTVL from 'hooks/useTvl'
 import useFarmTvl from 'hooks/useFarmTvl'
 import useUserFarmStaked from 'hooks/useUserFarmStaked'
@@ -178,7 +178,7 @@ const Planet3 = styled.div`
 `
 
 const CardWrapper = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -187,15 +187,15 @@ const CardWrapper = styled.div`
 
 const CardItem = styled.div`
   display: flex;
-  alignItems: center;
+  alignitems: center;
   padding-left: 0px;
 `
-const CardItemLock =  styled.div`
+const CardItemLock = styled.div`
   display: flex;
-  alignItems: center;
+  alignitems: center;
   padding-left: 0px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding-left: 100px
+    padding-left: 100px;
   }
 `
 
@@ -385,17 +385,17 @@ const Farms: React.FC = () => {
       setObserverIsSet(true)
     }
 
-    console.log("chosenFarmMemorize,", chosenFarmsMemoized)
-    let temp = new BigNumber(0);
+    console.log('chosenFarmMemorize,', chosenFarmsMemoized)
+    let temp = new BigNumber(0)
     const getStakedVal = () => {
-      chosenFarmsMemoized.map((farm)=>{
+      chosenFarmsMemoized.map((farm) => {
         console.log(farm)
         // const lpPrice = useLpTokenPrice(farm.lpSymbol)
         // console.log("lpPrice", lpPrice)
         temp = temp.plus(farm.userData?.earnings)
         return temp
       })
-      console.log("sum temp", getBalanceNumber(temp))
+      console.log('sum temp', getBalanceNumber(temp))
       setCrssTokenEarned(getBalanceNumber(temp.times(crssPrice)))
     }
     getStakedVal()
@@ -600,36 +600,36 @@ const Farms: React.FC = () => {
           {/** start first block */}
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <CardWrapper>
-            <CardItem>
-              <div >
-                <img src="/images/cards.png" alt="Pancake illustration" />
-              </div>
-              <div style={{ paddingLeft: '5px' }}>
-                <Text fontSize="13px" color="textSecondary">
-                  {t('TOTAL LIQUIDITY')}
-                </Text>
-                <div style={{ display: 'flex', alignItems: 'baseline' }}>
-                  <Text fontSize="25px" color="textSecondary">
-                    ${farmTvl.toFixed(2)}
-                  </Text>
+              <CardItem>
+                <div>
+                  <img src="/images/cards.png" alt="Pancake illustration" />
                 </div>
-              </div>
-            </CardItem>
-            <CardItemLock >
-              <div >
-                <img src="/images/locked.png" alt="Pancake illustration" />
-              </div>
-              <div style={{ paddingLeft: '5px' }}>
-                <Text fontSize="13px" color="textSecondary">
-                  {t('TOTAL VALUE LOCKED')}
-                </Text>
-                <div style={{ display: 'flex', alignItems: 'baseline' }}>
-                  <Text fontSize="25px" color="textSecondary">
-                    ${totalTvl.toFixed(2)}
+                <div style={{ paddingLeft: '5px' }}>
+                  <Text fontSize="13px" color="textSecondary">
+                    {t('TOTAL LIQUIDITY')}
                   </Text>
+                  <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                    <Text fontSize="25px" color="textSecondary">
+                      ${farmTvl.toFixed(2)}
+                    </Text>
+                  </div>
                 </div>
-              </div>
-            </CardItemLock>
+              </CardItem>
+              <CardItemLock>
+                <div>
+                  <img src="/images/locked.png" alt="Pancake illustration" />
+                </div>
+                <div style={{ paddingLeft: '5px' }}>
+                  <Text fontSize="13px" color="textSecondary">
+                    {t('TOTAL VALUE LOCKED')}
+                  </Text>
+                  <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                    <Text fontSize="25px" color="textSecondary">
+                      ${totalTvl.toFixed(2)}
+                    </Text>
+                  </div>
+                </div>
+              </CardItemLock>
             </CardWrapper>
 
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
@@ -662,7 +662,7 @@ const Farms: React.FC = () => {
           {/** start second block  */}
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex' }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection:'column' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
                   CRSS Earned
                 </Text>
@@ -671,23 +671,21 @@ const Farms: React.FC = () => {
                 </Text>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection:'column' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
                   xRSS Earned
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}
-                  ${CrssTokenEarned.toFixed(2)}
+                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}${CrssTokenEarned.toFixed(2)}
                 </Text>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection:'column' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
                   Your Staked Value
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}
-                  ${userStakedVal.toFixed(2)}
+                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}${userStakedVal.toFixed(2)}
                 </Text>
               </div>
 
