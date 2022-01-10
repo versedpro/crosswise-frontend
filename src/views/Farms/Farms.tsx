@@ -7,7 +7,7 @@ import { ChainId } from '@crosswise/sdk'
 import styled, { css } from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
-import { useFarms, usePollFarmsData, usePriceCrssBusd} from 'state/farms/hooks'
+import { useFarms, usePollFarmsData, usePriceCrssBusd } from 'state/farms/hooks'
 import useTVL from 'hooks/useTvl'
 import useFarmTvl from 'hooks/useFarmTvl'
 import useUserFarmStaked from 'hooks/useUserFarmStaked'
@@ -185,8 +185,8 @@ const Planet3 = styled.div`
 `
 
 const CardWrapper = styled.div`
-  display:flex;
-  
+  display: flex;
+
   // ${({ theme }) => theme.mediaQueries.sm} {
   //   flex-direction: row;
   // }
@@ -194,21 +194,21 @@ const CardWrapper = styled.div`
 
 const CardItem = styled.div`
   display: flex;
-  alignItems: center;
+  alignitems: center;
   padding-left: 0px;
 `
-const CardItemLock =  styled.div`
+const CardItemLock = styled.div`
   display: flex;
-  alignItems: center;
+  alignitems: center;
   padding-left: 0px;
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding-left: 100px
+    padding-left: 100px;
   }
 `
 
 const InfoWrap = styled.div`
   display: flex;
-  justify-Content: space-between;
+  justify-content: space-between;
   flex-direction: column;
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
@@ -217,7 +217,7 @@ const InfoWrap = styled.div`
 
 const HarvestBtnGroup = styled.div`
   display: flex;
-  alignItems: flex-end;
+  alignitems: flex-end;
   justify-content: space-between;
   padding-top: 20px;
   @media only screen and (max-width: 760px) {
@@ -227,7 +227,7 @@ const HarvestBtnGroup = styled.div`
 
 const StakingToggle = styled.div`
   display: flex;
-  alignItems: baseline;
+  alignitems: baseline;
   padding: 10px 0px;
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 0px;
@@ -245,28 +245,28 @@ const FarmUserInfo = styled.div`
 `
 
 const MassBtns = styled.div`
- display:flex;
- @media only screen and (max-width: 760px) {
-  margin-top: 20px;
-}
-@media only screen and (max-width: 568px){
-  font-size: 13px;
-  padding: 0px 10px;
-  margin-top: 5px;
-  flex-direction: column;
-}
-> button {
-  @media only screen and (max-width: 760px) and (min-width: 568px) {
-    font-size: 15px;
-    padding: 0px 10px;
-  } 
-  @media only screen and (max-width: 568px){
+  display: flex;
+  @media only screen and (max-width: 760px) {
+    margin-top: 20px;
+  }
+  @media only screen and (max-width: 568px) {
     font-size: 13px;
     padding: 0px 10px;
     margin-top: 5px;
-    margin-right:0px;
-  } 
-}
+    flex-direction: column;
+  }
+  > button {
+    @media only screen and (max-width: 760px) and (min-width: 568px) {
+      font-size: 15px;
+      padding: 0px 10px;
+    }
+    @media only screen and (max-width: 568px) {
+      font-size: 13px;
+      padding: 0px 10px;
+      margin-top: 5px;
+      margin-right: 0px;
+    }
+  }
 `
 
 const NUMBER_OF_FARMS_VISIBLE = 12
@@ -456,9 +456,9 @@ const Farms: React.FC = () => {
     }
 
     // console.log("chosenFarmMemorize,", chosenFarmsMemoized)
-    let temp = new BigNumber(0);
+    let temp = new BigNumber(0)
     const getStakedVal = () => {
-      chosenFarmsMemoized.map((farm)=>{
+      chosenFarmsMemoized.map((farm) => {
         // console.log(farm)
         // const lpPrice = useLpTokenPrice(farm.lpSymbol)
         // console.log("lpPrice", lpPrice)
@@ -466,10 +466,9 @@ const Farms: React.FC = () => {
         return temp
       })
       // console.log("sum temp", getBalanceNumber(temp))
-      if(!crssPrice.isNaN()){
+      if (!crssPrice.isNaN()) {
         setCrssTokenEarned(getBalanceNumber(temp.times(crssPrice)))
       }
-      
     }
     getStakedVal()
   }, [chosenFarmsMemoized, observerIsSet, crssPrice])
@@ -673,36 +672,36 @@ const Farms: React.FC = () => {
           {/** start first block */}
           <InfoWrap>
             <CardWrapper>
-            <CardItem>
-              <div >
-                <img src="/images/cards.png" alt="Pancake illustration" />
-              </div>
-              <div style={{ paddingLeft: '5px' }}>
-                <Text fontSize="13px" color="textSecondary">
-                  {t('TOTAL LIQUIDITY')}
-                </Text>
-                <div style={{ display: 'flex', alignItems: 'baseline' }}>
-                  <Text fontSize="20px" color="textSecondary">
-                    ${farmTvl.toFixed(2)}
-                  </Text>
+              <CardItem>
+                <div>
+                  <img src="/images/cards.png" alt="Pancake illustration" />
                 </div>
-              </div>
-            </CardItem>
-            <CardItemLock >
-              <div >
-                <img src="/images/locked.png" alt="Pancake illustration" />
-              </div>
-              <div style={{ paddingLeft: '5px' }}>
-                <Text fontSize="13px" color="textSecondary">
-                  {t('TOTAL VALUE LOCKED')}
-                </Text>
-                <div style={{ display: 'flex', alignItems: 'baseline' }}>
-                  <Text fontSize="20px" color="textSecondary">
-                    ${totalTvl.toFixed(2)}
+                <div style={{ paddingLeft: '5px' }}>
+                  <Text fontSize="13px" color="textSecondary">
+                    {t('TOTAL LIQUIDITY')}
                   </Text>
+                  <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                    <Text fontSize="20px" color="textSecondary">
+                      ${farmTvl.toFixed(2)}
+                    </Text>
+                  </div>
                 </div>
-              </div>
-            </CardItemLock>
+              </CardItem>
+              <CardItemLock>
+                <div>
+                  <img src="/images/locked.png" alt="Pancake illustration" />
+                </div>
+                <div style={{ paddingLeft: '5px' }}>
+                  <Text fontSize="13px" color="textSecondary">
+                    {t('TOTAL VALUE LOCKED')}
+                  </Text>
+                  <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                    <Text fontSize="20px" color="textSecondary">
+                      ${totalTvl.toFixed(2)}
+                    </Text>
+                  </div>
+                </div>
+              </CardItemLock>
             </CardWrapper>
 
             <StakingToggle>
@@ -734,9 +733,8 @@ const Farms: React.FC = () => {
 
           {/** start second block  */}
           <HarvestBtnGroup>
-          
             <FarmUserInfo>
-              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection:'column' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
                   CRSS Earned
                 </Text>
@@ -745,23 +743,21 @@ const Farms: React.FC = () => {
                 </Text>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection:'column' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
                   xRSS Earned
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}
-                  ${CrssTokenEarned?.toFixed(2)}
+                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}${CrssTokenEarned?.toFixed(2)}
                 </Text>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection:'column' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
                   Your Staked Value
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}
-                  ${userStakedVal.toFixed(2)}
+                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}${userStakedVal.toFixed(2)}
                 </Text>
               </div>
 
@@ -775,7 +771,7 @@ const Farms: React.FC = () => {
               </div> */}
             </FarmUserInfo>
             <MassBtns>
-              <Button variant="secondaryGradient" mr="18px"  onClick={() => handleMassHarvest()}>
+              <Button variant="secondaryGradient" mr="18px" onClick={() => handleMassHarvest()}>
                 Mass Harvest
               </Button>
               <Button variant="primaryGradient" onClick={() => handleMassStakeReward()}>
