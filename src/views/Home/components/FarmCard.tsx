@@ -57,7 +57,7 @@ const FarmCard = () => {
   return (
     <StyledFarmCard>
       <CardBody>
-        <StyledText>Very Hight 🔥</StyledText>
+        <StyledText>Earn APR Rewards 🔥</StyledText>
         <Heading scale="xl" mb="24px" mt="16px">
           {`${t('Farms')} & `}
           <StyledText>{t('Staking')}</StyledText>

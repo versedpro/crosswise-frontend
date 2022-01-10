@@ -35,7 +35,7 @@
     "@biconomy/mexa": "^2.0.24",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crosswise/sdk": "^0.0.1",
-    "@crosswise/uikit": "^0.2.9",
+    "@crosswise/uikit": "^0.2.10",
     "@ethersproject/abi": "^5.5.0",
     "@ethersproject/experimental": "^5.0.1",
     "@reduxjs/toolkit": "^1.5.0",

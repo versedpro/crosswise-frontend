@@ -745,7 +745,7 @@ const Farms: React.FC = () => {
 
               <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
-                  xRSS Earned
+                  xCRSS Earned
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
                   {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}${CrssTokenEarned?.toFixed(2)}

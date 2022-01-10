@@ -73,7 +73,7 @@ const Home: React.FC = () => {
               <Header />
             </Heading>
             <Label color="textSubtle" fontSize="20px">
-              {t('The first cross-blockchain AMM (Automatic Money Creation)')}
+              {t('Cross-Chain DEX 2.0 With Built-In Tools & Gas Savings')}
             </Label>
           </AutoColumn>
         </Row>
