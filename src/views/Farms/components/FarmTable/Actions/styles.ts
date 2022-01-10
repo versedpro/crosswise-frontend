@@ -16,7 +16,7 @@ export const ActionContainer = styled.div`
     margin-left: 12px;
     margin-right: 12px;
     margin-bottom: 0;
-    max-height: 100px;
+    // max-height: 100px;
   }
 
   ${({ theme }) => theme.mediaQueries.xl} {
