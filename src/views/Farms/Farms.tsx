@@ -385,17 +385,17 @@ const Farms: React.FC = () => {
       setObserverIsSet(true)
     }
 
-    console.log("chosenFarmMemorize,", chosenFarmsMemoized)
+    // console.log("chosenFarmMemorize,", chosenFarmsMemoized)
     let temp = new BigNumber(0);
     const getStakedVal = () => {
       chosenFarmsMemoized.map((farm)=>{
-        console.log(farm)
+        // console.log(farm)
         // const lpPrice = useLpTokenPrice(farm.lpSymbol)
         // console.log("lpPrice", lpPrice)
         temp = temp.plus(farm.userData?.earnings)
         return temp
       })
-      console.log("sum temp", getBalanceNumber(temp))
+      // console.log("sum temp", getBalanceNumber(temp))
       if(!crssPrice.isNaN()){
         setCrssTokenEarned(getBalanceNumber(temp.times(crssPrice)))
       }
@@ -411,14 +411,14 @@ const Farms: React.FC = () => {
   const handleMassHarvest = async () => {
     setPendingTx(true)
     const resp = await onMassHarvest(library, activePids)
-    console.log('massHarvest resp:', resp)
+    // console.log('massHarvest resp:', resp)
     setPendingTx(false)
   }
 
   const handleMassStakeReward = async () => {
     setPendingTx(true)
     const resp = await onMassStakeReward(library, activePids)
-    console.log('massStakeReward resp:', resp)
+    // console.log('massStakeReward resp:', resp)
     setPendingTx(false)
   }
 

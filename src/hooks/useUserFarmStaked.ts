@@ -18,7 +18,7 @@ function useUserFarmStaked() {
     let totalLiquidity = new BigNumber(0)
 
     farms.map((farm) => {
-      console.log("user farm1", farm)
+      // console.log("user farm1", farm)
       if (farm.lpTotalInQuoteToken && farm.lpTotalInQuoteToken.toString() !== 'NaN') {
         let quoteTokenPriceUsd = new BigNumber(1)
         if (farm.quoteToken.symbol === 'wBNB') {
@@ -32,7 +32,7 @@ function useUserFarmStaked() {
             const userQuoteTokenAmountMc = new BigNumber(farm.quoteTokenAmountTotal).times(userLpRatio)
             // Total staked in LP, in quote token value
             const lpTotalInQuoteToken = userQuoteTokenAmountMc.times(new BigNumber(2))
-            console.log("quotetokenpriceusd", quoteTokenPriceUsd.toNumber())
+            // console.log("quotetokenpriceusd", quoteTokenPriceUsd.toNumber())
             totalLiquidity = totalLiquidity.plus(lpTotalInQuoteToken.times(quoteTokenPriceUsd))    
         }
         // totalLiquidity = totalLiquidity.plus(new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd))
