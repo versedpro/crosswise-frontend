@@ -21,7 +21,7 @@ function useTVL() {
     farms.map((farm) => {
       if (farm.lpTotalInQuoteToken && farm.lpTotalInQuoteToken.toString() !== 'NaN') {
         let quoteTokenPriceUsd = new BigNumber(1)
-        if (farm.quoteToken.symbol === 'WBNB') {
+        if (farm.quoteToken.symbol === 'wBNB') {
           quoteTokenPriceUsd = quoteTokenPriceUsd.times(bnbPrice)
         } else if (farm.quoteToken.symbol === 'BUSD') {
           quoteTokenPriceUsd = quoteTokenPriceUsd.times(1)
@@ -34,7 +34,7 @@ function useTVL() {
     pools.map((pool) => {
       const lpSymbol = pool.stakingToken.symbol.concat('-BNB LP')
       const farm = farms.find((f) => f.lpSymbol === lpSymbol)
-      if (pool.stakingToken.symbol === 'WBNB') {
+      if (pool.stakingToken.symbol === 'wBNB') {
         totalLiquidity = totalLiquidity.plus(
           getBalanceNumber(bnbPrice.times(pool.totalStaked), pool.stakingToken.decimals),
         )

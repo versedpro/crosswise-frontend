@@ -683,7 +683,7 @@ const tokens = {
       97: '0xae13d989dac2f0debff460ac112a837c89baa7cd',
     },
     decimals: 18,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://crosswise.finance/',
   },
   blink: {
     symbol: 'BLINK',

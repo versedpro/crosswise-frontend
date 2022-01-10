@@ -396,7 +396,10 @@ const Farms: React.FC = () => {
         return temp
       })
       console.log("sum temp", getBalanceNumber(temp))
-      setCrssTokenEarned(getBalanceNumber(temp.times(crssPrice)))
+      if(!crssPrice.isNaN()){
+        setCrssTokenEarned(getBalanceNumber(temp.times(crssPrice)))
+      }
+      
     }
     getStakedVal()
   }, [chosenFarmsMemoized, observerIsSet, crssPrice])
@@ -667,7 +670,7 @@ const Farms: React.FC = () => {
                   CRSS Earned
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  ${CrssTokenEarned.toFixed(2)}
+                  ${CrssTokenEarned?.toFixed(2)}
                 </Text>
               </div>
 
@@ -677,7 +680,7 @@ const Farms: React.FC = () => {
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
                   {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}
-                  ${CrssTokenEarned.toFixed(2)}
+                  ${CrssTokenEarned?.toFixed(2)}
                 </Text>
               </div>
 
