@@ -8,17 +8,17 @@ import useRefresh from './useRefresh'
 
 // returns undefined if input token is undefined, or fails to get token contract,
 // or contract total supply cannot be fetched
-function useTVL() {
+function useUserFarmStaked() {
   const [balances, setBalance] = useState(0)
   const { fastRefresh } = useRefresh()
   const bnbPrice = usePriceBnbBusd()
   const farms = useSelector((state: State) => state.farms.data)
-  const pools = useSelector((state: State) => state.pools.data)
 
   const calcTvl = useCallback(() => {
     let totalLiquidity = new BigNumber(0)
 
     farms.map((farm) => {
+      // console.log("user farm1", farm)
       if (farm.lpTotalInQuoteToken && farm.lpTotalInQuoteToken.toString() !== 'NaN') {
         let quoteTokenPriceUsd = new BigNumber(1)
         if (farm.quoteToken.symbol === 'wBNB') {
@@ -26,40 +26,27 @@ function useTVL() {
         } else if (farm.quoteToken.symbol === 'BUSD') {
           quoteTokenPriceUsd = quoteTokenPriceUsd.times(1)
         }
-        totalLiquidity = totalLiquidity.plus(new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd))
-      }
-      return true
-    })
-
-    pools.map((pool) => {
-      const lpSymbol = pool.stakingToken.symbol.concat('-BNB LP')
-      const farm = farms.find((f) => f.lpSymbol === lpSymbol)
-      if (pool.stakingToken.symbol === 'wBNB') {
-        totalLiquidity = totalLiquidity.plus(
-          getBalanceNumber(bnbPrice.times(pool.totalStaked), pool.stakingToken.decimals),
-        )
-      }
-
-      // else if(pool.stableCoin) {
-      //   totalLiquidity = totalLiquidity.plus(getBalanceNumber(pool.totalStaked, pool.stakingToken.decimals))
-      // }
-      else if (pool.totalStaked) {
-        const tokenPrice = farm.tokenPriceVsQuote ? bnbPrice.times(farm.tokenPriceVsQuote) : new BigNumber(0)
-        totalLiquidity = totalLiquidity.plus(
-          getBalanceNumber(tokenPrice.times(pool.totalStaked), pool.stakingToken.decimals),
-        )
+        // get user quoto token amount
+        if (farm.userData?.stakedBalance !== '0') {
+          const userLpRatio = new BigNumber(farm.userData.stakedBalance).div(new BigNumber(farm.lpTotalSupply))
+          const userQuoteTokenAmountMc = new BigNumber(farm.quoteTokenAmountTotal).times(userLpRatio)
+          // Total staked in LP, in quote token value
+          const lpTotalInQuoteToken = userQuoteTokenAmountMc.times(new BigNumber(2))
+          // console.log("quotetokenpriceusd", quoteTokenPriceUsd.toNumber())
+          totalLiquidity = totalLiquidity.plus(lpTotalInQuoteToken.times(quoteTokenPriceUsd))
+        }
+        // totalLiquidity = totalLiquidity.plus(new BigNumber(farm.lpTotalInQuoteToken).times(quoteTokenPriceUsd))
       }
       return true
     })
 
     setBalance(totalLiquidity.toNumber())
-  }, [farms, bnbPrice, pools])
+  }, [farms, bnbPrice])
 
   useEffect(() => {
     calcTvl()
   }, [fastRefresh, calcTvl])
-
   return balances
 }
 
-export default useTVL
+export default useUserFarmStaked

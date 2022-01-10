@@ -201,12 +201,12 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const info = `https://crosswise.info/pool/${lpAddress}`
 
   const changeVest = () => {
-    console.log('change vest')
+    // console.log('change vest')
     setVestVal(!vestVal)
   }
 
   const changeAuto = () => {
-    console.log('change auto')
+    // console.log('change auto')
     setAutoVal(!autoVal)
   }
 

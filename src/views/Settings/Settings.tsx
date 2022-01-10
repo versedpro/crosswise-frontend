@@ -143,8 +143,8 @@ const Settings: React.FC = () => {
   const userDataReady = !account || (!!account && userDataLoaded)
 
   const showAddress = (param: any): string => {
-    console.log(typeof param)
-    console.log('hello world')
+    // console.log(typeof param)
+    // console.log('hello world')
     if (!param) {
       return ''
     }

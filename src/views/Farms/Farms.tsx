@@ -8,6 +8,10 @@ import styled, { css } from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
 import Page from 'components/Layout/Page'
 import { useFarms, usePollFarmsData, usePriceCrssBusd } from 'state/farms/hooks'
+import useTVL from 'hooks/useTvl'
+import useFarmTvl from 'hooks/useFarmTvl'
+import useUserFarmStaked from 'hooks/useUserFarmStaked'
+
 import usePersistState from 'hooks/usePersistState'
 import { Farm } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
@@ -173,6 +177,28 @@ const Planet3 = styled.div`
   z-index: -1;
 `
 
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+  }
+`
+
+const CardItem = styled.div`
+  display: flex;
+  alignitems: center;
+  padding-left: 0px;
+`
+const CardItemLock = styled.div`
+  display: flex;
+  alignitems: center;
+  padding-left: 0px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding-left: 100px;
+  }
+`
+
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const getDisplayApr = (cakeRewardsApr?: number, lpRewardsApr?: number) => {
@@ -192,6 +218,14 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   const crssPrice = usePriceCrssBusd()
   const [crssTokenPrice, setCrssTokenPrice] = useState(new BigNumber(0))
+  const [stackedVal, setStakedVal] = useState(new BigNumber(0))
+
+  // const [farmTvl, setFarmTvl] = useState(new BigNumber(0));
+  // const [totalTvl, setTotalTvl] = useState(new BigNumber(0));
+  const totalTvl = useTVL()
+  const farmTvl = useFarmTvl()
+  const userStakedVal = useUserFarmStaked()
+  const [CrssTokenEarned, setCrssTokenEarned] = useState(0)
   const [pendingTx, setPendingTx] = useState(false)
 
   const [query, setQuery] = useState('')
@@ -350,7 +384,22 @@ const Farms: React.FC = () => {
       loadMoreObserver.observe(loadMoreRef.current)
       setObserverIsSet(true)
     }
-  }, [chosenFarmsMemoized, observerIsSet])
+
+    console.log('chosenFarmMemorize,', chosenFarmsMemoized)
+    let temp = new BigNumber(0)
+    const getStakedVal = () => {
+      chosenFarmsMemoized.map((farm) => {
+        console.log(farm)
+        // const lpPrice = useLpTokenPrice(farm.lpSymbol)
+        // console.log("lpPrice", lpPrice)
+        temp = temp.plus(farm.userData?.earnings)
+        return temp
+      })
+      console.log('sum temp', getBalanceNumber(temp))
+      setCrssTokenEarned(getBalanceNumber(temp.times(crssPrice)))
+    }
+    getStakedVal()
+  }, [chosenFarmsMemoized, observerIsSet, crssPrice])
 
   useEffect(() => {
     setCrssTokenPrice(crssPrice)
@@ -550,25 +599,39 @@ const Farms: React.FC = () => {
         <FarmHeadCard isDarkTheme={isDark}>
           {/** start first block */}
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ padding: '16px 12px', background: '#fafbfc', borderRadius: '50%' }}>
-                <img src="/images/card.png" alt="Pancake illustration" />
-              </div>
-              <div style={{ paddingLeft: '15px' }}>
-                <Text fontSize="13px" color="textSecondary">
-                  {t('TOTAL BALANCE')}
-                </Text>
-                <div style={{ display: 'flex', alignItems: 'baseline' }}>
-                  <Text fontSize="22px" color="primary">
-                    ${' '}
-                  </Text>
-                  <Text fontSize="32px" color="primary">
-                    {' '}
-                    491,700
-                  </Text>
+            <CardWrapper>
+              <CardItem>
+                <div>
+                  <img src="/images/cards.png" alt="Pancake illustration" />
                 </div>
-              </div>
-            </div>
+                <div style={{ paddingLeft: '5px' }}>
+                  <Text fontSize="13px" color="textSecondary">
+                    {t('TOTAL LIQUIDITY')}
+                  </Text>
+                  <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                    <Text fontSize="25px" color="textSecondary">
+                      ${farmTvl.toFixed(2)}
+                    </Text>
+                  </div>
+                </div>
+              </CardItem>
+              <CardItemLock>
+                <div>
+                  <img src="/images/locked.png" alt="Pancake illustration" />
+                </div>
+                <div style={{ paddingLeft: '5px' }}>
+                  <Text fontSize="13px" color="textSecondary">
+                    {t('TOTAL VALUE LOCKED')}
+                  </Text>
+                  <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                    <Text fontSize="25px" color="textSecondary">
+                      ${totalTvl.toFixed(2)}
+                    </Text>
+                  </div>
+                </div>
+              </CardItemLock>
+            </CardWrapper>
+
             <div style={{ display: 'flex', alignItems: 'baseline' }}>
               {/* <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
@@ -599,21 +662,30 @@ const Farms: React.FC = () => {
           {/** start second block  */}
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex' }}>
-              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
-                  CRSS
+                  CRSS Earned
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  ${parseFloat(crssTokenPrice.toString()).toFixed(4)}
+                  ${CrssTokenEarned.toFixed(2)}
                 </Text>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
                 <Text color="textSecondary" fontSize="13px" pr="8px">
-                  XCRSS
+                  xRSS Earned
                 </Text>
                 <Text color="text" fontSize="13px" mr="24px">
-                  ${parseFloat(crssTokenPrice.toString()).toFixed(4)}
+                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}${CrssTokenEarned.toFixed(2)}
+                </Text>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'baseline', flexDirection: 'column' }}>
+                <Text color="textSecondary" fontSize="13px" pr="8px">
+                  Your Staked Value
+                </Text>
+                <Text color="text" fontSize="13px" mr="24px">
+                  {/* ${parseFloat(crssTokenPrice.toString()).toFixed(4)} */}${userStakedVal.toFixed(2)}
                 </Text>
               </div>
 

@@ -116,7 +116,8 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
             }
             dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
           }}
-          variant="secondaryGradient"
+          // variant="secondaryGradient"
+          variant="primaryGradient"
           ml="4px"
         >
           {t('Harvest')}
