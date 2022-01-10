@@ -11,6 +11,7 @@ import TotalStakedCell from './Cells/TotalStakedCell'
 import EndsInCell from './Cells/EndsInCell'
 import ExpandActionCell from './Cells/ExpandActionCell'
 import ActionPanel from './ActionPanel/ActionPanel'
+import StakedCell from './Cells/StakedCell'
 
 interface PoolRowProps {
   pool: Pool
@@ -25,13 +26,16 @@ const StyledRow = styled.div`
 `
 
 const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
-  const { isXs, isSm, isMd, isLg, isXl } = useMatchBreakpoints()
+  const { isXs, isSm, isMd, isLg, isXl, isXxl } = useMatchBreakpoints()
+  const isXLargerScreen = isXl || isXxl
   const [expanded, setExpanded] = useState(false)
   const shouldRenderActionPanel = useDelayedUnmount(expanded, 300)
 
   const toggleExpanded = () => {
     setExpanded((prev) => !prev)
   }
+
+  const isCrssPool = pool.sousId === 0
 
   const {
     fees: { performanceFee },
@@ -43,9 +47,20 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
       <StyledRow role="row" onClick={toggleExpanded}>
         <NameCell pool={pool} />
         <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+        {/* {pool.vaultKey === VaultKey.IfoPool ? (
+          <IFOCreditCell account={account} />
+        ) : isXLargerScreen && isCakePool ? (
+          <StakedCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+        ) : null} */}
+        {
+          isXLargerScreen && isCrssPool ?
+          (
+            <StakedCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+          ) : null
+        }
         <AprCell pool={pool} performanceFee={performanceFeeAsDecimal} />
         {(isLg || isXl) && <TotalStakedCell pool={pool} />}
-        {isXl && <EndsInCell pool={pool} />}
+        {isXl && !isCrssPool && <EndsInCell pool={pool} />}
         <ExpandActionCell expanded={expanded} isFullLayout={isMd || isLg || isXl} />
       </StyledRow>
       {shouldRenderActionPanel && (

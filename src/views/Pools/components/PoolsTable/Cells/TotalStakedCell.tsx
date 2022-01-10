@@ -20,6 +20,7 @@ const StyledCell = styled(BaseCell)`
 const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { sousId, stakingToken, totalStaked, isAutoVault } = pool
+  console.log("totalstaked", totalStaked.toNumber())
   const { totalCakeInVault } = useCakeVault()
 
   const isManualCakePool = sousId === 0
@@ -29,7 +30,8 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
       return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
     }
     if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
+      // const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault) //after staking vault alive revert this
+      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked)
       return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)

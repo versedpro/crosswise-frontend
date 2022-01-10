@@ -40,7 +40,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  display: none;
   a {
     padding-left: 12px;
     padding-right: 12px;
@@ -48,6 +48,7 @@ const Wrapper = styled.div`
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 16px;
+    display: block;
   }
 `
 

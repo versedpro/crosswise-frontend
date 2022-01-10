@@ -9,6 +9,10 @@ import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
 import usePersistState from 'hooks/usePersistState'
 import { useFetchPublicPoolsData, usePools, useFetchCakeVault, useCakeVault } from 'state/pools/hooks'
+
+import useTVL from 'hooks/useTvl'
+import usePoolTvl from 'hooks/usePoolTvl'
+
 import { usePollFarmsData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
@@ -65,6 +69,13 @@ const HeaderTopBar = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-direction: row;
+  }
 `
 
 const PoolHeaderLayout = styled.div`
@@ -152,6 +163,88 @@ const Planet2 = styled.div`
   bottom: -150px;
   right: -80px;
 `
+const CardWrapper = styled.div`
+  display: flex;
+
+  // ${({ theme }) => theme.mediaQueries.sm} {
+  //   flex-direction: row;
+  // }
+`
+const InfoWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
+  }
+`
+
+const CardItem = styled.div`
+  display: flex;
+  alignitems: center;
+  padding-left: 0px;
+`
+const CardItemLock = styled.div`
+  display: flex;
+  alignitems: center;
+  padding-left: 0px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding-left: 100px;
+  }
+`
+const HarvestBtnGroup = styled.div`
+  display: flex;
+  alignitems: flex-end;
+  justify-content: space-between;
+  padding-top: 20px;
+  @media only screen and (max-width: 760px) {
+    flex-direction: column;
+  }
+`
+
+const StakingToggle = styled.div`
+  display: flex;
+  alignitems: baseline;
+  padding: 10px 0px;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding: 0px;
+  }
+`
+
+const FarmUserInfo = styled.div`
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  @media only screen and (max-width: 760px) {
+    justify-content: space-between;
+    width: 100%;
+  }
+`
+
+const MassBtns = styled.div`
+  display: flex;
+  @media only screen and (max-width: 760px) {
+    margin-top: 20px;
+  }
+  @media only screen and (max-width: 568px) {
+    font-size: 13px;
+    padding: 0px 10px;
+    margin-top: 5px;
+    flex-direction: column;
+  }
+  > button {
+    @media only screen and (max-width: 760px) and (min-width: 568px) {
+      font-size: 15px;
+      padding: 0px 10px;
+    }
+    @media only screen and (max-width: 568px) {
+      font-size: 13px;
+      padding: 0px 10px;
+      margin-top: 5px;
+      margin-right: 0px;
+    }
+  }
+`
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
@@ -162,6 +255,9 @@ const Pools: React.FC = () => {
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
   const [poolOption, setPoolOption] = useState(true)
+
+  const totalTvl = useTVL()
+  const farmTvl = usePoolTvl()
 
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -300,8 +396,9 @@ const Pools: React.FC = () => {
     )
   }
 
-  // chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
+  chosenPools = sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   chosenPoolsLength.current = chosenPools.length
+  // console.log("choosen pools", chosenPools)
 
   const cardLayout = (
     <CardLayout>
@@ -327,7 +424,7 @@ const Pools: React.FC = () => {
           </Heading>
 
           <FilterContainer>
-            {/* <LabelWrapper>
+            <LabelWrapper>
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Sort by')}
               </Text>
@@ -354,7 +451,7 @@ const Pools: React.FC = () => {
                   onChange={handleSortOptionChange}
                 />
               </ControlStretch>
-            </LabelWrapper> */}
+            </LabelWrapper>
 
             <PoolTabButtons
               stakedOnly={stakedOnly}
@@ -381,24 +478,54 @@ const Pools: React.FC = () => {
       <PoolHeaderLayout>
         <PoolHeadCard isDarkTheme={isDark}>
           {/** start first block */}
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ padding: '16px 18px', background: '#fafbfc', borderRadius: '50%' }}>
-                <img src="/images/pool-dollor-icon.png" alt="Pancake illustration" />
-              </div>
-              <div style={{ paddingLeft: '15px' }}>
-                <Text fontSize="20px" color="text">
-                  {t('Claim 1 CRSS token')}
+          <InfoWrap>
+            <CardWrapper>
+              <CardItem>
+                <div>
+                  <img src="/images/cards.png" alt="Pancake illustration" />
+                </div>
+                <div style={{ paddingLeft: '5px' }}>
+                  <Text fontSize="13px" color="textSecondary">
+                    {t('TOTAL LIQUIDITY')}
+                  </Text>
+                  <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                    <Text fontSize="20px" color="textSecondary">
+                      ${farmTvl.toFixed(2)}
+                    </Text>
+                  </div>
+                </div>
+              </CardItem>
+              <CardItemLock>
+                <div>
+                  <img src="/images/locked.png" alt="Pancake illustration" />
+                </div>
+                <div style={{ paddingLeft: '5px' }}>
+                  <Text fontSize="13px" color="textSecondary">
+                    {t('TOTAL VALUE LOCKED')}
+                  </Text>
+                  <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                    <Text fontSize="20px" color="textSecondary">
+                      ${totalTvl.toFixed(2)}
+                    </Text>
+                  </div>
+                </div>
+              </CardItemLock>
+            </CardWrapper>
+
+            <StakingToggle>
+              {/* <ToggleWrapper>
+                <Text fontSize="14px" pr="15px" color="textSecondary">
+                  {t('Vesting')}
                 </Text>
-              </div>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <Toggle checked={vesting} scale="sm" onChange={() => setVesting(!vesting)} />
+              </ToggleWrapper>
+
               <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
-                  {t('Option')}
+                  {t('Auto-compound')}
                 </Text>
-                <Toggle checked={poolOption} onChange={() => setPoolOption(!poolOption)} scale="sm" />
-              </ToggleWrapper>
+                <Toggle checked={autoCompound} scale="sm" onChange={() => setAutoCompound(!autoCompound)} />
+              </ToggleWrapper> */}
 
               <ToggleWrapper>
                 <Text fontSize="14px" pr="15px" color="textSecondary">
@@ -407,12 +534,13 @@ const Pools: React.FC = () => {
                 </Text>
                 <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
               </ToggleWrapper>
-            </div>
-          </div>
+            </StakingToggle>
+          </InfoWrap>
+
           {/** end first block */}
 
           {/** start second block  */}
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginTop: '40px' }}>
+          {/* <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginTop: '40px' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ marginBottom: '5px' }}>
                 <Text color="textSecondary" fontSize="13px">
@@ -434,7 +562,7 @@ const Pools: React.FC = () => {
                 {t('Claim')}
               </Button>
             </div>
-          </div>
+          </div> */}
           {/** end second block */}
         </PoolHeadCard>
         <Planet1>

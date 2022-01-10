@@ -13,11 +13,14 @@ import {
 } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
+import { useWeb3React } from '@web3-react/core'
 import useToast from 'hooks/useToast'
 import { Token } from 'config/constants/types'
 import { formatNumber } from 'utils/formatBalance'
 import useHarvestPool from '../../../hooks/useHarvestPool'
 import useStakePool from '../../../hooks/useStakePool'
+
+import useHarvestFarm from '../../../../Farms/hooks/useHarvestFarm'
 
 interface CollectModalProps {
   formattedBalance: string
@@ -37,16 +40,22 @@ const CollectModal: React.FC<CollectModalProps> = ({
   earningsDollarValue,
   sousId,
   isBnbPool,
-  isCompoundPool = false,
+  // isCompoundPool = false,
+  isCompoundPool = false, // default: harvest
   onDismiss,
 }) => {
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { toastSuccess, toastError } = useToast()
-  const { onReward } = useHarvestPool(sousId, isBnbPool)
+  // const { onReward } = useHarvestPool(sousId, isBnbPool)
   const { onStake } = useStakePool(sousId, isBnbPool)
   const [pendingTx, setPendingTx] = useState(false)
-  const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
+  // const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
+  const [shouldCompound, setShouldCompound] = useState(false) //  default harvest
+  const { account, library } = useWeb3React()
+  const isCrssManual = sousId === 0;
+  const { onReward } = useHarvestFarm(0)
+
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Text mb="12px">{t('Compound: collect and restake CAKE into pool.')}</Text>
@@ -75,7 +84,11 @@ const CollectModal: React.FC<CollectModalProps> = ({
     } else {
       // harvesting
       try {
-        await onReward()
+        if(isCrssManual){
+          await onReward(library)
+        }else{
+          console.log("harvest on other type pool")
+        }
         toastSuccess(
           `${t('Harvested')}!`,
           t('Your %symbol% earnings have been sent to your wallet!', { symbol: earningToken.symbol }),
@@ -96,7 +109,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
       onDismiss={onDismiss}
       headerBackground={theme.colors.gradients.cardHeader}
     >
-      {isCompoundPool && (
+      {/* {isCompoundPool && (
         <Flex justifyContent="center" alignItems="center" mb="24px">
           <ButtonMenu
             activeIndex={shouldCompound ? 0 : 1}
@@ -112,7 +125,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
           </Flex>
           {tooltipVisible && tooltip}
         </Flex>
-      )}
+      )} */}
 
       <Flex justifyContent="space-between" alignItems="center" mb="24px">
         <Text>{shouldCompound ? t('Compounding') : t('Harvesting')}:</Text>

@@ -14,7 +14,7 @@ interface ToggleViewProps {
 
 const Container = styled.div`
   margin-right: 0px;
-  margin-left: -8px;
+  // margin-left: -8px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
     margin-left: 16px;
