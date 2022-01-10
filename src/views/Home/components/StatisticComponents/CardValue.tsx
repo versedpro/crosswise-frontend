@@ -20,6 +20,7 @@ export interface CardValueProps {
   color?: string
   opacity?: string
   suffix?: string
+  isCountUp?: boolean
 }
 
 const CardValue: React.FC<CardValueProps> = ({
@@ -32,8 +33,23 @@ const CardValue: React.FC<CardValueProps> = ({
   color = 'text',
   opacity = '1',
   suffix = '',
+  isCountUp = false,
 }) => {
-  const decimal = decimals !== undefined ? decimals : value < 1 ? 4 : value > 1e5 ? 0 : 3
+  const { countUp, update } = useCountUp({
+    start: 0,
+    end: value,
+    duration: 1,
+    separator: ',',
+    decimals:
+      // eslint-disable-next-line no-nested-ternary
+      decimals !== undefined ? decimals : value < 0 ? 4 : value > 1e5 ? 0 : 3,
+  })
+
+  const updateValue = useRef(update)
+
+  useEffect(() => {
+    updateValue.current(value)
+  }, [value, updateValue])
 
   if (!value) {
     return (
@@ -48,7 +64,7 @@ const CardValue: React.FC<CardValueProps> = ({
   return (
     <StyledText bold={bold} small={small} fontSize={fontSize} color={color} opacity={opacity}>
       {prefix}
-      {value.toFixed(decimal)}
+      {!isCountUp ? value.toFixed(decimals) : typeof countUp === 'number' ? countUp.toFixed(decimals) : countUp}
       {suffix}
     </StyledText>
   )
