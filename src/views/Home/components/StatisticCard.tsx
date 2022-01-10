@@ -44,7 +44,7 @@ const StatisticCard = () => {
     <StyledStatisticCard>
       <CardBody>
         <Heading scale="lg" mb="24px" mt="16px">
-          {t('View statistics of DEX as a whole and own')}
+          {t('View General Statistics of the DEX')}
         </Heading>
         <StyledRow>
           <StyledColumn>

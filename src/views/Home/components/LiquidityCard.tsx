@@ -38,7 +38,7 @@ const LiquidityCard = () => {
         <Row justify="space-between">
           <Block>
             <Label small color="textSubtle">
-              {t('Add a pair of 2 coins as liquidity and get rewards in our own coin')}
+              {t('Add a pair of 2 coins as liquidity and earn Rewards in CRSS & xCRSS')}
             </Label>
             <RouterLink to="/liquidity">
               <Button variant="primaryGradient">Add Liquidity</Button>

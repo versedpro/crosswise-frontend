@@ -59,7 +59,7 @@ const ProgramCard = () => {
           <Block>
             <Label small color="textSubtle">
               {t(
-                'Invite familiar investors and get 5% one-time from their first deposit. The bonus will be credited to your CRSS wallet account.',
+                'Invite familiar investors and get 1% lifetime from their Staking & Farming Rewards. The bonus will be credited to your CRSS wallet account.',
               )}
             </Label>
             <Container>
