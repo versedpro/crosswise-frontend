@@ -78,11 +78,11 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
   //     },
   //   ],
   // },
-  {
-    label: t('Info'),
-    icon: 'InfoIcon',
-    href: '/info',
-  },
+  // {
+  //   label: t('Info'),
+  //   icon: 'InfoIcon',
+  //   href: '/info',
+  // },
   // {
   //   label: t('Orderbook'),
   //   icon: 'ExplorerIcon',
@@ -104,7 +104,7 @@ const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [
       // },
       {
         label: t('Contact'),
-        href: 'https://t.me/crosswise',
+        href: 'https://help.crosswise.finance/',
       },
       // {
       //   label: t('Voting'),

@@ -19,6 +19,7 @@ export interface CardValueProps {
   small?: boolean
   color?: string
   opacity?: string
+  suffix?: string
 }
 
 const CardValue: React.FC<CardValueProps> = ({
@@ -30,6 +31,7 @@ const CardValue: React.FC<CardValueProps> = ({
   small = false,
   color = 'text',
   opacity = '1',
+  suffix = '',
 }) => {
   const { countUp, update } = useCountUp({
     start: 0,
@@ -51,6 +53,7 @@ const CardValue: React.FC<CardValueProps> = ({
     <StyledText bold={bold} small={small} fontSize={fontSize} color={color} opacity={opacity}>
       {prefix}
       {typeof countUp === 'number' ? countUp.toFixed(decimals) : countUp}
+      {suffix}
     </StyledText>
   )
 }

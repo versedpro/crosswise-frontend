@@ -6,6 +6,7 @@ import { AutoColumn } from 'components/Layout/Column'
 import Page from 'components/Layout/Page'
 import { BaseLayout, Heading, Text } from '@crosswise/uikit'
 import { useTranslation } from 'contexts/Localization'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 import TotalCard from './components/TotalCard'
 import CommissionsCard from './components/CommissionsCard'
 import GetReferralLinkCard from './components/GetReferralLinkCard'
@@ -48,6 +49,11 @@ const Label = styled(Text)`
   opacity: 0.6;
 `
 
+const StyledCenter = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
 const Home: React.FC = () => {
   // const { theme } = useTheme()
   const { account } = useWeb3React()
@@ -73,7 +79,9 @@ const Home: React.FC = () => {
             <ProgramCard />
           </>
         ) : (
-          <></>
+          <StyledCenter>
+            <ConnectWalletButton variant="primaryGradient" btnString="Unlock Wallet" />
+          </StyledCenter>
         )}
       </StyledPage>
     </>

@@ -4,6 +4,7 @@ import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 
 const ConnectWalletButton = (props) => {
+  const { btnString } = props
   const { t } = useTranslation()
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
@@ -15,8 +16,7 @@ const ConnectWalletButton = (props) => {
       }}
       {...props}
     >
-      {t('Connect')}
-      {/* {t('Connect Wallet')} */}
+      {!btnString ? 'Connect' : btnString}
     </Button>
   )
 }
