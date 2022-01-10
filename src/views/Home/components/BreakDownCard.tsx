@@ -7,6 +7,8 @@ import { useTranslation } from 'contexts/Localization'
 import Row from 'components/Layout/Row'
 import Column from 'components/Layout/Column'
 import CrssWalletBalance from './BreakDownComponents/CrssWalletBalance'
+import StakedCrss from './BreakDownComponents/StakedCrss'
+import Apy from './BreakDownComponents/Apy'
 
 const StyledBreakDownCard = styled(Card)`
   background-image: url('/images/home/jupiter/planet-jupiter.png');
@@ -48,11 +50,13 @@ const BreakDownCard = () => {
         <StyledRow>
           <StyledColumn>
             <Label color="textSubtle">You Staked</Label>
-            <Text fontSize="20px">0</Text>
+            <Text fontSize="20px">
+              <StakedCrss />
+            </Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">Staking APY</Label>
-            <Text fontSize="20px">0,00%</Text>
+            <Text fontSize="20px">{/* <Apy /> */}-</Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">Balance</Label>
@@ -62,7 +66,7 @@ const BreakDownCard = () => {
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">Referal Reward</Label>
-            <Text fontSize="20px">0</Text>
+            <Text fontSize="20px">-</Text>
           </StyledColumn>
           <StyledColumn>
             <Label color="textSubtle">Governance Reward</Label>

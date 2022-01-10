@@ -1,19 +1,22 @@
-import { useCallback } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import BigNumber from 'bignumber.js'
-import { useMasterchef } from 'hooks/useContract'
+import React from 'react'
+import { useTranslation } from 'contexts/Localization'
+import styled from 'styled-components'
+import useStaked from 'hooks/useStaked'
+import CardValue from './CardValue'
 
-// const getStakedCrss = async (masterChefContract, pid, account) => {
-//   const stakedCrss = await masterChefContract.
-// }
+const Block = styled.div`
+  margin-bottom: 24px;
+`
 
-// const useStakedCrss = (_pid = 0) => {
-//   const { account } = useWeb3React()
-//   const masterChefContract = useMasterchef()
+const StakedCrss = () => {
+  const { t } = useTranslation()
+  const data = useStaked()
 
-//   const handleStakedCrss = useCallback(
-//     async() => {
-//       await getStakedCrss(masterChefContract)
-//     }
-//   )
-// }
+  return (
+    <>
+      <CardValue value={data} />
+    </>
+  )
+}
+
+export default StakedCrss
