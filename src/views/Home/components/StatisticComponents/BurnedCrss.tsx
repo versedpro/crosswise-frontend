@@ -11,7 +11,7 @@ const BurnedCrss = () => {
 
   return (
     <>
-      <CardValue value={getBalanceNumber(burnedCrss)} />
+      <CardValue value={getBalanceNumber(burnedCrss)} isCountUp />
     </>
   )
 }

@@ -17,7 +17,7 @@ const Tvl = () => {
 
   return (
     <>
-      <CardValue value={data} prefix="$" />
+      <CardValue value={data} prefix="$" isCountUp />
     </>
   )
 }

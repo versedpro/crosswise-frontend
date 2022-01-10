@@ -18,7 +18,7 @@ const MarketCap = () => {
 
   return (
     <>
-      <CardValue value={marketCap} />
+      <CardValue value={marketCap} prefix="$" isCountUp={false} />
     </>
   )
 }

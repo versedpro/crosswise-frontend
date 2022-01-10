@@ -18,7 +18,7 @@ const Circulation = () => {
 
   return (
     <>
-      <CardValue value={circulation} decimals={2} suffix="%" />
+      <CardValue value={circulation} isCountUp={false} decimals={2} suffix="%" />
     </>
   )
 }
