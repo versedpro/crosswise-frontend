@@ -17,9 +17,10 @@ import { ActionContainer, ActionTitles, ActionContent, ActionTitlesContainer, Ac
 
 interface HarvestActionProps extends FarmWithStakedValue {
   userDataReady: boolean
+  isAuto?: boolean
 }
 
-const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userData, userDataReady }) => {
+const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userData, userDataReady, isAuto }) => {
   const { toastSuccess, toastError } = useToast()
   const earningsBigNumber = new BigNumber(userData.earnings)
   const crssPrice = usePriceCrssBusd()
@@ -96,7 +97,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
       </ActionTitlesContainer>
       <ActionContent>
         <Button
-          disabled={earnings.eq(0) || pendingTx || !userDataReady}
+          disabled={earnings.eq(0) || pendingTx || !userDataReady || isAuto}
           onClick={async () => {
             setPendingTx(true)
             try {

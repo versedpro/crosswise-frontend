@@ -15,9 +15,10 @@ import useHarvestFarm from '../../hooks/useHarvestFarm'
 interface FarmCardActionsProps {
   earnings?: BigNumber
   pid?: number
+  isAuto?: boolean
 }
 
-const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
+const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, isAuto }) => {
   const { account, library } = useWeb3React()
   const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
@@ -32,7 +33,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   return (
     <Flex justifyContent="space-between" alignItems="center" width="50%">
       <Button
-        disabled={rawEarningsBalance.eq(0) || pendingTx}
+        disabled={rawEarningsBalance.eq(0) || pendingTx || isAuto}
         variant="tertiary"
         onClick={async () => {
           setPendingTx(true)
