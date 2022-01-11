@@ -18,7 +18,6 @@ import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
-
 export interface RowProps {
   apr: AprProps
   farm: FarmProps
@@ -157,7 +156,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
               </CellLayout>
             </FarmMobileCell>
           </tr>
-          
+
           <tr>
             <EarnedMobileCell>
               <CellLayout label={t('Earned')}>

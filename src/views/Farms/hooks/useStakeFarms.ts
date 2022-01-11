@@ -14,12 +14,12 @@ const useStakeFarms = (pid: number) => {
   const handleStake = useCallback(
     async (amount: string, library: any, referrer?: string, isVest?: boolean, isAuto?: boolean) => {
       try {
-      const txHash = await stakeFarm(masterChefContract, pid, amount, referrer, isVest, isAuto)
-      const receipt = await txHash.wait()
-      return receipt.status
-    } catch (e) {
-      return false
-    }
+        const txHash = await stakeFarm(masterChefContract, pid, amount, referrer, isVest, isAuto)
+        const receipt = await txHash.wait()
+        return receipt.status
+      } catch (e) {
+        return false
+      }
     },
     [masterChefContract, pid],
   )

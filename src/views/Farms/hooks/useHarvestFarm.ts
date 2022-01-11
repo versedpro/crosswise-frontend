@@ -16,7 +16,7 @@ const useHarvestFarm = (farmPid: number) => {
       try {
         const txHash = await harvestFarm(masterChefContract, farmPid)
         const receipt = await txHash.wait()
-        console.log("handleharvest", receipt)
+        console.log('handleharvest', receipt)
         return receipt.status
       } catch (e) {
         return false

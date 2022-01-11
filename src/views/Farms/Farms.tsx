@@ -562,7 +562,7 @@ const Farms: React.FC = () => {
         },
         sortable: column.sortable,
       }))
-      
+
       return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
     }
 
@@ -774,7 +774,7 @@ const Farms: React.FC = () => {
             </FarmUserInfo>
             {account ? (
               <MassBtns>
-                <Button variant="secondaryGradient" mr="18px" onClick={() => handleMassHarvest()}>
+                <Button variant="primaryGradient" mr="18px" onClick={() => handleMassHarvest()}>
                   Mass Harvest
                 </Button>
                 <Button variant="primaryGradient" onClick={() => handleMassStakeReward()}>
@@ -783,7 +783,7 @@ const Farms: React.FC = () => {
               </MassBtns>
             ) : (
               <MassBtns>
-                <Button variant="secondaryGradient" mr="18px" disabled>
+                <Button variant="primaryGradient" mr="18px" disabled>
                   Mass Harvest
                 </Button>
                 <Button variant="primaryGradient" disabled>

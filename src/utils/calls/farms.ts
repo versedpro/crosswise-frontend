@@ -5,8 +5,7 @@ const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
 }
 
-export const stakeFarm = async (masterChefContract, pid, amount, referrer, isVest?:boolean, isAuto?: boolean) => {
-  
+export const stakeFarm = async (masterChefContract, pid, amount, referrer, isVest?: boolean, isAuto?: boolean) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
   // if (pid === 0) {
   //   const tx = await masterChefContract.enterStaking(value, options)
