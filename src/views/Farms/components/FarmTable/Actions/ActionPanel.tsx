@@ -170,14 +170,18 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   farmOption,
 }) => {
   const farm = details
-  const [autoVal, setAutoVal] = useState(false)
+  const [autoVal, setAutoVal] = useState(true)
   const [vestVal, setVestVal] = useState(false)
   const [configFlag, setConfigFlag] = useState(false)
   useEffect(() => {
     if (!configFlag) {
       setConfigFlag(true)
+      if (details.userData?.earnings === '0') {
+        setVestVal(true)
+      } else {
+        setVestVal(farmOption.isVest)
+      }
       setAutoVal(farmOption.isAuto)
-      setVestVal(farmOption.isVest)
     }
   }, [farmOption, userDataReady, details, configFlag])
   const { t } = useTranslation()

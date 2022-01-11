@@ -85,8 +85,12 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   useEffect(() => {
     if (!configFlag) {
       setConfigFlag(true)
+      if (farm.userData?.earnings === '0') {
+        setVestVal(true)
+      } else {
+        setVestVal(farm.userData.isVest)
+      }
       setAutoVal(farm.userData.isAuto)
-      setVestVal(farm.userData.isVest)
     }
   }, [farm, configFlag])
 
