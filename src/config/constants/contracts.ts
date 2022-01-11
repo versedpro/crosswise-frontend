@@ -76,7 +76,7 @@ export default {
     97: '0x3F9602593b4f7C67ab045DB51BbDEa94E40fA9Fe',
   },
   priceConsumer: {
-    56: '',
+    56: '0x6dc2889e22f0f2cA8A63Bc83998DC9303c267d84',
     97: '0x92ca9ca90732cd8e2b53df904dcfd60c0a2621f7',
   },
 }

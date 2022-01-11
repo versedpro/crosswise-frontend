@@ -3,7 +3,7 @@ import { ChainId, Token } from '@crosswise/sdk'
 export const CRSS: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
-    '0x5e0431B076892efA1d682E6BA40e1f72C5811C6b',
+    '0x99fefbc5ca74cc740395d65d384edd52cb3088bb',
     18,
     'CRSS',
     'Crosswise V1 Token',
@@ -67,7 +67,7 @@ const tokens = {
   crss: {
     symbol: 'CRSS',
     address: {
-      56: '',
+      56: '0x99fefbc5ca74cc740395d65d384edd52cb3088bb',
       97: '0x5e0431B076892efA1d682E6BA40e1f72C5811C6b',
     },
     decimals: 18,
@@ -76,7 +76,7 @@ const tokens = {
   xcrss: {
     symbol: 'XCRSS',
     address: {
-      56: '',
+      56: '0x27DF46ddd86D9b7afe3ED550941638172eB2e623',
       97: '0x6a5b46Ff0a076439B5594c53f2e999729fe7759c',
     },
     decimals: 18,
