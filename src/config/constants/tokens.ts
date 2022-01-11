@@ -3,14 +3,14 @@ import { ChainId, Token } from '@crosswise/sdk'
 export const CRSS: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
-    '0x4325e2ba865a7e582D98204a85bA276AcD476558',
+    '0x5e0431B076892efA1d682E6BA40e1f72C5811C6b',
     18,
     'CRSS',
     'Crosswise V1 Token',
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0x4325e2ba865a7e582D98204a85bA276AcD476558',
+    '0x5e0431B076892efA1d682E6BA40e1f72C5811C6b',
     18,
     'CRSS',
     'Crosswise V1 Token',
@@ -26,7 +26,7 @@ export const BUSD: { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+    '0x14417025110F7E652E6Cf758fF9dCb8e029876A4',
     18,
     'BUSD',
     'Binance USD',
@@ -68,7 +68,7 @@ const tokens = {
     symbol: 'CRSS',
     address: {
       56: '',
-      97: '0x4325e2ba865a7e582D98204a85bA276AcD476558',
+      97: '0x5e0431B076892efA1d682E6BA40e1f72C5811C6b',
     },
     decimals: 18,
     projectLink: '',
@@ -77,7 +77,7 @@ const tokens = {
     symbol: 'XCRSS',
     address: {
       56: '',
-      97: '0x20e8eC8430449B88d8f83148ef5D8c80b327fd33',
+      97: '0x6a5b46Ff0a076439B5594c53f2e999729fe7759c',
     },
     decimals: 18,
     projectLink: '',

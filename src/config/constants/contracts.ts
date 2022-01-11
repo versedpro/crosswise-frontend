@@ -1,6 +1,6 @@
 export default {
   masterChef: {
-    97: '0x84930868758E8f706a156d725D81f725230eE7b2',
+    97: '0x76D0336D8D926d832E8158Ad8B46efC059b408d3',
     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
   },
   sousChef: {
@@ -49,7 +49,7 @@ export default {
   },
   cakeVault: {
     56: '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC',
-    97: '',
+    97: '0xf5d562CdD2C4e7e3c1a98B7c9DA5Bb713e31a771',
   },
   crssReferral: {
     56: '',
@@ -77,6 +77,6 @@ export default {
   },
   priceConsumer: {
     56: '',
-    97: '0xeBD4CDf694418Eea9E63228b845a4751c1Bd2248',
+    97: '0x92ca9ca90732cd8e2b53df904dcfd60c0a2621f7',
   },
 }

@@ -26,7 +26,7 @@ export const BICONOMY_API_KEY = {
 // 9 CRSS per block goes to Yield farms and lottery
 // CRSS_PER_BLOCK in config/index.ts = 40 as we only change the amount sent to the burn pool which is effectively a farm.
 // CRSS/Block in src/views/Home/components/CakeDataRow.tsx = 19 (40 - Amount sent to burn pool)
-export const CAKE_PER_BLOCK = new BigNumber(40)
+export const CAKE_PER_BLOCK = new BigNumber(1.2)
 export const BLOCKS_PER_YEAR = new BigNumber((60 / BSC_BLOCK_TIME) * 60 * 24 * 365) // 10512000
 export const CAKE_PER_YEAR = CAKE_PER_BLOCK.times(BLOCKS_PER_YEAR)
 export const BASE_URL = 'https://app.crosswise.finance'
