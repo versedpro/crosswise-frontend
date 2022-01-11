@@ -27,6 +27,14 @@ export default function useChainLinkPrice(
     : undefined
 }
 
+export function usePriceGuardPaused(token?: Token): boolean | undefined {
+  const routerContract = useRouterContract()
+
+  const paused: boolean = useSingleCallResult(routerContract, 'priceGuardPaused', [token?.address])?.result?.[0]
+
+  return token ? paused : undefined
+}
+
 export function useMaxSpreadTolerance(token?: Token): number | undefined {
   const routerContract = useRouterContract()
 

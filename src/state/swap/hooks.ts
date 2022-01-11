@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useENS from 'hooks/ENS/useENS'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import useChainLinkPrice, { useMaxSpreadTolerance } from 'hooks/useChainLinkPrice'
+import useChainLinkPrice, { useMaxSpreadTolerance, usePriceGuardPaused } from 'hooks/useChainLinkPrice'
 import { useCurrency } from 'hooks/Tokens'
 import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
 import useParsedQueryString from 'hooks/useParsedQueryString'
@@ -119,6 +119,7 @@ export function useVerifyPrice(
   const chainLinkPrice = useChainLinkPrice(inputCurrency, outputCurrency)
 
   const [pairState, pair] = usePair(inputCurrency, outputCurrency)
+  const priceGuardPaused = usePriceGuardPaused(pair?.liquidityToken)
   const maxSpreadTolerance = useMaxSpreadTolerance(pair?.liquidityToken)
 
   if (pairState !== PairState.EXISTS) {
@@ -131,6 +132,12 @@ export function useVerifyPrice(
     return {
       chainLinkPrice: undefined,
       inputError: t('Wait for execution price'),
+    }
+  }
+  if (priceGuardPaused) {
+    return {
+      chainLinkPrice,
+      inputError: undefined,
     }
   }
 
@@ -152,7 +159,7 @@ export function useDerivedSwapInfo(): {
   currencyBalances: { [field in Field]?: CurrencyAmount }
   parsedAmount: CurrencyAmount | undefined
   v2Trade: Trade | undefined
-  // chainLinkPrice: Price | undefined
+  chainLinkPrice: Price | undefined
   inputError?: string
 } {
   const { account } = useActiveWeb3React()
@@ -232,22 +239,22 @@ export function useDerivedSwapInfo(): {
     inputError = t('Insufficient %symbol% balance', { symbol: amountIn.currency.symbol })
   }
 
-  // const { chainLinkPrice, inputError: verifyError } = useVerifyPrice(
-  //   v2Trade?.executionPrice,
-  //   inputCurrency ?? undefined,
-  //   outputCurrency ?? undefined,
-  // )
+  const { chainLinkPrice, inputError: verifyError } = useVerifyPrice(
+    v2Trade?.executionPrice,
+    inputCurrency ?? undefined,
+    outputCurrency ?? undefined,
+  )
 
-  // if (verifyError) {
-  //   inputError = inputError ?? verifyError
-  // }
+  if (verifyError) {
+    inputError = inputError ?? verifyError
+  }
 
   return {
     currencies,
     currencyBalances,
     parsedAmount,
     v2Trade: v2Trade ?? undefined,
-    // chainLinkPrice,
+    chainLinkPrice,
     inputError,
   }
 }
