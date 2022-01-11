@@ -12,7 +12,7 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CRSS[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH, USDC],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CRSS[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CRSS[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
 }
 //
@@ -35,13 +35,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [BUSD[ChainId.MAINNET], CRSS[ChainId.MAINNET], BTCB],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CRSS[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CRSS[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], DAI, BUSD[ChainId.MAINNET], USDT],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CRSS[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CRSS[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
 }
 
