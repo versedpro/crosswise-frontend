@@ -15,7 +15,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CRSS[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH, USDC],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CRSS[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
 }
-
+//
 /**
  * Addittional bases for specific tokens
  * @example { [WBTC.address]: [renBTC], [renBTC.address]: [WBTC] }
@@ -26,7 +26,7 @@ export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]
 
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
- * tokens.
+ * tokens. ...
  * @example [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
