@@ -43,7 +43,7 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
   const calls = farmsToFetch.map((farm) => {
     return {
       address: masterChefAddress,
-      name: 'userInfo',
+      name: 'stakedTokens',
       params: [farm.pid, account],
     }
   })
