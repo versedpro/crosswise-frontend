@@ -150,7 +150,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
                 {t('Approve')}
               </Button>
             )}
-            <HarvestAction earnings={earnings} pid={pid} />
+            <HarvestAction earnings={earnings} pid={pid} isAuto={autoVal} />
           </Flex>
         </ActionWrapper>
 
