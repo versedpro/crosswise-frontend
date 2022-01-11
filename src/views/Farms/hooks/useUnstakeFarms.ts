@@ -13,7 +13,13 @@ const useUnstakeFarms = (pid: number) => {
 
   const handleUnstake = useCallback(
     async (amount: string, library: any) => {
-      await unstakeFarm(masterChefContract, pid, amount)
+      try {
+        const txHash = await unstakeFarm(masterChefContract, pid, amount)
+        const receipt = await txHash.wait()
+        return receipt.status
+      } catch (e) {
+        return false
+      }
     },
     [masterChefContract, pid],
   )

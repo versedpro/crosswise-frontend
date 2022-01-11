@@ -5,7 +5,8 @@ const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
 }
 
-export const stakeFarm = async (masterChefContract, pid, amount, referrer) => {
+export const stakeFarm = async (masterChefContract, pid, amount, referrer, isVest?:boolean, isAuto?: boolean) => {
+  
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
   // if (pid === 0) {
   //   const tx = await masterChefContract.enterStaking(value, options)
@@ -16,7 +17,7 @@ export const stakeFarm = async (masterChefContract, pid, amount, referrer) => {
   if (!referrer) referrerAddress = DEFAULT_REFERRER_ADDRESS
 
   // Consider auto-compound and vesting feature for deposit method
-  const tx = await masterChefContract.deposit(pid, value, referrerAddress, false, false, options)
+  const tx = await masterChefContract.deposit(pid, value, referrerAddress, isVest, isAuto, options)
   const receipt = await tx.wait()
   return receipt.status
 }
@@ -41,7 +42,7 @@ export const harvestFarm = async (masterChefContract, pid) => {
   //   return receipt.status
   // }
 
-  const tx = await masterChefContract.deposit(pid, '0', options)
+  const tx = await masterChefContract.withdraw(pid, '0', options)
   const receipt = await tx.wait()
   return receipt.status
 }

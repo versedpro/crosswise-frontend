@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { stakeFarm } from 'utils/calls'
 import { useMasterchef } from 'hooks/useContract'
-import { sendTransactionByBiconomy } from 'utils/useBiconomy'
+// import { sendTransactionByBiconomy } from 'utils/useBiconomy'
 import masterChef from 'config/abi/masterchef.json'
 import { useWeb3React } from '@web3-react/core'
 import { DEFAULT_REFERRER_ADDRESS, DEFAULT_TOKEN_DECIMAL } from 'config'
@@ -13,7 +13,13 @@ const useStakeFarms = (pid: number) => {
 
   const handleStake = useCallback(
     async (amount: string, library: any, referrer?: string, isVest?: boolean, isAuto?: boolean) => {
-      const txHash = await stakeFarm(masterChefContract, pid, amount, referrer)
+      try {
+      const txHash = await stakeFarm(masterChefContract, pid, amount, referrer, isVest, isAuto)
+      const receipt = await txHash.wait()
+      return receipt.status
+    } catch (e) {
+      return false
+    }
     },
     [masterChefContract, pid],
   )

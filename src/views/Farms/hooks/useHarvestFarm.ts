@@ -13,7 +13,14 @@ const useHarvestFarm = (farmPid: number) => {
 
   const handleHarvest = useCallback(
     async (library: any, referrer?: string) => {
-      await harvestFarm(masterChefContract, farmPid)
+      try {
+        const txHash = await harvestFarm(masterChefContract, farmPid)
+        const receipt = await txHash.wait()
+        console.log("handleharvest", receipt)
+        return receipt.status
+      } catch (e) {
+        return false
+      }
     },
     [farmPid, masterChefContract],
   )

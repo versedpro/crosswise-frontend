@@ -19,6 +19,7 @@ import Apr, { AprProps } from '../Apr'
 import Multiplier, { MultiplierProps } from '../Multiplier'
 import Liquidity, { LiquidityProps } from '../Liquidity'
 import FarmOption, { FarmOptionProps } from '../FarmOption'
+import DepositFee, { DepositFeeProps } from '../DepositFee'
 
 export interface ActionPanelProps {
   apr: AprProps
@@ -27,6 +28,7 @@ export interface ActionPanelProps {
   details: FarmWithStakedValue
   userDataReady: boolean
   expanded: boolean
+  depositFee: DepositFeeProps
   farmOption: FarmOptionProps
 }
 
@@ -166,15 +168,17 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   multiplier,
   liquidity,
   userDataReady,
+  depositFee,
   expanded,
   farmOption,
 }) => {
   const farm = details
-  const [autoVal, setAutoVal] = useState(true)
+  const [autoVal, setAutoVal] = useState(false)
   const [vestVal, setVestVal] = useState(false)
   const [configFlag, setConfigFlag] = useState(false)
+  console.log("details --------", farm)
   useEffect(() => {
-    if (!configFlag) {
+    if (!configFlag && userDataReady) {
       setConfigFlag(true)
       if (details.userData?.earnings === '0') {
         setVestVal(true)
@@ -244,6 +248,10 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
           <ValueWrapper>
             <Text>{t('Liquidity')}</Text>
             <Liquidity {...liquidity} />
+          </ValueWrapper>
+          <ValueWrapper>
+            <Text>{t('Deposit Fee')}</Text>
+            <DepositFee {...depositFee} />
           </ValueWrapper>
         </ValueContainer>
 
