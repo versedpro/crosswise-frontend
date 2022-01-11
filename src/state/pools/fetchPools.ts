@@ -1,15 +1,19 @@
 import BigNumber from 'bignumber.js'
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
-import cakeABI from 'config/abi/cake.json'
+import masterChefABI from 'config/abi/masterchef.json'
 import wbnbABI from 'config/abi/weth.json'
+import crssVaultABI from 'config/abi/crssVault.json'
 import multicall from 'utils/multicall'
 import { getAddress, getWbnbAddress } from 'utils/addressHelpers'
+
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getSouschefV2Contract } from 'utils/contractHelpers'
+import { getSouschefV2Contract, getCakeVaultContract } from 'utils/contractHelpers'
+
+const crssVaultContract = getCakeVaultContract()
 
 export const fetchPoolsBlockLimits = async () => {
-  const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
+  const poolsWithEnd = poolsConfig.filter((p) => p.sousId > 1)
   const callsStartBlock = poolsWithEnd.map((poolConfig) => {
     return {
       address: getAddress(poolConfig.contractAddress),
@@ -37,36 +41,35 @@ export const fetchPoolsBlockLimits = async () => {
 }
 
 export const fetchPoolsTotalStaking = async () => {
-  const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
-  const bnbPool = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
+  const manualCrssPool = poolsConfig.filter((p) => p.sousId === 0)
+  const autoCrssPool = poolsConfig.filter((p) => p.sousId === 1)
+  const sousChefPool = poolsConfig.filter((p) => p.sousId > 1)
 
-  const callsNonBnbPools = nonBnbPools.map((poolConfig) => {
+  const callManualCrssPool = manualCrssPool.map((poolConfig) => {
     return {
-      address: getAddress(poolConfig.stakingToken.address),
-      name: 'balanceOf',
-      params: [getAddress(poolConfig.contractAddress)],
+      address: getAddress(poolConfig.contractAddress),
+      name: 'stakingPoolDeposit',
+      params: [],
     }
   })
 
-  const callsBnbPools = bnbPool.map((poolConfig) => {
-    return {
-      address: getWbnbAddress(),
-      name: 'balanceOf',
-      params: [getAddress(poolConfig.contractAddress)],
-    }
-  })
+  // const callAutoCrssPool = autoCrssPool.map((poolConfig) => {
+  //   return {
+  //     address: getAddress(poolConfig.contractAddress),
+  //     name: 'balanceOf',
+  //     params: [],
+  //   }
+  // })
 
-  const nonBnbPoolsTotalStaked = await multicall(cakeABI, callsNonBnbPools)
-  const bnbPoolsTotalStaked = await multicall(wbnbABI, callsBnbPools)
-
+  const manualCrssPoolTotalStaked = await multicall(masterChefABI, callManualCrssPool)
+  // const autoCrssPoolTotalStaked = await multicall(crssVaultABI, callAutoCrssPool)
+  const crssVaultStaked = await crssVaultContract.balanceOf()
   return [
-    ...nonBnbPools.map((p, index) => ({
+    ...manualCrssPool.map((p, index) => ({
       sousId: p.sousId,
-      totalStaked: new BigNumber(nonBnbPoolsTotalStaked[index]).toJSON(),
-    })),
-    ...bnbPool.map((p, index) => ({
-      sousId: p.sousId,
-      totalStaked: new BigNumber(bnbPoolsTotalStaked[index]).toJSON(),
+      totalStaked: new BigNumber(manualCrssPoolTotalStaked[index])
+        .minus(new BigNumber(crssVaultStaked.toString()))
+        .toJSON(),
     })),
   ]
 }

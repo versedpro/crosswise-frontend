@@ -2,7 +2,7 @@ import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import erc20ABI from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
-import { getMasterchefContract } from 'utils/contractHelpers'
+import { getMasterchefContract, getCakeVaultContract } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
 import { simpleRpcProvider } from 'utils/providers'
 import BigNumber from 'bignumber.js'
@@ -11,8 +11,12 @@ import BigNumber from 'bignumber.js'
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
 const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
-const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
+const manualCrssPools = poolsConfig.filter((p) => p.sousId === 0)
+const autoCrssPools = poolsConfig.filter((p) => p.sousId === 1)
+const nonMasterPools = poolsConfig.filter((p) => p.sousId > 1)
+
 const masterChefContract = getMasterchefContract()
+const crssVaultContract = getCakeVaultContract()
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
@@ -68,8 +72,12 @@ export const fetchUserStakeBalances = async (account) => {
 
   // Cake / Cake pool
   const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
-
-  return { ...stakedBalances, 0: new BigNumber(masterPoolAmount.toString()).toJSON() }
+  const crssVaultStaked = await crssVaultContract.stakedTokens(account)
+  return {
+    ...stakedBalances,
+    0: new BigNumber(masterPoolAmount.toString()).toJSON(),
+    1: new BigNumber(crssVaultStaked.toString()).toJSON(),
+  }
 }
 
 export const fetchUserPendingRewards = async (account) => {
@@ -90,5 +98,9 @@ export const fetchUserPendingRewards = async (account) => {
   // Cake / Cake pool
   const pendingReward = await masterChefContract.pendingCrss('0', account)
 
-  return { ...pendingRewards, 0: new BigNumber(pendingReward.toString()).toJSON() }
+  return {
+    ...pendingRewards,
+    0: new BigNumber(pendingReward.toString()).toJSON(),
+    1: new BigNumber(pendingReward.toString()).toJSON(),
+  }
 }
