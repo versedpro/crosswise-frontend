@@ -3,7 +3,7 @@ import { BUSD, DAI, USDT, BTCB, CRSS, WBNB, UST, ETH, USDC } from './tokens'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
-export const ROUTER_ADDRESS = '0xb6eabf1ba755b24a7eab7c79ef448fbd9aaa0e4f'
+export const ROUTER_ADDRESS = '0x8B6e0Aa1E9363765Ea106fa42Fc665C691443b63'
 
 // a list of tokens by chain
 type ChainTokenList = {
