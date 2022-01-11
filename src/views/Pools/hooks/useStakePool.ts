@@ -33,7 +33,8 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
   const handleStake = useCallback(
     async (amount: string, decimals: number) => {
       if (sousId === 0) {
-        await stakeFarm(masterChefContract, 0, amount, DEFAULT_REFERRER_ADDRESS)
+          const txHash = await stakeFarm(masterChefContract, 0, amount, DEFAULT_REFERRER_ADDRESS)
+          const receipt = await txHash.wait()
       } else if (isUsingBnb) {
         await sousStakeBnb(sousChefContract, amount)
       } else {

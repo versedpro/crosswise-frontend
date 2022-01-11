@@ -18,6 +18,7 @@ export interface FarmWithStakedValue extends Farm {
   apr?: number
   lpRewardsApr?: number
   liquidity?: BigNumber
+  depositFee?: string
 }
 
 const StyledCard = styled(Card)`

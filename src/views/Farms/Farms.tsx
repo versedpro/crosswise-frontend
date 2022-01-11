@@ -432,7 +432,6 @@ const Farms: React.FC = () => {
   }, [stakedOnlyFarms])
 
   chosenFarmsLength.current = chosenFarmsMemoized.length
-
   useEffect(() => {
     const showMoreFarms = (entries) => {
       const [entry] = entries
@@ -523,6 +522,9 @@ const Farms: React.FC = () => {
       multiplier: {
         multiplier: farm.multiplier,
       },
+      depositFee: {
+        depositFee: farm.depositFee,
+      },
       farmOption: {
         pid: farm.pid,
         isAuto: farm.userData.isAuto,
@@ -560,7 +562,7 @@ const Farms: React.FC = () => {
         },
         sortable: column.sortable,
       }))
-
+      
       return <Table data={rowData} columns={columns} userDataReady={userDataReady} />
     }
 

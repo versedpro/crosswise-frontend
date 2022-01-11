@@ -9,6 +9,7 @@ import { useFarmUser } from 'state/farms/hooks'
 import Apr, { AprProps } from './Apr'
 import Farm, { FarmProps } from './Farm'
 import Earned, { EarnedProps } from './Earned'
+import DepositFee, { DepositFeeProps } from './DepositFee'
 import Details from './Details'
 import Multiplier, { MultiplierProps } from './Multiplier'
 import Liquidity, { LiquidityProps } from './Liquidity'
@@ -17,12 +18,14 @@ import ActionPanel from './Actions/ActionPanel'
 import CellLayout from './CellLayout'
 import { DesktopColumnSchema, MobileColumnSchema } from '../types'
 
+
 export interface RowProps {
   apr: AprProps
   farm: FarmProps
   earned: EarnedProps
   multiplier: MultiplierProps
   liquidity: LiquidityProps
+  depositFee: DepositFeeProps
   farmOption: FarmOptionProps
   details: FarmWithStakedValue
 }
@@ -37,6 +40,7 @@ const cells = {
   earned: Earned,
   details: Details,
   multiplier: Multiplier,
+  depositFee: DepositFee,
   liquidity: Liquidity,
   test: false,
 }
@@ -69,6 +73,10 @@ const AprMobileCell = styled.td`
 
 const FarmMobileCell = styled.td`
   padding-top: 24px;
+`
+const DepositFeeMobileCell = styled.td`
+  padding-top: 16px;
+  padding-bottom: 24px;
 `
 
 const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
@@ -149,6 +157,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
               </CellLayout>
             </FarmMobileCell>
           </tr>
+          
           <tr>
             <EarnedMobileCell>
               <CellLayout label={t('Earned')}>
@@ -178,7 +187,7 @@ const Row: React.FunctionComponent<RowPropsWithLoading> = (props) => {
       {handleRenderRow()}
       {shouldRenderChild && (
         <tr>
-          <td colSpan={6}>
+          <td colSpan={7}>
             <ActionPanel {...props} expanded={actionPanelExpanded} />
           </td>
         </tr>

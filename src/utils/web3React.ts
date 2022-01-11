@@ -32,14 +32,14 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {
-  const biconomy = new Biconomy(provider, { apiKey: BICONOMY_API_KEY[chainId], debug: true })
-  const ethersProvider = new ethers.providers.Web3Provider(biconomy)
-  console.log(biconomy)
-  console.log(ethersProvider)
-  return ethersProvider
-  // const library = new ethers.providers.Web3Provider(provider)
-  // library.pollingInterval = POLLING_INTERVAL
-  // return library
+  // const biconomy = new Biconomy(provider, { apiKey: BICONOMY_API_KEY[chainId], debug: true })
+  // const ethersProvider = new ethers.providers.Web3Provider(biconomy)
+  // console.log(biconomy)
+  // console.log(ethersProvider)
+  // return ethersProvider
+  const library = new ethers.providers.Web3Provider(provider)
+  library.pollingInterval = POLLING_INTERVAL
+  return library
 }
 
 /**

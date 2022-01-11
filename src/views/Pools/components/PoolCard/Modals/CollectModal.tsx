@@ -85,6 +85,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
       // harvesting
       try {
         if (isCrssManual) {
+          console.log("here to harvest")
           await onReward(library)
         } else {
           console.log('harvest on other type pool')
