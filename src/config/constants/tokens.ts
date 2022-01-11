@@ -851,7 +851,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      97: '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+      97: '0x14417025110F7E652E6Cf758fF9dCb8e029876A4',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
