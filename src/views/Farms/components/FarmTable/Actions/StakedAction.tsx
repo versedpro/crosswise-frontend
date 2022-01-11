@@ -43,9 +43,6 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   isVest,
   isAuto,
 }) => {
-  console.log("isvest", isVest)
-  console.log("isAuto", isAuto)
-  
   const { t } = useTranslation()
   const { account, library } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)

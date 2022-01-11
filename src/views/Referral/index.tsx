@@ -64,7 +64,7 @@ const Home: React.FC = () => {
       <StyledPage>
         <AutoColumn justify="flex-start">
           <Heading as="h1" scale="xxl" mb="24px" color="text">
-            {t('CrossWise Referral Program')}
+            {t('Crosswise Referral Program')}
           </Heading>
           <Label color="textSubtle" fontSize="20px">
             {t("Share the referral link below to invite your friends and earn 1% of your friends' earnings FOREVER!")}

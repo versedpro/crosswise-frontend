@@ -176,7 +176,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
   const [autoVal, setAutoVal] = useState(false)
   const [vestVal, setVestVal] = useState(false)
   const [configFlag, setConfigFlag] = useState(false)
-  console.log("details --------", farm)
+
   useEffect(() => {
     if (!configFlag && userDataReady) {
       setConfigFlag(true)

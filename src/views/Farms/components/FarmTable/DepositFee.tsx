@@ -32,7 +32,6 @@ const DepositFee: React.FunctionComponent<DepositFeeProps> = ({ depositFee }) =>
   const displayDepositFee = depositFee ? depositFee.toLowerCase() : <Skeleton width={30} />
   const { t } = useTranslation()
 
-
   return (
     <Container>
       <MultiplierWrapper>{displayDepositFee}</MultiplierWrapper>
