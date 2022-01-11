@@ -26,7 +26,12 @@ function useStaked() {
         } else if (farm.quoteToken.symbol === 'BUSD') {
           quoteTokenPriceUsd = quoteTokenPriceUsd.times(1)
         }
-        stakedBalance = stakedBalance.plus(getBalanceNumber(new BigNumber(farm.userData.stakedBalance).times(quoteTokenPriceUsd), farm.quoteToken.decimals))
+        stakedBalance = stakedBalance.plus(
+          getBalanceNumber(
+            new BigNumber(farm.userData.stakedBalance).times(quoteTokenPriceUsd),
+            farm.quoteToken.decimals,
+          ),
+        )
         // stakedBalance = stakedBalance.plus(new BigNumber(farm.userData.stakedBalance).times(quoteTokenPriceUsd))
       }
       return true

@@ -52,12 +52,9 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
         ) : isXLargerScreen && isCakePool ? (
           <StakedCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
         ) : null} */}
-        {
-          isXLargerScreen && isCrssPool ?
-          (
-            <StakedCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
-          ) : null
-        }
+        {isXLargerScreen && isCrssPool ? (
+          <StakedCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
+        ) : null}
         <AprCell pool={pool} performanceFee={performanceFeeAsDecimal} />
         {(isLg || isXl) && <TotalStakedCell pool={pool} />}
         {isXl && !isCrssPool && <EndsInCell pool={pool} />}

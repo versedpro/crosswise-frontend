@@ -12,7 +12,7 @@ function usePoolTvl() {
   const [balances, setBalance] = useState(0)
   const { fastRefresh } = useRefresh()
   const bnbPrice = usePriceBnbBusd()
-  const farms = useSelector((state: State) => state.farms.data)  
+  const farms = useSelector((state: State) => state.farms.data)
   const pools = useSelector((state: State) => state.pools.data)
 
   const calcTvl = useCallback(() => {

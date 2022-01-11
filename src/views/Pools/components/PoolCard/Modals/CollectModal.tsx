@@ -53,7 +53,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
   // const [shouldCompound, setShouldCompound] = useState(isCompoundPool)
   const [shouldCompound, setShouldCompound] = useState(false) //  default harvest
   const { account, library } = useWeb3React()
-  const isCrssManual = sousId === 0;
+  const isCrssManual = sousId === 0
   const { onReward } = useHarvestFarm(0)
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
@@ -84,10 +84,10 @@ const CollectModal: React.FC<CollectModalProps> = ({
     } else {
       // harvesting
       try {
-        if(isCrssManual){
+        if (isCrssManual) {
           await onReward(library)
-        }else{
-          console.log("harvest on other type pool")
+        } else {
+          console.log('harvest on other type pool')
         }
         toastSuccess(
           `${t('Harvested')}!`,
