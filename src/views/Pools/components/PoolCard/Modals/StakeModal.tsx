@@ -13,7 +13,6 @@ import PercentageButton from './PercentageButton'
 import useStakePool from '../../../hooks/useStakePool'
 import useUnstakePool from '../../../hooks/useUnstakePool'
 
-
 import useUnstakeFarms from '../../../../Farms/hooks/useUnstakeFarms'
 import useStakeFarms from '../../../../Farms/hooks/useStakeFarms'
 
@@ -42,7 +41,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const { t } = useTranslation()
   const { account, library } = useWeb3React()
   const { theme } = useTheme()
-  const isCrssManual = sousId === 0;
+  const isCrssManual = sousId === 0
   const { onStake } = useStakeFarms(0)
   const { onUnstake } = useUnstakeFarms(0)
   // const { onStake } = useStakePool(sousId, isBnbPool)
@@ -52,7 +51,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const [stakeAmount, setStakeAmount] = useState('')
   const [hasReachedStakeLimit, setHasReachedStakedLimit] = useState(false)
   const [percent, setPercent] = useState(0)
-
 
   const getCalculatedStakingLimit = () => {
     if (isRemovingStake) {
@@ -93,17 +91,17 @@ const StakeModal: React.FC<StakeModalProps> = ({
   }
 
   const handleConfirmClick = async () => {
-    console.log("stake cnfirm")
+    console.log('stake cnfirm')
     setPendingTx(true)
 
     if (isRemovingStake) {
       // unstaking
       try {
-        if(isCrssManual){
+        if (isCrssManual) {
           await onUnstake(stakeAmount, library)
-        }else{
-          console.log("other type pool unstake")
-           // await onUnstake(stakeAmount, stakingToken.decimals)
+        } else {
+          console.log('other type pool unstake')
+          // await onUnstake(stakeAmount, stakingToken.decimals)
         }
         toastSuccess(
           `${t('Unstaked')}!`,
@@ -120,13 +118,13 @@ const StakeModal: React.FC<StakeModalProps> = ({
     } else {
       try {
         // staking
-        if(isCrssManual){
+        if (isCrssManual) {
           await onStake(stakeAmount, library, '', true, false)
-        }else{
+        } else {
           // await onStake(stakeAmount, stakingToken.decimals)
-          console.log("other type pool stake");
+          console.log('other type pool stake')
         }
-        
+
         toastSuccess(
           `${t('Staked')}!`,
           t('Your %symbol% funds have been staked in the pool!', {
