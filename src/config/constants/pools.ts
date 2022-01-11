@@ -19,6 +19,20 @@ const pools: PoolConfig[] = [
   // {
   //   sousId: 1,
   //   stakingToken: tokens.crss,
+  //   earningToken: tokens.crss,
+  //   contractAddress: {
+  //     97: '0xf5d562CdD2C4e7e3c1a98B7c9DA5Bb713e31a771',
+  //     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+  //   },
+  //   poolCategory: PoolCategory.CORE,
+  //   harvest: false,
+  //   tokenPerBlock: '10',
+  //   sortOrder: 1,
+  //   isFinished: false,
+  // },
+  // {
+  //   sousId: 1,
+  //   stakingToken: tokens.crss,
   //   earningToken: tokens.busd,
   //   contractAddress: {
   //     97: '0xb31b99aadA093d58bf87ceA535eaCD5349039f56',
