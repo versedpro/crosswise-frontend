@@ -770,14 +770,25 @@ const Farms: React.FC = () => {
                 </Text>
               </div> */}
             </FarmUserInfo>
-            <MassBtns>
-              <Button variant="secondaryGradient" mr="18px" onClick={() => handleMassHarvest()}>
-                Mass Harvest
-              </Button>
-              <Button variant="primaryGradient" onClick={() => handleMassStakeReward()}>
-                Mass Stake Reward
-              </Button>
-            </MassBtns>
+            {account ? (
+              <MassBtns>
+                <Button variant="secondaryGradient" mr="18px" onClick={() => handleMassHarvest()}>
+                  Mass Harvest
+                </Button>
+                <Button variant="primaryGradient" onClick={() => handleMassStakeReward()}>
+                  Mass Stake Reward
+                </Button>
+              </MassBtns>
+            ) : (
+              <MassBtns>
+                <Button variant="secondaryGradient" mr="18px" disabled>
+                  Mass Harvest
+                </Button>
+                <Button variant="primaryGradient" disabled>
+                  Mass Stake Reward
+                </Button>
+              </MassBtns>
+            )}
           </HarvestBtnGroup>
           {/** end second block */}
         </FarmHeadCard>

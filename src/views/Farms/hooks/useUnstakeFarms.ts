@@ -11,28 +11,28 @@ const useUnstakeFarms = (pid: number) => {
   const masterChefContract = useMasterchef()
   const { account } = useWeb3React()
 
-  // const handleUnstake = useCallback(
-  //   async (amount: string) => {
-  //     await unstakeFarm(masterChefContract, pid, amount)
-  //   },
-  //   [masterChefContract, pid],
-  // )
-
   const handleUnstake = useCallback(
     async (amount: string, library: any) => {
-      const tokenAmount = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
-
-      const txHash = await sendTransactionByBiconomy(
-        library,
-        masterChefContract.address,
-        masterChef,
-        account,
-        'withdraw',
-        [pid, tokenAmount],
-      )
+      await unstakeFarm(masterChefContract, pid, amount)
     },
-    [pid, masterChefContract, account],
+    [masterChefContract, pid],
   )
+
+  // const handleUnstake = useCallback(
+  //   async (amount: string, library: any) => {
+  //     const tokenAmount = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
+
+  //     const txHash = await sendTransactionByBiconomy(
+  //       library,
+  //       masterChefContract.address,
+  //       masterChef,
+  //       account,
+  //       'withdraw',
+  //       [pid, tokenAmount],
+  //     )
+  //   },
+  //   [pid, masterChefContract, account],
+  // )
 
   return { onUnstake: handleUnstake }
 }

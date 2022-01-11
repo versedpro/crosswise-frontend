@@ -45,3 +45,27 @@ export const harvestFarm = async (masterChefContract, pid) => {
   const receipt = await tx.wait()
   return receipt.status
 }
+
+export const massHarvestFarm = async (masterChefContract, pids) => {
+  // if (pid === 0) {
+  //   const tx = await await masterChefContract.leaveStaking('0', options)
+  //   const receipt = await tx.wait()
+  //   return receipt.status
+  // }
+
+  const tx = await masterChefContract.massHarvest(pids, options)
+  const receipt = await tx.wait()
+  return receipt.status
+}
+
+export const massStakeFarm = async (masterChefContract, pids) => {
+  // if (pid === 0) {
+  //   const tx = await await masterChefContract.leaveStaking('0', options)
+  //   const receipt = await tx.wait()
+  //   return receipt.status
+  // }
+
+  const tx = await masterChefContract.massStakeReward(pids, options)
+  const receipt = await tx.wait()
+  return receipt.status
+}
