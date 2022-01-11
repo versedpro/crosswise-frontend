@@ -11,34 +11,32 @@ const useStakeFarms = (pid: number) => {
   const masterChefContract = useMasterchef()
   const { account } = useWeb3React()
 
-  // const handleStake = useCallback(
-  //   async (amount: string, referrer?: string) => {
-  //     // const txHash = await stakeFarm(masterChefContract, pid, amount, referrer)
-  //     const txHash = await sendTransactionByBiconomy('', '', '', '', '')
-  //     console.info(txHash)
-  //   },
-  //   [masterChefContract, pid],
-  // )
-
   const handleStake = useCallback(
     async (amount: string, library: any, referrer?: string, isVest?: boolean, isAuto?: boolean) => {
-      let referrerAddress = referrer
-      const tokenAmount = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
-      if (!referrer) referrerAddress = DEFAULT_REFERRER_ADDRESS
-      // if (!isVest) isVest = false
-      // if (!isAuto) isAuto = false
-      // const txHash = await stakeFarm(masterChefContract, pid, amount, referrer)
-      const txHash = await sendTransactionByBiconomy(
-        library,
-        masterChefContract.address,
-        masterChef,
-        account,
-        'deposit',
-        [pid, tokenAmount, referrerAddress, isVest, isAuto],
-      )
+      const txHash = await stakeFarm(masterChefContract, pid, amount, referrer)
     },
-    [pid, masterChefContract, account],
+    [masterChefContract, pid],
   )
+
+  // const handleStake = useCallback(
+  //   async (amount: string, library: any, referrer?: string, isVest?: boolean, isAuto?: boolean) => {
+  //     let referrerAddress = referrer
+  //     const tokenAmount = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
+  //     if (!referrer) referrerAddress = DEFAULT_REFERRER_ADDRESS
+  //     // if (!isVest) isVest = false
+  //     // if (!isAuto) isAuto = false
+  //     // const txHash = await stakeFarm(masterChefContract, pid, amount, referrer)
+  //     const txHash = await sendTransactionByBiconomy(
+  //       library,
+  //       masterChefContract.address,
+  //       masterChef,
+  //       account,
+  //       'deposit',
+  //       [pid, tokenAmount, referrerAddress, isVest, isAuto],
+  //     )
+  //   },
+  //   [pid, masterChefContract, account],
+  // )
 
   return { onStake: handleStake }
 }
