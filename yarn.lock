@@ -1691,10 +1691,10 @@
     buffer "^5.4.3"
     seedrandom "^3.0.5"
 
-"@crosswise/sdk@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/@crosswise/sdk/-/sdk-0.0.2.tgz#341f50076cf93839bbf23dd572f40f1c74e466ce"
-  integrity sha512-EjmIvAk4dnJ/JF6fwwEP6N/+chZvyC8HNU94WCubNK4k/pF23O7WS5P93wehLUvoLTbeEopqrSA0VlWP9390SA==
+"@crosswise/sdk@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/@crosswise/sdk/-/sdk-0.0.3.tgz#ed274ed8e8f82e3019a9565d7abbf0246477d1f5"
+  integrity sha512-pg+mSofygKYk0Gq8Z0tbvbg+e1Zhz8ueAjfgbennwmI/dbx/4h8w62P+R+Q5QsCHrOGSS50J0vIMbK01phjgzA==
   dependencies:
     "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
     big.js "^5.2.2"
