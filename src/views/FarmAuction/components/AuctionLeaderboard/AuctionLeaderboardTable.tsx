@@ -94,7 +94,12 @@ const LeaderboardRow: React.FC<LeaderboardRowProps> = ({ bidder, crssPriceBusd, 
             </SubMenuItem>
           )}
           {lpAddress && (
-            <SubMenuItem as={LinkExternal} href={`http://pancakeswap.info/pool/${lpAddress}`} bold={false} color="text">
+            <SubMenuItem
+              as={LinkExternal}
+              href={`http://app.crosswise.finance/pool/${lpAddress}`}
+              bold={false}
+              color="text"
+            >
               {t('LP Info')}
             </SubMenuItem>
           )}

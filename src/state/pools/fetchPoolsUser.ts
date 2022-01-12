@@ -72,11 +72,9 @@ export const fetchUserStakeBalances = async (account) => {
 
   // Cake / Cake pool
   const { amount: masterPoolAmount } = await masterChefContract.userInfo('0', account)
-  const crssVaultStaked = await crssVaultContract.stakedTokens(account)
   return {
     ...stakedBalances,
     0: new BigNumber(masterPoolAmount.toString()).toJSON(),
-    1: new BigNumber(crssVaultStaked.toString()).toJSON(),
   }
 }
 
@@ -101,6 +99,5 @@ export const fetchUserPendingRewards = async (account) => {
   return {
     ...pendingRewards,
     0: new BigNumber(pendingReward.toString()).toJSON(),
-    1: new BigNumber(pendingReward.toString()).toJSON(),
   }
 }
