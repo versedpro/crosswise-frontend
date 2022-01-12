@@ -5,7 +5,11 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useENS from 'hooks/ENS/useENS'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import useChainLinkPrice, { useMaxSpreadTolerance, usePriceGuardPaused } from 'hooks/useChainLinkPrice'
+import useChainLinkPrice, {
+  getChainLinkPrice,
+  useMaxSpreadTolerance,
+  usePriceGuardPaused,
+} from 'hooks/useChainLinkPrice'
 import { useCurrency } from 'hooks/Tokens'
 import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
 import useParsedQueryString from 'hooks/useParsedQueryString'
@@ -116,8 +120,6 @@ export function useVerifyPrice(
 } {
   const { t } = useTranslation()
 
-  const chainLinkPrice = useChainLinkPrice(inputCurrency, outputCurrency)
-
   const [pairState, pair] = usePair(inputCurrency, outputCurrency)
   const priceGuardPaused = usePriceGuardPaused(pair?.liquidityToken)
   const maxSpreadTolerance = useMaxSpreadTolerance(pair?.liquidityToken)
@@ -128,7 +130,7 @@ export function useVerifyPrice(
       inputError: t('Select a token'),
     }
   }
-  if (!executionPrice || !chainLinkPrice) {
+  if (!executionPrice || priceGuardPaused === undefined) {
     return {
       chainLinkPrice: undefined,
       inputError: t('Wait for execution price'),
@@ -136,8 +138,16 @@ export function useVerifyPrice(
   }
   if (priceGuardPaused) {
     return {
-      chainLinkPrice,
+      chainLinkPrice: undefined,
       inputError: undefined,
+    }
+  }
+
+  const chainLinkPrice = getChainLinkPrice(inputCurrency, outputCurrency, pairState, pair)
+  if (!chainLinkPrice) {
+    return {
+      chainLinkPrice: undefined,
+      inputError: t('Wait for execution price'),
     }
   }
 
