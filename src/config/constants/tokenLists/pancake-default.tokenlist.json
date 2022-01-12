@@ -11,6 +11,14 @@
   "keywords": ["pancake", "default"],
   "tokens": [
     {
+      "name": "Crosswise Token",
+      "symbol": "CRSS",
+      "address": "0x99FEFBC5cA74cc740395D65D384EDD52Cb3088Bb",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/tokens/0x99FEFBC5cA74cc740395D65D384EDD52Cb3088Bb.svg"
+    },
+    {
       "name": "WBNB Token",
       "symbol": "WBNB",
       "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
@@ -27,7 +35,7 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0xe9e7cea3dedca5984780bafc599bd69add087d56.png"
     },
     {
-      "name": "Ethereum Token",
+      "name": "Ethereum",
       "symbol": "ETH",
       "address": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8",
       "chainId": 56,
@@ -43,7 +51,7 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0x55d398326f99059ff775485246999027b3197955.png"
     },
     {
-      "name": "BTCB Token",
+      "name": "Bitcoin",
       "symbol": "BTCB",
       "address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
       "chainId": 56,
@@ -59,7 +67,7 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
     },
     {
-      "name": "ADA Token",
+      "name": "Cardano Token",
       "symbol": "ADA",
       "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
       "chainId": 56,
@@ -67,7 +75,7 @@
       "logoURI": "/images/tokens/0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47.svg"
     },
     {
-      "name": "DOT Token",
+      "name": "Polkadot Token",
       "symbol": "DOT",
       "address": "0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402",
       "chainId": 56,
@@ -75,7 +83,7 @@
       "logoURI": "/images/tokens/0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402.svg"
     },
     {
-      "name": "LINK Token",
+      "name": "ChainLink Token",
       "symbol": "LINK",
       "address": "0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD",
       "chainId": 56,
