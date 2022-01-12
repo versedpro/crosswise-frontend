@@ -59,7 +59,7 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
     },
     {
-      "name": "PancakeSwap Token",
+      "name": "ADA Token",
       "symbol": "ADA",
       "address": "0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47",
       "chainId": 56,
@@ -67,7 +67,7 @@
       "logoURI": "/images/tokens/0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47.svg"
     },
     {
-      "name": "PancakeSwap Token",
+      "name": "DOT Token",
       "symbol": "DOT",
       "address": "0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402",
       "chainId": 56,
@@ -75,7 +75,7 @@
       "logoURI": "/images/tokens/0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402.svg"
     },
     {
-      "name": "PancakeSwap Token",
+      "name": "LINK Token",
       "symbol": "LINK",
       "address": "0xF8A0BF9cF54Bb92F17374d9e9A321E6a111a51bD",
       "chainId": 56,
