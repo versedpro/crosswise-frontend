@@ -16,7 +16,7 @@
       "address": "0x99FEFBC5cA74cc740395D65D384EDD52Cb3088Bb",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/tokens/0x99FEFBC5cA74cc740395D65D384EDD52Cb3088Bb.svg"
+      "logoURI": "https://app.crosswise.finance/images/tokens/0x99fefbc5ca74cc740395d65d384edd52cb3088bb.png"
     },
     {
       "name": "WBNB Token",
