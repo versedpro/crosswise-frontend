@@ -3,7 +3,7 @@ import { ChainId, Token } from '@crosswise/sdk'
 export const CRSS: { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET,
-    '0x99fefbc5ca74cc740395d65d384edd52cb3088bb',
+    '0x99FEFBC5cA74cc740395D65D384EDD52Cb3088Bb',
     18,
     'CRSS',
     'Crosswise V1 Token',
