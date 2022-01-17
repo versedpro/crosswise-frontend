@@ -29,27 +29,27 @@ import { RedirectPathToSwapOnly, RedirectToSwap } from './views/Swap/redirects'
 // Only pool is included in the main bundle because of it's the most visited page
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
-const FarmAuction = lazy(() => import('./views/FarmAuction'))
-const Lottery = lazy(() => import('./views/Lottery'))
+// const FarmAuction = lazy(() => import('./views/FarmAuction'))
+// const Lottery = lazy(() => import('./views/Lottery'))
 const Referral = lazy(() => import('./views/Referral'))
-const Ifos = lazy(() => import('./views/Ifos'))
-const Info = lazy(() => import('./views/Info'))
+// const Ifos = lazy(() => import('./views/Ifos'))
+// const Info = lazy(() => import('./views/Info'))
 const NotFound = lazy(() => import('./views/NotFound'))
-const Collectibles = lazy(() => import('./views/Collectibles'))
-const Teams = lazy(() => import('./views/Teams'))
-const Team = lazy(() => import('./views/Teams/Team'))
-const Profile = lazy(() => import('./views/Profile'))
-const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
-const Predictions = lazy(() => import('./views/Predictions'))
-const Voting = lazy(() => import('./views/Voting'))
-const Proposal = lazy(() => import('./views/Voting/Proposal'))
-const CreateProposal = lazy(() => import('./views/Voting/CreateProposal'))
+// const Collectibles = lazy(() => import('./views/Collectibles'))
+// const Teams = lazy(() => import('./views/Teams'))
+// const Team = lazy(() => import('./views/Teams/Team'))
+// const Profile = lazy(() => import('./views/Profile'))
+// const TradingCompetition = lazy(() => import('./views/TradingCompetition'))
+// const Predictions = lazy(() => import('./views/Predictions'))
+// const Voting = lazy(() => import('./views/Voting'))
+// const Proposal = lazy(() => import('./views/Voting/Proposal'))
+// const CreateProposal = lazy(() => import('./views/Voting/CreateProposal'))
 const AddLiquidity = lazy(() => import('./views/AddLiquidity'))
 const Liquidity = lazy(() => import('./views/Pool'))
 const PoolFinder = lazy(() => import('./views/PoolFinder'))
 const RemoveLiquidity = lazy(() => import('./views/RemoveLiquidity'))
-const OrderBook = lazy(() => import('./views/OrderBook'))
-const Settings = lazy(() => import('./views/Settings'))
+// const OrderBook = lazy(() => import('./views/OrderBook'))
+// const Settings = lazy(() => import('./views/Settings'))
 
 // This config is required for number formatting
 BigNumber.config({
@@ -73,57 +73,57 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route exact path="/farms/auction">
+            {/* <Route exact path="/farms/auction">
               <FarmAuction />
-            </Route>
+            </Route> */}
             <Route path="/farms">
               <Farms />
             </Route>
             <Route path="/pools">
               <Pools />
             </Route>
-            <Route path="/orderbook">
+            {/* <Route path="/orderbook">
               <OrderBook />
-            </Route>
-            <Route path="/lottery">
+            </Route> */}
+            {/* <Route path="/lottery">
               <Lottery />
-            </Route>
-            <Route path="/ifo">
+            </Route> */}
+            {/* <Route path="/ifo">
               <Ifos />
-            </Route>
-            <Route path="/info">
+            </Route> */}
+            {/* <Route path="/info">
               <Info />
-            </Route>
-            <Route path="/collectibles">
+            </Route> */}
+            {/* <Route path="/collectibles">
               <Collectibles />
-            </Route>
-            <Route exact path="/teams">
+            </Route> */}
+            {/* <Route exact path="/teams">
               <Teams />
-            </Route>
-            <Route path="/teams/:id">
+            </Route> */}
+            {/* <Route path="/teams/:id">
               <Team />
-            </Route>
-            <Route path="/profile">
+            </Route> */}
+            {/* <Route path="/profile">
               <Profile />
-            </Route>
-            <Route path="/competition">
+            </Route> */}
+            {/* <Route path="/competition">
               <TradingCompetition />
-            </Route>
-            <Route path="/prediction">
+            </Route> */}
+            {/* <Route path="/prediction">
               <Predictions />
-            </Route>
-            <Route exact path="/voting">
+            </Route> */}
+            {/* <Route exact path="/voting">
               <Voting />
-            </Route>
-            <Route exact path="/voting/proposal/create">
+            </Route> */}
+            {/* <Route exact path="/voting/proposal/create">
               <CreateProposal />
-            </Route>
-            <Route path="/voting/proposal/:id">
+            </Route> */}
+            {/* <Route path="/voting/proposal/:id">
               <Proposal />
-            </Route>
-            <Route path="/settings">
+            </Route> */}
+            {/* <Route path="/settings">
               <Settings />
-            </Route>
+            </Route> */}
             <Route exact path="/referral">
               <Referral />
             </Route>
@@ -154,9 +154,9 @@ const App: React.FC = () => {
             <Route path="/syrup">
               <Redirect to="/pools" />
             </Route>
-            <Route path="/nft">
+            {/* <Route path="/nft">
               <Redirect to="/collectibles" />
-            </Route>
+            </Route> */}
 
             {/* 404 */}
             <Route component={NotFound} />
