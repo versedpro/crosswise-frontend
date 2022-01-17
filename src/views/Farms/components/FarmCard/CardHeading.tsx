@@ -27,7 +27,8 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, is
   return (
     <>
       <Wrapper justifyContent="flex-start" alignItems="center" mb="12px">
-        <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
+        <TokenPairImage primaryToken={token} secondaryToken={quoteToken} width={64} height={64} />
+        {/* <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={64} height={64} /> */}
         <Flex flexDirection="column" alignItems="flex-end" ml="12px">
           <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
         </Flex>

@@ -92,7 +92,7 @@ const FarmTable: React.FC<ITableProps> = (props) => {
                 return (
                   <Row
                     {...row.original}
-                    farmOption={data[index].farmOption}
+                    farmOption={data[index]?.farmOption}
                     userDataReady={userDataReady}
                     key={`table-row-${row.id}`}
                   />
