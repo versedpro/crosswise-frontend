@@ -20,7 +20,7 @@ const farms: FarmConfig[] = [
     pid: 1,
     lpSymbol: 'CRSS-BNB LP',
     lpAddresses: {
-      97: '0xa20bfd5c2abab108284b7c34de3f616f0b885e09',
+      97: '0x14417025110F7E652E6Cf758fF9dCb8e029876A4',
       56: '0xb5d85cA38a9CbE63156a02650884D92A6e736DDC',
     },
     token: tokens.crss,
@@ -38,7 +38,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 3,
-    lpSymbol: 'BNB-BUSD LP',
+    lpSymbol: 'BUSD-BNB LP',
     lpAddresses: {
       97: '0x045e7efe7139ed74cdc21b6f96468e7ce57ed4b3',
       56: '0x290e1ad05b4d906b1e65b41e689fc842c9962825',
@@ -58,7 +58,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 5,
-    lpSymbol: 'BNB-ETH LP',
+    lpSymbol: 'ETH-BNB LP',
     lpAddresses: {
       97: '0x045e7efe7139ed74cdc21b6f96468e7ce57ed4b3',
       56: '0x8151D70B5806E3C957d9deB8bbB01352482a4741',
@@ -68,7 +68,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 6,
-    lpSymbol: 'BNB-BTCB LP',
+    lpSymbol: 'BTCB-BNB LP',
     lpAddresses: {
       97: '0x045e7efe7139ed74cdc21b6f96468e7ce57ed4b3',
       56: '0x9ba0dce71930e6593ab34a1ebc71c5cebeffdeaf',
@@ -78,7 +78,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 7,
-    lpSymbol: 'BNB-CAKE LP',
+    lpSymbol: 'CAKE-BNB LP',
     lpAddresses: {
       97: '0x045e7efe7139ed74cdc21b6f96468e7ce57ed4b3',
       56: '0x0458498c2ccbbe4731048751896a052e2a5cc041',
@@ -88,7 +88,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 8,
-    lpSymbol: 'BNB-ADA LP',
+    lpSymbol: 'ADA-BNB LP',
     lpAddresses: {
       97: '0x045e7efe7139ed74cdc21b6f96468e7ce57ed4b3',
       56: '0xde0356a496a8d492431b808c758ed5075dd85040',
@@ -98,7 +98,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 9,
-    lpSymbol: 'BNB-DOT LP',
+    lpSymbol: 'DOT-BNB LP',
     lpAddresses: {
       97: '0x045e7efe7139ed74cdc21b6f96468e7ce57ed4b3',
       56: '0xcb7ad3af3ae8d6a04ac8eca9a77a95b2a72b06de',
@@ -108,7 +108,7 @@ const farms: FarmConfig[] = [
   },
   {
     pid: 10,
-    lpSymbol: 'BNB-LINK LP',
+    lpSymbol: 'LINK-BNB LP',
     lpAddresses: {
       97: '0x045e7efe7139ed74cdc21b6f96468e7ce57ed4b3',
       56: '0x278d7d1834e008864cfb247704cf34a171f39a2c',
