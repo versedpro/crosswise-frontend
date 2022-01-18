@@ -21,10 +21,16 @@ interface HarvestActionProps extends FarmWithStakedValue {
   isVest?: boolean
 }
 
-const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userData, userDataReady, isVest, isAuto }) => {
+const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
+  pid,
+  userData,
+  userDataReady,
+  isVest,
+  isAuto,
+}) => {
   const { toastSuccess, toastError } = useToast()
   const temp = new BigNumber(userData.earnings)
-  const earningsBigNumber = temp.dividedBy(2);
+  const earningsBigNumber = temp.dividedBy(2)
   const crssPrice = usePriceCrssBusd()
   let earnings = BIG_ZERO
   let earningsBusd = 0
@@ -38,12 +44,12 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
     earnings = getBalanceAmount(earningsBigNumber)
     earningsBusd = earnings.multipliedBy(crssPrice).toNumber()
     displayBalance = earnings.toFixed(3, BigNumber.ROUND_DOWN)
-    
-    if(isVest){
+
+    if (isVest) {
       xCrssEarnings = earnings.dividedBy(2)
       xCrssBusd = xCrssEarnings.multipliedBy(crssPrice).toNumber()
       displayXcrss = xCrssEarnings.toFixed(3, BigNumber.ROUND_DOWN)
-    }else{
+    } else {
       xCrssEarnings = earnings
       xCrssBusd = earningsBusd
       displayXcrss = xCrssEarnings.toFixed(3, BigNumber.ROUND_DOWN)
@@ -97,14 +103,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
             <div>
               <Text fontSize="14px">{displayXcrss}</Text>
               {xCrssBusd > 0 && (
-                <Balance
-                  fontSize="12px"
-                  color="textSecondary"
-                  decimals={2}
-                  value={xCrssBusd}
-                  unit=" USD"
-                  prefix="~"
-                />
+                <Balance fontSize="12px" color="textSecondary" decimals={2} value={xCrssBusd} unit=" USD" prefix="~" />
               )}
             </div>
           </ActionContent>

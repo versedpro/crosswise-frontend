@@ -44,7 +44,9 @@ export class WrappedTokenInfo extends Token {
 }
 
 export type TokenAddressMap = Readonly<
-  { [chainId in ChainId]: Readonly<{ [tokenAddress: string]: { token: WrappedTokenInfo; list: TokenList } }> }
+  {
+    [chainId in ChainId]: Readonly<{ [tokenAddress: string]: { token: WrappedTokenInfo; list: TokenList } }>
+  }
 >
 
 /**
